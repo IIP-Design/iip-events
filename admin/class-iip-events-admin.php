@@ -4,27 +4,17 @@ namespace IIP_Events;
 
 class Admin {
 
-  // INSERT YOUR FRONTEND FUNCTIONS HERE
-  // THE BELOW INCLUDED FUNCTIONS ADD AN ADMIN METABOX AND ENQUEQUE ADMIN SCRIPTS
-  // FEEL FREE TO DELETE IF NOT NEEDED
+  public function enqueue_iip_events_admin( $hook_suffix ) {
+    $cpt = 'iip_event';
 
-  public function enqueue_iip_events_admin() {
-    wp_enqueue_script( 'iip-events-admin-js', IIP_EVENTS_URL . 'admin/js/dist/iip-events-admin.min.js', array(), null, true );
-  }
+    if( in_array( $hook_suffix, array( 'post.php', 'post-new.php' ) ) ) {
+      $screen = get_current_screen();
 
-  public function add_metabox() {
-    $post_type = array( 'post', 'page' );
-    add_meta_box(
-      'iip-events-metabox',
-      __( 'IIP Events Metabox', 'iip-events' ),
-      array( $this, 'render_metabox' ),
-      $post_type,
-      'normal',
-      'low'
-    );
-  }
+      if( is_object( $screen ) && $cpt == $screen->$post_type ) {
 
-  public function render_metabox() {
-    echo '<div id="iip-events-admin"></div>';
+        // Enqueue admin JavaScript bundle
+        wp_enqueue_script( 'iip-events-admin-js', IIP_EVENTS_URL . 'admin/js/dist/iip-events-admin.min.js', array(), null, true );
+      }
+    }
   }
 }

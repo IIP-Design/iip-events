@@ -61,6 +61,7 @@ class IIP_Events {
 
     // The class responsible for defining all actions that occur in the admin area.
     require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-iip-events-admin.php';
+    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-iip-events-cpt.php';
 
     // The class responsible for defining all actions that occur in the public-facing side of the site.
     require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-iip-events-public.php';
@@ -70,11 +71,12 @@ class IIP_Events {
   // Register all of the hooks related to the admin area functionality of the plugin.
   private function define_admin_hooks() {
     $plugin_admin = new IIP_Events\Admin( $this->get_plugin_name(), $this->get_version() );
+    $plugin_cpt = new IIP_Events\Custom_Post_Type( $this->get_plugin_name(), $this->get_version() );
 
     // Admin hooks
-    $this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_metabox' );
-    $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_iip-events_admin' );
-    $this->loader->add_action( 'INSERT_WP_HOOK', $plugin_admin, 'INSERT_CALLBACK' );
+    $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_iip_events_admin' );
+    // Custom post type
+    $this->loader->add_action( 'init', $plugin_cpt, 'create_event_post_type' );
   }
 
   // Register all of the hooks related to the public-facing functionality
