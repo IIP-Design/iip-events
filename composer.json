@@ -1,0 +1,14 @@
+{
+  "name": "iip-design/iip-events",
+  "type": "wordpress-plugin",
+  "description" : "Event custom post type for IIP",
+  "authors": [
+    {
+      "name": "Marek Rewers, U.S. Department of State, IIP Office of Design <designdevops@america.gov>"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "composer/installers": "~1.0"
+  }
+}
