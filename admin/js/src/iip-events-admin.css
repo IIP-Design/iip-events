@@ -1,1 +1,13 @@
-/* INSERT ADMIN STYLES HERE */
+input,
+label,
+textarea {
+  margin: 5px 0;
+}
+
+.stacked {
+  display: block;
+}
+
+.iip-events-radio {
+  margin: 0 10px;
+}

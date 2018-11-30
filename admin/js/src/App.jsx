@@ -1,11 +1,16 @@
 import React from 'react';
 
+import ConfigureForm from './Containers/ConfigureForm';
+
 const App = () => (
   <div className="App">
-    <h1>Create IIP Plugin - Admin</h1>
-    <p>
-      You can now start building your backend at <code>iip-events/admin/js/src/App.jsx</code>.
-    </p>
+    <div className="iip-events-admin-metabox-holder metabox-holder columns-2">
+      <div className="iip-events-admin-column-wide postbox-container">
+        <div className="postbox">
+          <ConfigureForm />
+        </div>
+      </div>
+    </div>
   </div>
 );
 
