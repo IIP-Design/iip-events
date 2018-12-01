@@ -35,7 +35,7 @@ class Custom_Post_Type {
       'show_in_rest'         => false,
       'exclude_from_search'  => true,
       'query_var'            => false,
-      'rewrite'              => array( 'slug' => 'iip-event' ),
+      'rewrite'              => array( 'slug' => 'iip_event' ),
       'capability_type'      => 'post',
       'has_archive'          => false,
       'hierarchical'         => false,
@@ -54,7 +54,7 @@ class Custom_Post_Type {
   public function add_metaboxes() {
     add_meta_box(
       'iip_events_project_info',
-      __( 'Event Information', 'iip-events' ),
+      __( 'Configure Your Event', 'iip-events' ),
       array( $this, 'event_info_metabox' ),
       $this->name,
       'normal',
