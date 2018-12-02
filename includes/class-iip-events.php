@@ -77,6 +77,7 @@ class IIP_Events {
 
     // Admin hooks
     $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_iip_events_admin' );
+    $this->loader->add_action( 'admin_notices', $plugin_admin, 'localize_event_variables' );
     // API hooks
     $this->loader->add_action( 'rest_api_init', $plugin_api, 'create_event_endpoint' );
     // Custom post type hooks
