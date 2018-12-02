@@ -2,7 +2,7 @@
 
 namespace IIP_Events;
 
-use WP_REST_Server, WP_REST_Controller;
+use WP_REST_Server, WP_REST_Controller, stdClass;
 
 class API extends WP_REST_Controller {
 
@@ -15,6 +15,11 @@ class API extends WP_REST_Controller {
     register_rest_route( $namespace, '/' . $base, array(
       'methods' => WP_REST_Server::READABLE,
       'callback' => array($this, 'get_events'),
+    ) );
+
+    register_rest_route( $namespace, '/' . $base . '/(?P<id>[\d]+)', array(
+      'methods' => WP_REST_Server::READABLE,
+      'callback' => array($this, 'get_event_data'),
     ) );
   }
 
@@ -35,6 +40,36 @@ class API extends WP_REST_Controller {
     }
 
     return rest_ensure_response($data);
+  }
+
+  public function get_event_data( $request ) {
+    $id = (int) $request['id'];
+    $response = array();
+
+    $event = get_post( $id );
+
+    if ( empty( $event ) ) {
+      return rest_ensure_response( array ());
+    }
+
+    $response = $this->prepare_item_for_response( $event, $request );
+
+    return $response;
+  }
+
+  public function prepare_item_for_response( $item, $request ) {
+    $id = (int) $request['id'];
+
+    $event_title = get_post_meta( $id, '_iip_events_title' );
+    $event_desc = get_post_meta( $id, '_iip_events_desc' );
+    $event_time = get_post_meta( $id, '_iip_events_time' );
+
+    $list = new stdClass();
+    $list->title = $event_title[0];
+    $list->description = $event_desc[0];
+    $list->time = $event_time[0];
+
+    return $list;
   }
 
   public function prepare_response_for_collection( $response ) {
