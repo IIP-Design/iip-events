@@ -32,9 +32,9 @@ class Admin {
 
     // Pass PHP variable to admin JS
     wp_localize_script( 'iip-events-admin-js', 'iipEventParams', array(
-      'eventTitle' => get_post_Meta( $post->ID, '_iip-events-title', true ),
-      'eventDesc' => get_post_Meta( $post->ID, '_iip-events-desc', true ),
-      'eventTime' => get_post_Meta( $post->ID, '_iip-events-time', true )
+      'eventTitle' => get_post_Meta( $post->ID, '_iip_events_title', true ),
+      'eventDesc' => get_post_Meta( $post->ID, '_iip_events_desc', true ),
+      'eventDate' => get_post_Meta( $post->ID, '_iip_events_date', true )
     ) );
   }
 }

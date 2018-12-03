@@ -62,12 +62,12 @@ class API extends WP_REST_Controller {
 
     $event_title = get_post_meta( $id, '_iip_events_title' );
     $event_desc = get_post_meta( $id, '_iip_events_desc' );
-    $event_time = get_post_meta( $id, '_iip_events_time' );
+    $event_date = get_post_meta( $id, '_iip_events_date' );
 
     $list = new stdClass();
     $list->title = $event_title[0];
     $list->description = $event_desc[0];
-    $list->time = $event_time[0];
+    $list->time = $event_date[0];
 
     return $list;
   }
