@@ -64,6 +64,12 @@ class Custom_Post_Type {
 
   // Pull in anchor div
   public function event_info_metabox( $post ) {
+    wp_nonce_field( 'event_info', 'event_info_nonce' );
+
     echo '<div id="iip-events-admin"></div>';
+  }
+
+  public function save_event_meta( $post_id, $post_object ) {
+    include_once( 'partials/configure-save-metadata.php' );
   }
 }

@@ -82,6 +82,7 @@ class IIP_Events {
     $this->loader->add_action( 'rest_api_init', $plugin_api, 'create_event_endpoint' );
     // Custom post type hooks
     $this->loader->add_action( 'init', $plugin_cpt, 'create_event_post_type' );
+    $this->loader->add_action( 'save_post', $plugin_cpt, 'save_event_meta', 10, 2 );
   }
 
   // Register all of the hooks related to the public-facing functionality

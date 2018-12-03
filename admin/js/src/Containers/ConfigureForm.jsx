@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import DateSelector from './DateSelector';
 import { eventParams } from '../utils/globals';
@@ -42,7 +42,7 @@ class ConfigureForm extends Component {
     const { description, includeTime, title } = this.state;
 
     return (
-      <form name="iip_events_form">
+      <Fragment>
         <label htmlFor="_iip_events_title">
           Title:
           <input
@@ -58,7 +58,7 @@ class ConfigureForm extends Component {
         <label htmlFor="_iip-events-desc">
           Enter a Description for your event:
           <textarea
-            className="stacked"
+            className="large-textarea stacked"
             id="_iip_events_desc"
             name="_iip_events_desc"
             onChange={ this.handleDescChange }
@@ -93,7 +93,7 @@ class ConfigureForm extends Component {
         </label>
         <p>Select the Date of your event:</p>
         <DateSelector time={ includeTime } />
-      </form>
+      </Fragment>
     );
   }
 }

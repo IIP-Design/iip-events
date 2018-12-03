@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import ConfigureForm from './Containers/ConfigureForm';
 
 const App = () => (
-  <div className="App">
+  <Fragment>
     <ConfigureForm />
-  </div>
+  </Fragment>
 );
 
 export default App;
