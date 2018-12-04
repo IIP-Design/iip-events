@@ -60,14 +60,7 @@ class API extends WP_REST_Controller {
   public function prepare_item_for_response( $item, $request ) {
     $id = (int) $request['id'];
 
-    $event_title = get_post_meta( $id, '_iip_events_title' );
-    $event_desc = get_post_meta( $id, '_iip_events_desc' );
-    $event_date = get_post_meta( $id, '_iip_events_date' );
-
-    $list = new stdClass();
-    $list->title = $event_title[0];
-    $list->description = $event_desc[0];
-    $list->time = $event_date[0];
+    $list = get_post_meta( $id, '_iip_events_meta' );
 
     return $list;
   }
