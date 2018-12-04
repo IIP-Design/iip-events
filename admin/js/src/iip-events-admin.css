@@ -5,8 +5,13 @@ textarea {
 }
 
 .large-textarea {
-  width: 100%;
   min-height: 12em;
+  white-space: pre-wrap;
+  width: 100%;
+}
+
+.wide-input {
+  width: 100%;
 }
 
 .stacked {

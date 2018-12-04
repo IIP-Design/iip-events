@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
 import DateSelector from './DateSelector';
+import TimeSelector from './TimeSelector';
 import { eventParams } from '../utils/globals';
 
 class ConfigureForm extends Component {
@@ -46,7 +47,7 @@ class ConfigureForm extends Component {
         <label htmlFor="_iip_events_title">
           Title:
           <input
-            className="stacked"
+            className="wide-input stacked"
             id="_iip_events_title"
             name="_iip_events_title"
             onChange={ this.handleTitleChange }
@@ -65,6 +66,8 @@ class ConfigureForm extends Component {
             value={ description }
           />
         </label>
+        <p>Select the Date of your event:</p>
+        <DateSelector time={ includeTime } />
         <br />
         <p>Include a time for your event?:</p>
         <label className="iip-events-radio" htmlFor="_iip_events_time_yes">
@@ -91,8 +94,12 @@ class ConfigureForm extends Component {
             value={ false }
           />
         </label>
-        <p>Select the Date of your event:</p>
-        <DateSelector time={ includeTime } />
+        { includeTime && (
+          <Fragment>
+            <br />
+            <TimeSelector />
+          </Fragment>
+        ) }
       </Fragment>
     );
   }

@@ -5,34 +5,42 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 import { eventParams } from '../utils/globals';
 
-class DateSelector extends Component {
+class TimeSelector extends Component {
   constructor( props ) {
     super( props );
     this.state = {
-      startDate: new Date()
+      startTime: new Date()
     };
 
     this.handleChange = this.handleChange.bind( this );
   }
 
-  handleChange( date ) {
+  handleChange( time ) {
+    console.log(time);
+
     this.setState( {
-      startDate: date
+      startTime: time
     } );
   }
 
   render() {
-    const { startDate } = this.state;
+    const { startTime } = this.state;
 
     return (
       <DatePicker
-        id="_iip_events_date"
-        name="_iip_events_date"
+        dateFormat="h:mm aa"
+        id="_iip_events_time"
+        name="_iip_events_time"
         onChange={ this.handleChange }
-        selected={ startDate }
+        selected={ startTime }
+        showTimeSelect
+        showTimeSelectOnly
+        timeCaption="Time"
+        timeIntervals={ 15 }
+        value={ startTime }
       />
     );
   }
 }
 
-export default DateSelector;
+export default TimeSelector;
