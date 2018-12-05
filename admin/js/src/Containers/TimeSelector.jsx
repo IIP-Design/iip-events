@@ -3,28 +3,27 @@ import DatePicker from 'react-datepicker';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-import { eventParams } from '../utils/globals';
+import { getEventMeta } from '../utils/globals';
+import { fudgeDate } from '../utils/timeTransform';
 
 class TimeSelector extends Component {
   constructor( props ) {
     super( props );
     this.state = {
-      startTime: new Date()
+      time: fudgeDate( getEventMeta.time ) || new Date()
     };
 
     this.handleChange = this.handleChange.bind( this );
   }
 
   handleChange( time ) {
-    console.log(time);
-
     this.setState( {
-      startTime: time
+      time
     } );
   }
 
   render() {
-    const { startTime } = this.state;
+    const { time } = this.state;
 
     return (
       <DatePicker
@@ -32,12 +31,12 @@ class TimeSelector extends Component {
         id="_iip_events_time"
         name="_iip_events_time"
         onChange={ this.handleChange }
-        selected={ startTime }
+        selected={ time }
         showTimeSelect
         showTimeSelectOnly
         timeCaption="Time"
         timeIntervals={ 15 }
-        value={ startTime }
+        value={ time }
       />
     );
   }

@@ -2,15 +2,15 @@ import React, { Component, Fragment } from 'react';
 
 import DateSelector from './DateSelector';
 import TimeSelector from './TimeSelector';
-import { eventParams } from '../utils/globals';
+import { getEventMeta } from '../utils/globals';
 
 class ConfigureForm extends Component {
   constructor( props ) {
     super( props );
     this.state = {
-      title: eventParams.eventTitle || '',
-      description: eventParams.eventDesc || '',
-      includeTime: false
+      title: getEventMeta.title,
+      description: getEventMeta.description,
+      hasTime: getEventMeta.hasTime
     };
 
     this.handleTitleChange = this.handleTitleChange.bind( this );
@@ -35,12 +35,12 @@ class ConfigureForm extends Component {
     const isSelectedTrue = ( selected === 'true' );
 
     this.setState( {
-      includeTime: isSelectedTrue
+      hasTime: isSelectedTrue
     } );
   }
 
   render() {
-    const { description, includeTime, title } = this.state;
+    const { description, hasTime, title } = this.state;
 
     return (
       <Fragment>
@@ -67,13 +67,13 @@ class ConfigureForm extends Component {
           />
         </label>
         <p>Select the Date of your event:</p>
-        <DateSelector time={ includeTime } />
+        <DateSelector time={ hasTime } />
         <br />
         <p>Include a time for your event?:</p>
         <label className="iip-events-radio" htmlFor="_iip_events_time_yes">
           Yes
           <input
-            checked={ includeTime }
+            checked={ hasTime }
             className="iip-events-radio"
             id="_iip_events_time_yes"
             name="_iip_events_time_yes"
@@ -85,7 +85,7 @@ class ConfigureForm extends Component {
         <label className="iip-events-radio" htmlFor="_iip_events_time_no">
           No
           <input
-            checked={ !includeTime }
+            checked={ !hasTime }
             className="iip-events-radio"
             id="_iip_events_time_no"
             name="_iip_events_time_no"
@@ -94,7 +94,7 @@ class ConfigureForm extends Component {
             value={ false }
           />
         </label>
-        { includeTime && (
+        { hasTime && (
           <Fragment>
             <br />
             <TimeSelector />
