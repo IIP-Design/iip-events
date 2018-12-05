@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 
 import DateSelector from './DateSelector';
 import TimeSelector from './TimeSelector';
-
 import RadioToggle from '../Components/RadioToggle';
 
 import { getEventMeta } from '../utils/globals';

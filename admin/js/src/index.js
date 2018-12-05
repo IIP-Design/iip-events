@@ -10,4 +10,4 @@ ReactDOM.render(
   document.getElementById( 'iip-events-admin' )
 );
 
-module.hot.accept();
+if ( module.hot ) { module.hot.accept(); }
