@@ -4,10 +4,12 @@
 
 # Environment
 .env
+dist/stats.json
 
 # Dependencies
 node_modules/
 npm-debug.log*
 
 #Development Build
-dist/iip-events-admin.js
+dist/js/iip-events-admin.js
+dist/css/iip-events-admin.css
