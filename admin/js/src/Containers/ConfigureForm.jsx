@@ -2,6 +2,9 @@ import React, { Component, Fragment } from 'react';
 
 import DateSelector from './DateSelector';
 import TimeSelector from './TimeSelector';
+
+import RadioToggle from '../Components/RadioToggle';
+
 import { getEventMeta } from '../utils/globals';
 
 class ConfigureForm extends Component {
@@ -10,12 +13,16 @@ class ConfigureForm extends Component {
     this.state = {
       title: getEventMeta.title,
       description: getEventMeta.description,
-      hasTime: getEventMeta.hasTime
+      duration: getEventMeta.duration,
+      hasTime: getEventMeta.hasTime,
+      multiDay: getEventMeta.multiDay
     };
 
     this.handleTitleChange = this.handleTitleChange.bind( this );
     this.handleDescChange = this.handleDescChange.bind( this );
+    this.handleDayOption = this.handleDayOption.bind( this );
     this.handleTimeOption = this.handleTimeOption.bind( this );
+    this.handleDurationChange = this.handleDurationChange.bind( this );
   }
 
   handleTitleChange( e ) {
@@ -30,6 +37,21 @@ class ConfigureForm extends Component {
     } );
   }
 
+  handleDurationChange( e ) {
+    this.setState( {
+      duration: e.target.value
+    } );
+  }
+
+  handleDayOption( e ) {
+    const selected = e.target.value;
+    const isSelectedTrue = ( selected === 'true' );
+
+    this.setState( {
+      multiDay: isSelectedTrue
+    } );
+  }
+
   handleTimeOption( e ) {
     const selected = e.target.value;
     const isSelectedTrue = ( selected === 'true' );
@@ -40,7 +62,9 @@ class ConfigureForm extends Component {
   }
 
   render() {
-    const { description, hasTime, title } = this.state;
+    const {
+      description, duration, hasTime, multiDay, title
+    } = this.state;
 
     return (
       <Fragment>
@@ -66,40 +90,41 @@ class ConfigureForm extends Component {
             value={ description }
           />
         </label>
-        <p>Select the Date of your event:</p>
-        <DateSelector time={ hasTime } />
-        <br />
-        <p>Include a time for your event?:</p>
-        <label className="iip-events-radio" htmlFor="_iip_events_time_yes">
-          Yes
-          <input
-            checked={ hasTime }
-            className="iip-events-radio"
-            id="_iip_events_time_yes"
-            name="_iip_events_time_yes"
-            onChange={ this.handleTimeOption }
-            type="radio"
-            value
-          />
-        </label>
-        <label className="iip-events-radio" htmlFor="_iip_events_time_no">
-          No
-          <input
-            checked={ !hasTime }
-            className="iip-events-radio"
-            id="_iip_events_time_no"
-            name="_iip_events_time_no"
-            onChange={ this.handleTimeOption }
-            type="radio"
-            value={ false }
-          />
-        </label>
-        { hasTime && (
-          <Fragment>
-            <br />
-            <TimeSelector />
-          </Fragment>
-        ) }
+        <div className="iip-events-datetime">
+          <div className="iip-event-start-date">
+            <p>Select the date of your event:</p>
+            <DateSelector date={ getEventMeta.date } metavalue="date" />
+          </div>
+          <div className="iip-event-end-date">
+            <p>Multi-day event?</p>
+            <RadioToggle callback={ this.handleDayOption } metavalue="end_date" option={ multiDay } />
+            { multiDay && (
+              <Fragment>
+                <br />
+                <DateSelector date={ getEventMeta.endDate } metavalue="end_date" />
+              </Fragment>
+            ) }
+          </div>
+          <div className="iip-event-time">
+            <p>Include a time for your event?:</p>
+            <RadioToggle callback={ this.handleTimeOption } metavalue="time" option={ hasTime } />
+            { hasTime && (
+              <Fragment>
+                <p>Start time:</p>
+                <TimeSelector />
+                <p>Duration (in minutes):</p>
+                <input
+                  className="stacked"
+                  id="_iip_events_duration"
+                  name="_iip_events_duration"
+                  onChange={ this.handleDurationChange }
+                  type="text"
+                  value={ duration }
+                />
+              </Fragment>
+            ) }
+          </div>
+        </div>
       </Fragment>
     );
   }

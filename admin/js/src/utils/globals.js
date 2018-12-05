@@ -5,6 +5,7 @@ export const eventParams = ( function getParams() {
   return eventMeta;
 }() );
 
+// Creates getters and setters
 class EventMeta {
   constructor( meta ) {
     this._meta = meta;
@@ -28,9 +29,30 @@ class EventMeta {
     return null;
   }
 
+  get duration() {
+    if ( this._meta.duration ) {
+      return this._meta.duration;
+    }
+    return null;
+  }
+
+  get endDate() {
+    if ( this._meta.endDate ) {
+      return this._meta.endDate;
+    }
+    return null;
+  }
+
   get hasTime() {
     if ( this._meta.hasTime ) {
       return this._meta.hasTime;
+    }
+    return false;
+  }
+
+  get multiDay() {
+    if ( this._meta.multiDay ) {
+      return this._meta.multiDay;
     }
     return false;
   }

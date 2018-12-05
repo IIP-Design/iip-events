@@ -9,6 +9,7 @@ if ( $is_revision || !$is_valid_nonce ) {
   return;
 }
 
+// Get serialized array of post meta values
 $event_meta = unserialize( get_post_meta( $post_id, '_iip_events_meta' ) );
 
 if( !empty( $_POST['_iip_events_title'] ) ) {
@@ -27,10 +28,25 @@ if( !empty( $_POST['_iip_events_date'] ) ) {
   $event_meta['date'] = $date;
 }
 
+$event_meta['multiDay'] = ( ( isset( $_POST['_iip_events_end_date_yes'] ) ) ? true : false );
+
+if( !empty( $_POST['_iip_events_end_date'] ) ) {
+  
+  $date_string = strtotime( sanitize_text_field( $_POST['_iip_events_end_date'] ) );
+  $date = date( 'D M d Y H:i:s', $date_string );
+
+  $event_meta['endDate'] = $date;
+}
+
 $event_meta['hasTime'] = ( ( isset( $_POST['_iip_events_time_yes'] ) ) ? true : false );
 
 if( !empty( $_POST['_iip_events_time'] ) ) {
   $event_meta['time'] = ( sanitize_text_field( $_POST['_iip_events_time'] ) );
 }
 
+if( !empty( $_POST['_iip_events_duration'] ) ) {
+  $event_meta['duration'] = ( sanitize_text_field( $_POST['_iip_events_duration'] ) );
+}
+
+// Send updated array of post meta values
 update_post_meta ( $post_id, '_iip_events_meta', $event_meta );
