@@ -3,25 +3,27 @@ import { bool, func, string } from 'prop-types';
 
 const RadioToggle = ( { callback, metavalue, option } ) => (
   <Fragment>
-    <label className="iip-events-radio" htmlFor={ `_iip_events_${metavalue}_yes` }>
+    <label className="iip-event-radio" htmlFor={ `${metavalue}_yes` }>
       Yes
       <input
         checked={ option }
-        className="iip-events-radio"
-        id={ `_iip_events_${metavalue}_yes` }
-        name={ `_iip_events_${metavalue}_yes` }
+        className="iip-event-radio"
+        data-alias={ metavalue }
+        id={ `iip_event_${metavalue}_yes` }
+        name={ `${metavalue}_yes` }
         onChange={ callback }
         type="radio"
         value
       />
     </label>
-    <label className="iip-events-radio" htmlFor={ `_iip_events_${metavalue}_no` }>
+    <label className="iip-event-radio" htmlFor={ `${metavalue}_no` }>
       No
       <input
         checked={ !option }
-        className="iip-events-radio"
-        id={ `_iip_events_${metavalue}_no` }
-        name={ `_iip_events_${metavalue}_no` }
+        className="iip-event-radio"
+        data-alias={ metavalue }
+        id={ `iip_event_${metavalue}_no` }
+        name={ `${metavalue}_no` }
         onChange={ callback }
         type="radio"
         value={ false }

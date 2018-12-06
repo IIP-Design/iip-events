@@ -22,10 +22,10 @@ class Admin {
       if( is_object( $screen ) && $cpt == $screen->post_type ) {
 
         // Register the stylesheets for the admin area.
-        wp_enqueue_style( 'iip-events-admin-css', IIP_EVENTS_URL . 'admin/js/dist/iip-events-admin.css', array(), $this->version, 'all' );
+        wp_enqueue_style( 'iip-events-admin-css', IIP_EVENTS_ADMIN . 'css/iip-events-admin.min.css', array(), $this->version, 'all' );
         
         // Enqueue admin JavaScript bundle
-        wp_enqueue_script( 'iip-events-admin-js', IIP_EVENTS_URL . 'admin/js/dist/iip-events-admin.min.js', array(), null, true );
+        wp_enqueue_script( 'iip-events-admin-js', IIP_EVENTS_ADMIN . 'js/iip-events-admin.min.js', array(), null, true );
       }
     }
   }

@@ -8,7 +8,7 @@ class DateSelector extends Component {
   constructor( props ) {
     super( props );
     this.state = {
-      date: null
+      date: ''
     };
 
     this.handleChange = this.handleChange.bind( this );
@@ -16,7 +16,7 @@ class DateSelector extends Component {
 
   componentDidMount() {
     const { date } = this.props;
-    const setDate = new Date( date ) || new Date();
+    const setDate = date ? new Date( date ) : new Date();
 
     this.setState( {
       date: setDate
@@ -35,8 +35,8 @@ class DateSelector extends Component {
 
     return (
       <DatePicker
-        id={ `_iip_events_${metavalue}` }
-        name={ `_iip_events_${metavalue}` }
+        id={ `iip_event_${metavalue}` }
+        name={ `event_${metavalue}` }
         onChange={ this.handleChange }
         selected={ date }
       />

@@ -12,40 +12,44 @@ if ( $is_revision || !$is_valid_nonce ) {
 // Get serialized array of post meta values
 $event_meta = unserialize( get_post_meta( $post_id, '_iip_events_meta' ) );
 
-if( !empty( $_POST['_iip_events_title'] ) ) {
-  $event_meta['title'] = ( sanitize_text_field( $_POST['_iip_events_title'] ) );
+if( !empty( $_POST['eventTitle'] ) ) {
+  $event_meta['title'] = ( sanitize_text_field( $_POST['eventTitle'] ) );
 }
 
-if( !empty( $_POST['_iip_events_desc'] ) ) {
-  $event_meta['description'] = ( sanitize_text_field( $_POST['_iip_events_desc'] ) );
+if( !empty( $_POST['eventDesc'] ) ) {
+  $event_meta['description'] = ( sanitize_text_field( $_POST['eventDesc'] ) );
 }
 
-if( !empty( $_POST['_iip_events_date'] ) ) {
+if( !empty( $_POST['event_date'] ) ) {
   
-  $date_string = strtotime( sanitize_text_field( $_POST['_iip_events_date'] ) );
+  $date_string = strtotime( sanitize_text_field( $_POST['event_date'] ) );
   $date = date( 'D M d Y H:i:s', $date_string );
 
   $event_meta['date'] = $date;
 }
 
-$event_meta['multiDay'] = ( ( isset( $_POST['_iip_events_end_date_yes'] ) ) ? true : false );
+$event_meta['multiDay'] = ( ( isset( $_POST['multiDay_yes'] ) ) ? true : false );
 
-if( !empty( $_POST['_iip_events_end_date'] ) ) {
+if( !empty( $_POST['event_endDate'] ) ) {
   
-  $date_string = strtotime( sanitize_text_field( $_POST['_iip_events_end_date'] ) );
+  $date_string = strtotime( sanitize_text_field( $_POST['event_endDate'] ) );
   $date = date( 'D M d Y H:i:s', $date_string );
 
   $event_meta['endDate'] = $date;
 }
 
-$event_meta['hasTime'] = ( ( isset( $_POST['_iip_events_time_yes'] ) ) ? true : false );
+$event_meta['hasTime'] = ( ( isset( $_POST['hasTime_yes'] ) ) ? true : false );
 
-if( !empty( $_POST['_iip_events_time'] ) ) {
-  $event_meta['time'] = ( sanitize_text_field( $_POST['_iip_events_time'] ) );
+if( !empty( $_POST['eventTime'] ) ) {
+  $event_meta['time'] = ( sanitize_text_field( $_POST['eventTime'] ) );
 }
 
-if( !empty( $_POST['_iip_events_duration'] ) ) {
-  $event_meta['duration'] = ( sanitize_text_field( $_POST['_iip_events_duration'] ) );
+if( !empty( $_POST['eventDur'] ) ) {
+  $event_meta['duration'] = ( sanitize_text_field( $_POST['eventDur'] ) );
+}
+
+if( has_post_thumbnail() ) {
+  $event_meta['thumbnail'] = ( get_the_post_thumbnail_url() );
 }
 
 // Send updated array of post meta values

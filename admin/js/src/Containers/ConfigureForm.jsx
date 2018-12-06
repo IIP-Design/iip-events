@@ -10,115 +10,93 @@ class ConfigureForm extends Component {
   constructor( props ) {
     super( props );
     this.state = {
-      title: getEventMeta.title,
-      description: getEventMeta.description,
-      duration: getEventMeta.duration,
+      eventTitle: getEventMeta.title,
+      eventDesc: getEventMeta.description,
+      eventDur: getEventMeta.duration,
       hasTime: getEventMeta.hasTime,
       multiDay: getEventMeta.multiDay
     };
 
-    this.handleTitleChange = this.handleTitleChange.bind( this );
-    this.handleDescChange = this.handleDescChange.bind( this );
-    this.handleDayOption = this.handleDayOption.bind( this );
-    this.handleTimeOption = this.handleTimeOption.bind( this );
-    this.handleDurationChange = this.handleDurationChange.bind( this );
+    this.handleInputChange = this.handleInputChange.bind( this );
+    this.handleRadioChange = this.handleRadioChange.bind( this );
   }
 
-  handleTitleChange( e ) {
+  handleInputChange( e ) {
     this.setState( {
-      title: e.target.value
+      [e.target.name]: e.target.value
     } );
   }
 
-  handleDescChange( e ) {
-    this.setState( {
-      description: e.target.value
-    } );
-  }
-
-  handleDurationChange( e ) {
-    this.setState( {
-      duration: e.target.value
-    } );
-  }
-
-  handleDayOption( e ) {
+  handleRadioChange( e ) {
     const selected = e.target.value;
     const isSelectedTrue = ( selected === 'true' );
 
     this.setState( {
-      multiDay: isSelectedTrue
-    } );
-  }
-
-  handleTimeOption( e ) {
-    const selected = e.target.value;
-    const isSelectedTrue = ( selected === 'true' );
-
-    this.setState( {
-      hasTime: isSelectedTrue
+      [e.target.dataset.alias]: isSelectedTrue
     } );
   }
 
   render() {
     const {
-      description, duration, hasTime, multiDay, title
+      eventDesc, eventDur, eventTitle, hasTime, multiDay
     } = this.state;
 
     return (
       <Fragment>
-        <label htmlFor="_iip_events_title">
+        <label htmlFor="iip_event_title">
           Title:
           <input
             className="wide-input stacked"
-            id="_iip_events_title"
-            name="_iip_events_title"
-            onChange={ this.handleTitleChange }
+            id="iip_event_title"
+            name="eventTitle"
+            onChange={ this.handleInputChange }
             type="text"
-            value={ title }
+            value={ eventTitle }
           />
         </label>
         <br />
-        <label htmlFor="_iip-events-desc">
+        <label htmlFor="iip-event-desc">
           Enter a Description for your event:
           <textarea
             className="large-textarea stacked"
-            id="_iip_events_desc"
-            name="_iip_events_desc"
-            onChange={ this.handleDescChange }
-            value={ description }
+            id="iip_event_desc"
+            name="eventDesc"
+            onChange={ this.handleInputChange }
+            value={ eventDesc }
           />
         </label>
-        <div className="iip-events-datetime">
+        <div className="iip-event-datetime">
           <div className="iip-event-start-date">
             <p>Select the date of your event:</p>
             <DateSelector date={ getEventMeta.date } metavalue="date" />
           </div>
           <div className="iip-event-end-date">
             <p>Multi-day event?</p>
-            <RadioToggle callback={ this.handleDayOption } metavalue="end_date" option={ multiDay } />
+            <RadioToggle callback={ this.handleRadioChange } metavalue="multiDay" option={ multiDay } />
             { multiDay && (
               <Fragment>
                 <br />
-                <DateSelector date={ getEventMeta.endDate } metavalue="end_date" />
+                <DateSelector date={ getEventMeta.endDate } metavalue="endDate" />
               </Fragment>
             ) }
           </div>
           <div className="iip-event-time">
             <p>Include a time for your event?:</p>
-            <RadioToggle callback={ this.handleTimeOption } metavalue="time" option={ hasTime } />
+            <RadioToggle callback={ this.handleRadioChange } metavalue="hasTime" option={ hasTime } />
             { hasTime && (
               <Fragment>
-                <p>Start time:</p>
-                <TimeSelector />
+                { /* eslint-disable-next-line jsx-a11y/label-has-associated-control, jsx-a11y/label-has-for */ }
+                <label htmlFor="iip_event_time">
+                  <TimeSelector />
+                </label>
                 <p>Duration (in minutes):</p>
                 <input
                   className="stacked"
-                  id="_iip_events_duration"
-                  name="_iip_events_duration"
-                  onChange={ this.handleDurationChange }
+                  id="iip_event_duration"
+                  name="eventDur"
+                  onChange={ this.handleInputChange }
                   type="text"
-                  value={ duration }
+                  value={ eventDur }
                 />
               </Fragment>
             ) }

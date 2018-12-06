@@ -28,8 +28,8 @@ class TimeSelector extends Component {
     return (
       <DatePicker
         dateFormat="h:mm aa"
-        id="_iip_events_time"
-        name="_iip_events_time"
+        id="iip_event_time"
+        name="eventTime"
         onChange={ this.handleChange }
         selected={ time }
         showTimeSelect
