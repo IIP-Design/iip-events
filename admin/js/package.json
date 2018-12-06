@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "build": "webpack --config ./config/webpack.config.prod.js --mode production",
-    "dev": "webpack-dev-server --config ./config/webpack.dev.config.dev.js --mode development",
+    "dev": "webpack-dev-server --config ./config/webpack.config.dev.js --mode development",
     "dev:build": "webpack --config ./config/webpack.config.dev.js --mode development",
-    "profile": "webpack-bundle-analyzer dist/stats.json ./"
+    "profile": "webpack-bundle-analyzer dist/stats.json ./dist/"
   },
   "dependencies": {
     "prop-types": "^15.6.2",
