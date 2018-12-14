@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { string } from 'prop-types';
+import { instanceOf, string } from 'prop-types';
 import DatePicker from 'react-datepicker';
 
 import 'react-datepicker/dist/react-datepicker.css';
@@ -8,7 +8,7 @@ class DateSelector extends Component {
   constructor( props ) {
     super( props );
     this.state = {
-      date: ''
+      date: new Date()
     };
 
     this.handleChange = this.handleChange.bind( this );
@@ -45,7 +45,7 @@ class DateSelector extends Component {
 }
 
 DateSelector.propTypes = {
-  date: string,
+  date: instanceOf( Date ),
   metavalue: string
 };
 

@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import { getEventMeta } from '../utils/globals';
-import { fudgeDate } from '../utils/timeTransform';
+import { fudgeDate, stringifyTime } from '../utils/timeTransform';
 
 class TimeSelector extends Component {
   constructor( props ) {
@@ -36,7 +36,7 @@ class TimeSelector extends Component {
         showTimeSelectOnly
         timeCaption="Time"
         timeIntervals={ 15 }
-        value={ time }
+        value={ stringifyTime( time ) }
       />
     );
   }

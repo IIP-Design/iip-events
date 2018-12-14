@@ -19,28 +19,28 @@ class EventMeta {
     if ( this._meta.date ) {
       return this._meta.date;
     }
-    return null;
+    return new Date();
   }
 
   get description() {
     if ( this._meta.description ) {
       return this._meta.description;
     }
-    return null;
+    return '';
   }
 
   get duration() {
     if ( this._meta.duration ) {
       return this._meta.duration;
     }
-    return null;
+    return '';
   }
 
   get endDate() {
     if ( this._meta.endDate ) {
       return this._meta.endDate;
     }
-    return null;
+    return new Date();
   }
 
   get hasTime() {
@@ -57,18 +57,39 @@ class EventMeta {
     return false;
   }
 
+  get language() {
+    if ( this._meta.language ) {
+      return this._meta.language;
+    }
+    return '';
+  }
+
+  get link() {
+    if ( this._meta.link ) {
+      return this._meta.link;
+    }
+    return '';
+  }
+
+  get organizer() {
+    if ( this._meta.organizer ) {
+      return this._meta.organizer;
+    }
+    return '';
+  }
+
   get title() {
     if ( this._meta.title ) {
       return this._meta.title;
     }
-    return null;
+    return '';
   }
 
   get time() {
     if ( this._meta.time ) {
       return this._meta.time;
     }
-    return null;
+    return '';
   }
 
   set meta( obj ) {

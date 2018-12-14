@@ -3,6 +3,7 @@ import React, { Component, Fragment } from 'react';
 import DateSelector from './DateSelector';
 import TimeSelector from './TimeSelector';
 import RadioToggle from '../Components/RadioToggle';
+import Input from '../Components/Input';
 
 import { getEventMeta } from '../utils/globals';
 
@@ -10,9 +11,12 @@ class ConfigureForm extends Component {
   constructor( props ) {
     super( props );
     this.state = {
-      eventTitle: getEventMeta.title,
       eventDesc: getEventMeta.description,
       eventDur: getEventMeta.duration,
+      eventOrg: getEventMeta.organizer,
+      eventLang: getEventMeta.language,
+      eventLink: getEventMeta.link,
+      eventTitle: getEventMeta.title,
       hasTime: getEventMeta.hasTime,
       multiDay: getEventMeta.multiDay
     };
@@ -38,23 +42,19 @@ class ConfigureForm extends Component {
 
   render() {
     const {
-      eventDesc, eventDur, eventTitle, hasTime, multiDay
+      eventDesc, eventDur, eventLang, eventLink, eventOrg, eventTitle, hasTime, multiDay
     } = this.state;
 
     return (
       <Fragment>
-        <label htmlFor="iip_event_title">
-          Title:
-          <input
-            className="wide-input stacked"
-            id="iip_event_title"
-            name="eventTitle"
-            onChange={ this.handleInputChange }
-            type="text"
-            value={ eventTitle }
-          />
-        </label>
-        <br />
+        <Input
+          callback={ this.handleInputChange }
+          classes="wide-input stacked"
+          id="iip_event_title"
+          label="Title:"
+          name="eventTitle"
+          value={ eventTitle }
+        />
         <label htmlFor="iip-event-desc">
           Enter a Description for your event:
           <textarea
@@ -89,19 +89,42 @@ class ConfigureForm extends Component {
                 <label htmlFor="iip_event_time">
                   <TimeSelector />
                 </label>
-                <p>Duration (in minutes):</p>
-                <input
-                  className="stacked"
+                <Input
+                  callback={ this.handleInputChange }
+                  classes="stacked"
                   id="iip_event_duration"
+                  label="Duration (in minutes):"
                   name="eventDur"
-                  onChange={ this.handleInputChange }
-                  type="text"
                   value={ eventDur }
                 />
               </Fragment>
             ) }
           </div>
         </div>
+        <Input
+          callback={ this.handleInputChange }
+          classes="stacked"
+          id="iip_event_organizer"
+          label="Add an organizer:"
+          name="eventOrg"
+          value={ eventOrg }
+        />
+        <Input
+          callback={ this.handleInputChange }
+          classes="stacked"
+          id="iip_event_language"
+          label="Program language:"
+          name="eventLang"
+          value={ eventLang }
+        />
+        <Input
+          callback={ this.handleInputChange }
+          classes="stacked"
+          id="iip_event_link"
+          label="Add an link:"
+          name="eventLink"
+          value={ eventLink }
+        />
       </Fragment>
     );
   }

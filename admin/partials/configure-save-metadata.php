@@ -10,7 +10,7 @@ if ( $is_revision || !$is_valid_nonce ) {
 }
 
 // Get serialized array of post meta values
-$event_meta = unserialize( get_post_meta( $post_id, '_iip_events_meta' ) );
+$event_meta = unserialize( get_post_meta( $post_id, '_iip_event_meta' ) );
 
 if( !empty( $_POST['eventTitle'] ) ) {
   $event_meta['title'] = ( sanitize_text_field( $_POST['eventTitle'] ) );
@@ -48,9 +48,21 @@ if( !empty( $_POST['eventDur'] ) ) {
   $event_meta['duration'] = ( sanitize_text_field( $_POST['eventDur'] ) );
 }
 
+if( !empty( $_POST['eventOrg'] ) ) {
+  $event_meta['organizer'] = ( sanitize_text_field( $_POST['eventOrg'] ) );
+}
+
+if( !empty( $_POST['eventLang'] ) ) {
+  $event_meta['language'] = ( sanitize_text_field( $_POST['eventLang'] ) );
+}
+
+if( !empty( $_POST['eventLink'] ) ) {
+  $event_meta['link'] = ( sanitize_text_field( $_POST['eventLink'] ) );
+}
+
 if( has_post_thumbnail() ) {
   $event_meta['thumbnail'] = ( get_the_post_thumbnail_url() );
 }
 
 // Send updated array of post meta values
-update_post_meta ( $post_id, '_iip_events_meta', $event_meta );
+update_post_meta ( $post_id, '_iip_event_meta', $event_meta );

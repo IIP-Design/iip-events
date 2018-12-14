@@ -19,6 +19,13 @@ export const convertTo24 = ( timeString ) => {
   return `${hours}:${minutes}`;
 };
 
+// Converts date object into string
+export const stringifyTime = ( date ) => {
+  const dateString = date.toLocaleString( 'en-US', { hour: 'numeric', minute: 'numeric', hour12: true } );
+
+  return dateString;
+};
+
 // Concates a 12 hour time string into a contrived datetime string
 export const fudgeDate = ( timeString ) => {
   if ( !timeString ) {
