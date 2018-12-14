@@ -91,6 +91,7 @@ class IIP_Events {
 
     // Frontend hooks
     $this->loader->add_filter( 'template_include', $plugin_frontend, 'include_post_type', 1 );
+    $this->loader->add_action( 'wp_enqueue_scripts', $plugin_frontend, 'enqueue_iip_events_frontend' );
   }
 
   /**

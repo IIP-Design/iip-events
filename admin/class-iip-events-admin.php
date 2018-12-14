@@ -35,7 +35,7 @@ class Admin {
 
     // Pass PHP variable to admin JS
     wp_localize_script( 'iip-events-admin-js', 'iipEventParams', array(
-      'eventMeta' => get_post_Meta( $post->ID, '_iip_event_meta', true )
+      'eventMeta' => get_post_meta( $post->ID, '_iip_event_meta', true )
     ) );
   }
 }

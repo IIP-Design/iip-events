@@ -1,0 +1,19 @@
+.iip-event-article {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+    
+.iip-event-featured-image > img {
+  height: auto;
+  max-width: 100%;
+}
+
+.iip-event-meta > p {
+  font-size: .8em;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.iip-event-body {
+  margin-top: 1em;
+}
