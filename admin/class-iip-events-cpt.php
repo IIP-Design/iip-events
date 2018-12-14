@@ -1,6 +1,6 @@
 <?php
 
-namespace IIP_Events;
+namespace IIP_Event;
 
 class Custom_Post_Type {
 
@@ -26,18 +26,16 @@ class Custom_Post_Type {
     $args   = array(
       'labels'               => $labels,
       'description'          => __( 'Configure Event', 'iip-event' ),
-      'public'               => false,
-      'publicly_queryable'   => false,
+      'public'               => true,
       'show_ui'              => true,
       'show_in_menu'         => true,
       'show_in_nav_menus'    => true,
       'show_in_admin_bar'    => true,
       'show_in_rest'         => false,
-      'exclude_from_search'  => true,
       'query_var'            => false,
       'rewrite'              => array( 'slug' => 'iip_event' ),
       'capability_type'      => 'post',
-      'has_archive'          => false,
+      'has_archive'          => true,
       'hierarchical'         => false,
       'can_export'           => true,
       'delete_with_user'     => false,
@@ -54,7 +52,7 @@ class Custom_Post_Type {
   public function add_metaboxes() {
     add_meta_box(
       'iip_events_project_info',
-      __( 'Configure Your Event', 'iip-events' ),
+      __( 'Configure Your Event', 'iip-event' ),
       array( $this, 'event_info_metabox' ),
       $this->name,
       'normal',

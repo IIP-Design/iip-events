@@ -7,7 +7,7 @@ class IIP_Events {
    *
    * @since    0.0.1
    * @access   protected
-   * @var      IIP_Events_Loader    $loader    Maintains and registers all hooks for the plugin.
+   * @var      IIP_Event_Loader    $loader    Maintains and registers all hooks for the plugin.
    */
 
   protected $loader;
@@ -66,14 +66,14 @@ class IIP_Events {
 
     // The class responsible for defining all actions that occur in the public-facing side of the site.
     require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-iip-events-public.php';
-    $this->loader = new IIP_Events\Loader();
+    $this->loader = new IIP_Event\Loader();
   }
 
   // Register all of the hooks related to the admin area functionality of the plugin.
   private function define_admin_hooks() {
-    $plugin_admin = new IIP_Events\Admin( $this->get_plugin_name(), $this->get_version() );
-    $plugin_api = new IIP_Events\API();
-    $plugin_cpt = new IIP_Events\Custom_Post_Type( $this->get_plugin_name(), $this->get_version() );
+    $plugin_admin = new IIP_Event\Admin( $this->get_plugin_name(), $this->get_version() );
+    $plugin_api = new IIP_Event\API();
+    $plugin_cpt = new IIP_Event\Custom_Post_Type( $this->get_plugin_name(), $this->get_version() );
 
     // Admin hooks
     $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_iip_events_admin' );
@@ -87,10 +87,10 @@ class IIP_Events {
 
   // Register all of the hooks related to the public-facing functionality
   private function define_public_hooks() {
-    $plugin_frontend = new IIP_Events\Frontend( $this->get_plugin_name(), $this->get_version() );
+    $plugin_frontend = new IIP_Event\Frontend( $this->get_plugin_name(), $this->get_version() );
 
     // Frontend hooks
-    $this->loader->add_action( 'INSERT_WP_HOOK', $plugin_frontend, 'INSERT_CALLBACK' );
+    $this->loader->add_filter( 'template_include', $plugin_frontend, 'include_post_type', 1 );
   }
 
   /**
@@ -107,7 +107,7 @@ class IIP_Events {
    * The reference to the class that orchestrates the hooks with the plugin.
    *
    * @since     0.0.1
-   * @return    IIP_Events_Loader    Orchestrates the hooks of the plugin.
+   * @return    IIP_Event_Loader    Orchestrates the hooks of the plugin.
    */
 
   public function get_loader() {
