@@ -1,6 +1,6 @@
 <?php
 
-namespace IIP_Events;
+namespace IIP_Event;
 
 use WP_REST_Server, WP_REST_Controller, stdClass;
 
@@ -60,7 +60,7 @@ class API extends WP_REST_Controller {
   public function prepare_item_for_response( $item, $request ) {
     $id = (int) $request['id'];
 
-    $list = get_post_meta( $id, '_iip_events_meta' );
+    $list = get_post_meta( $id, '_iip_event_meta' );
 
     return $list;
   }

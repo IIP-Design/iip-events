@@ -1,6 +1,6 @@
 <?php
 
-namespace IIP_Events;
+namespace IIP_Event;
 
 class Admin {
 
@@ -35,7 +35,7 @@ class Admin {
 
     // Pass PHP variable to admin JS
     wp_localize_script( 'iip-events-admin-js', 'iipEventParams', array(
-      'eventMeta' => get_post_Meta( $post->ID, '_iip_events_meta', true )
+      'eventMeta' => get_post_Meta( $post->ID, '_iip_event_meta', true )
     ) );
   }
 }

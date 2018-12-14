@@ -1,6 +1,6 @@
 <?php
 
-namespace IIP_Events;
+namespace IIP_Event;
 
 /**
  * Register all actions and filters for the plugin.

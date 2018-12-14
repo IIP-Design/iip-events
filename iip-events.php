@@ -6,7 +6,7 @@
 * Description: Event custom post type for IIP
 * Version: 0.0.1
 * Author: Marek Rewers, U.S. Department of State, IIP Office of Design <designdevops@america.gov>
-* Text Domain: iip-events
+* Text Domain: iip-event
 * License: GNU General Public License v2.0
 * License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
 */
