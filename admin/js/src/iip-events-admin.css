@@ -6,7 +6,6 @@ textarea {
 
 .large-textarea {
   min-height: 12em;
-  white-space: pre-wrap;
   width: 100%;
 }
 

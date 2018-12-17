@@ -17,7 +17,7 @@ if( !empty( $_POST['eventTitle'] ) ) {
 }
 
 if( !empty( $_POST['eventDesc'] ) ) {
-  $event_meta['description'] = ( sanitize_text_field( $_POST['eventDesc'] ) );
+  $event_meta['description'] = ( sanitize_textarea_field( $_POST['eventDesc'] ) );
 }
 
 if( !empty( $_POST['event_date'] ) ) {
