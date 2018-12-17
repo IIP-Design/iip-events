@@ -60,6 +60,14 @@ if( !empty( $_POST['eventLink'] ) ) {
   $event_meta['link'] = ( sanitize_text_field( $_POST['eventLink'] ) );
 }
 
+if( !empty( $_POST['eventContact'] ) ) {
+  $event_meta['contact'] = ( sanitize_text_field( $_POST['eventContact'] ) );
+}
+
+if( !empty( $_POST['eventContactMethod'] ) ) {
+  $event_meta['contactMethod'] = ( sanitize_text_field( $_POST['eventContactMethod'] ) );
+}
+
 if( has_post_thumbnail() ) {
   $event_meta['thumbnail'] = ( get_the_post_thumbnail_url() );
 }

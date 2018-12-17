@@ -30,11 +30,17 @@ textarea {
 
 .iip-event-datetime,
 .iip-event-additional-info,
-.iip-event-add-speakers {
+.iip-event-add-speakers,
+.iip-event-add-contact {
   background-color: #F1F1F1;
   display: flex;
-  justify-content: space-between;
   padding: 10px;
+}
+
+.iip-event-datetime,
+.iip-event-additional-info,
+.iip-event-add-speakers {
+  justify-content: space-between;
 }
 
 .iip-event-start-date,
@@ -47,11 +53,13 @@ textarea {
   margin: 0;
 }
 
-.iip-event-additional-info > label {
+.iip-event-additional-info > label,
+.iip-event-add-contact > label {
   flex-basis: 33%;
 }
 
-.iip-event-additional-info > label > input {
+.iip-event-additional-info > label > input,
+.iip-event-add-contact > label > input {
   width: 80%;
 }
 

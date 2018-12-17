@@ -11,6 +11,8 @@ class ConfigureForm extends Component {
   constructor( props ) {
     super( props );
     this.state = {
+      eventContact: getEventMeta.contact,
+      eventContactMethod: getEventMeta.contactMethod,
       eventDesc: getEventMeta.description,
       eventDur: getEventMeta.duration,
       eventOrg: getEventMeta.organizer,
@@ -42,7 +44,7 @@ class ConfigureForm extends Component {
 
   render() {
     const {
-      eventDesc, eventDur, eventLang, eventLink, eventOrg, eventTitle, hasTime, multiDay
+      eventContact, eventContactMethod, eventDesc, eventDur, eventLang, eventLink, eventOrg, eventTitle, hasTime, multiDay
     } = this.state;
 
     return (
@@ -133,6 +135,25 @@ class ConfigureForm extends Component {
           <strong className="iip-event-subsection-heading">Add Speakers:</strong>
           <div className="iip-event-add-speakers">
             <button type="button">+</button>
+          </div>
+          <strong className="iip-event-subsection-heading">Add Contact Info:</strong>
+          <div className="iip-event-add-contact">
+            <Input
+              callback={ this.handleInputChange }
+              classes="stacked"
+              id="iip_event_contact_name"
+              label="Add contact name:"
+              name="eventContact"
+              value={ eventContact }
+            />
+            <Input
+              callback={ this.handleInputChange }
+              classes="stacked"
+              id="iip_event_contact_method"
+              label="Add contact method (Ex. email, phone number):"
+              name="eventContactMethod"
+              value={ eventContactMethod }
+            />
           </div>
         </div>
       </Fragment>

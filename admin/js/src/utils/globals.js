@@ -15,6 +15,20 @@ class EventMeta {
     return this._meta;
   }
 
+  get contact() {
+    if ( this._meta.contact ) {
+      return this._meta.contact;
+    }
+    return '';
+  }
+
+  get contactMethod() {
+    if ( this._meta.contactMethod ) {
+      return this._meta.contactMethod;
+    }
+    return '';
+  }
+
   get date() {
     if ( this._meta.date ) {
       return this._meta.date;
