@@ -9,11 +9,27 @@
 }
 
 .iip-event-meta > p {
-  font-size: .8em;
+  font-size: 1em;
   line-height: 1.2;
   margin: 0;
 }
 
-.iip-event-body {
+.iip-event-body,
+.iip-event-speakers,
+.iip-event-materials,
+.iip-event-contact {
   margin-top: 1em;
+}
+
+.iip-event-body > p {
+  white-space: pre-wrap;
+}
+
+.iip-event-contact {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.3em;
+  justify-content: center;
+  margin: 1em 0;
 }

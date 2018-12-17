@@ -20,11 +20,20 @@ get_header(); ?>
     $meta_array = get_post_meta( $id, '_iip_event_meta' );
     $post_meta = $meta_array[0];
     
-    $date = date( 'l, M j, Y', strtotime( $post_meta['date'] ) );
-    $time = ( $post_meta['hasTime'] == true ) ? ' at ' . $post_meta['time'] : '';
-    $language = ( $post_meta['language'] ) ? '<p>Language: ' . $post_meta['language'] . '</p>' : '';
-    $organizer = ( $post_meta['organizer'] ) ? '<p>Organizer: ' . $post_meta['organizer'] . '</p>' : '';
-    $link = ( $post_meta['link'] ) ? '<p>Link: <a href="' . $post_meta['link'] . '">' . $post_meta['link'] . '</a></p>' : '';
+    $date = date( 'l, M. j, Y', strtotime( $post_meta['date'] ) );
+    $end_date = ( $post_meta['multiDay'] == true ) ? ' - ' . date( 'l, M. j, Y', strtotime( $post_meta['endDate'] ) ) : '';
+    $timezone = ( $post_meta['timezone'] ) ? ' ' . $post_meta['timezone'] : '';
+    $time = ( $post_meta['hasTime'] == true ) ? ' at ' . $post_meta['time'] . ' - ' . $post_meta['endTime'] . $timezone : '';
+    $language = ( $post_meta['language'] ) ? '<p><strong>Language:</strong> ' . $post_meta['language'] . '</p>' : '';
+    $organizer = ( $post_meta['organizer'] ) ? '<p><strong>Organizer:</strong> ' . $post_meta['organizer'] . '</p>' : '';
+    $link = ( $post_meta['link'] ) ? '<p><strong>Link:</strong> <a href="' . $post_meta['link'] . '">' . $post_meta['link'] . '</a></p>' : '';
+    $description = ( $post_meta['description'] ) ? '<h3>Description:</h3><p>' . $post_meta['description'] . '</p>' : '';
+    $speakers = ( $post_meta['speakers'] ) ? '<h3>Speakers:</h3><p>' . $post_meta['speakers'] . '</p>' : '';
+    $materials_link = ( $post_meta['materialsLink'] ) ? '<a class="ui button" href="' . $post_meta['materialsLink'] . '" target="_blank">See all materials on Box ></a>' : '';
+    $materials = ( $materials_link ) ? '<h3>Promotional Materials:</h3><p>' . $materials_link . '</p>' : '';
+    $contact_method = ( $post_meta['contactMethod'] ) ? ' at ' . $post_meta['contactMethod'] : '';
+    $contact_name = ( $post_meta['contact'] ) ? $post_meta['contact'] : '';
+    $contact = ( $contact_name ) ? '<strong>Questions about this event?</strong><strong>Reach out to ' . $contact_name . $contact_method . '</strong>' : '';
     ?>
   
     <article class="iip-event-article" id="post-<?php the_ID(); ?>">
@@ -35,7 +44,7 @@ get_header(); ?>
         <figure class="iip-event-featured-image"><?php the_post_thumbnail(); ?></figure>
       </div>
       <div class="iip-event-meta">
-        <p>When: <?php echo( $date . $time ) ?></p>
+        <p><strong>When:</strong> <?php echo( $date . $end_date . $time ) ?></p>
         <?php 
         echo( $language );
         echo( $organizer ); 
@@ -43,9 +52,16 @@ get_header(); ?>
         ?>
       </div>
       <div class="iip-event-body">
-        <p>
-          <?php echo( $post_meta['description'] ); ?>
-        </p>
+        <?php echo( $description ); ?>
+      </div>
+      <div class="iip-event-speakers">
+        <?php echo( $speakers ); ?>
+      </div>
+      <div class="iip-event-materials">
+        <?php echo( $materials ); ?>
+      </div>
+      <div class="iip-event-contact">
+        <?php echo( $contact ); ?>
       </div>
     </article>
     
