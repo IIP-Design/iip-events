@@ -57,6 +57,13 @@ class EventMeta {
     return new Date();
   }
 
+  get endTime() {
+    if ( this._meta.endTime ) {
+      return this._meta.endTime;
+    }
+    return new Date();
+  }
+
   get hasTime() {
     if ( this._meta.hasTime ) {
       return this._meta.hasTime;
@@ -102,6 +109,13 @@ class EventMeta {
   get time() {
     if ( this._meta.time ) {
       return this._meta.time;
+    }
+    return '';
+  }
+
+  get timezone() {
+    if ( this._meta.timezone ) {
+      return this._meta.timezone;
     }
     return '';
   }

@@ -8,7 +8,9 @@ const Input = ( {
     { label ? (
       <label htmlFor={ id }>
         { label }
+        { ' ' }
         <input
+          autoComplete="off"
           className={ classes }
           id={ id }
           name={ name }
@@ -19,6 +21,7 @@ const Input = ( {
       </label>
     ) : (
       <input
+        autoComplete="off"
         className={ classes }
         id={ id }
         name={ name }

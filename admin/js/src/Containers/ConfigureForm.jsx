@@ -14,10 +14,10 @@ class ConfigureForm extends Component {
       eventContact: getEventMeta.contact,
       eventContactMethod: getEventMeta.contactMethod,
       eventDesc: getEventMeta.description,
-      eventDur: getEventMeta.duration,
       eventOrg: getEventMeta.organizer,
       eventLang: getEventMeta.language,
       eventLink: getEventMeta.link,
+      eventTimezone: getEventMeta.timezone,
       eventTitle: getEventMeta.title,
       hasTime: getEventMeta.hasTime,
       multiDay: getEventMeta.multiDay
@@ -44,7 +44,7 @@ class ConfigureForm extends Component {
 
   render() {
     const {
-      eventContact, eventContactMethod, eventDesc, eventDur, eventLang, eventLink, eventOrg, eventTitle, hasTime, multiDay
+      eventContact, eventContactMethod, eventDesc, eventLang, eventLink, eventOrg, eventTitle, eventTimezone, hasTime, multiDay
     } = this.state;
 
     return (
@@ -79,6 +79,8 @@ class ConfigureForm extends Component {
               <RadioToggle callback={ this.handleRadioChange } metavalue="multiDay" option={ multiDay } />
               { multiDay && (
                 <Fragment>
+                  <br />
+                  <p className="iip-events-faux-label">Set the end date:</p>
                   <DateSelector date={ getEventMeta.endDate } metavalue="endDate" />
                 </Fragment>
               ) }
@@ -90,16 +92,24 @@ class ConfigureForm extends Component {
                 <Fragment>
                   { /* eslint-disable-next-line jsx-a11y/label-has-associated-control, jsx-a11y/label-has-for */ }
                   <label htmlFor="iip_event_time">
-                    <TimeSelector />
+                    Start Time:
+                    { '  ' }
+                    <TimeSelector metavalue="time" time={ getEventMeta.time } />
+                  </label>
+                  <br />
+                  { /* eslint-disable-next-line jsx-a11y/label-has-associated-control, jsx-a11y/label-has-for */ }
+                  <label htmlFor="iip_event_endTime">
+                    End Time:
+                    { '  ' }
+                    <TimeSelector metavalue="endTime" time={ getEventMeta.endTime } />
                   </label>
                   <br />
                   <Input
                     callback={ this.handleInputChange }
-                    classes="stacked"
-                    id="iip_event_duration"
-                    label="Duration (in minutes):"
-                    name="eventDur"
-                    value={ eventDur }
+                    id="iip_event_timezone"
+                    label="Timezone:"
+                    name="eventTimezone"
+                    value={ eventTimezone }
                   />
                 </Fragment>
               ) }

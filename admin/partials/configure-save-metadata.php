@@ -40,12 +40,16 @@ if( !empty( $_POST['event_endDate'] ) ) {
 
 $event_meta['hasTime'] = ( ( isset( $_POST['hasTime_yes'] ) ) ? true : false );
 
-if( !empty( $_POST['eventTime'] ) ) {
-  $event_meta['time'] = ( sanitize_text_field( $_POST['eventTime'] ) );
+if( !empty( $_POST['event_time'] ) ) {
+  $event_meta['time'] = ( sanitize_text_field( $_POST['event_time'] ) );
 }
 
-if( !empty( $_POST['eventDur'] ) ) {
-  $event_meta['duration'] = ( sanitize_text_field( $_POST['eventDur'] ) );
+if( !empty( $_POST['event_endTime'] ) ) {
+  $event_meta['endTime'] = ( sanitize_text_field( $_POST['event_endTime'] ) );
+}
+
+if( !empty( $_POST['eventTimezone'] ) ) {
+  $event_meta['timezone'] = ( sanitize_text_field( $_POST['eventTimezone'] ) );
 }
 
 if( !empty( $_POST['eventOrg'] ) ) {

@@ -35,6 +35,7 @@ class DateSelector extends Component {
 
     return (
       <DatePicker
+        autoComplete="off"
         id={ `iip_event_${metavalue}` }
         name={ `event_${metavalue}` }
         onChange={ this.handleChange }
