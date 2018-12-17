@@ -30,6 +30,7 @@ textarea {
 .iip-event-datetime,
 .iip-event-additional-info,
 .iip-event-add-speakers,
+.iip-event-add-materials,
 .iip-event-add-contact {
   background-color: #F1F1F1;
   display: flex;
@@ -57,7 +58,12 @@ textarea {
   flex-basis: 33%;
 }
 
+.iip-event-add-materials > label {
+  flex-basis: 100%;
+}
+
 .iip-event-additional-info > label > input,
+.iip-event-add-materials > label > input,
 .iip-event-add-contact > label > input {
   width: 80%;
 }

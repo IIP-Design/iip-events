@@ -92,6 +92,13 @@ class EventMeta {
     return '';
   }
 
+  get materialsLink() {
+    if ( this._meta.materialsLink ) {
+      return this._meta.materialsLink;
+    }
+    return '';
+  }
+
   get organizer() {
     if ( this._meta.organizer ) {
       return this._meta.organizer;

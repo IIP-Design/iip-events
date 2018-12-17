@@ -17,14 +17,17 @@ class ConfigureForm extends Component {
       eventOrg: getEventMeta.organizer,
       eventLang: getEventMeta.language,
       eventLink: getEventMeta.link,
+      eventMaterialsLink: getEventMeta.materialsLink,
       eventTimezone: getEventMeta.timezone,
       eventTitle: getEventMeta.title,
       hasTime: getEventMeta.hasTime,
-      multiDay: getEventMeta.multiDay
+      multiDay: getEventMeta.multiDay,
+      speakerNum: 0
     };
 
     this.handleInputChange = this.handleInputChange.bind( this );
     this.handleRadioChange = this.handleRadioChange.bind( this );
+    this.handleAddSpeaker = this.handleAddSpeaker.bind( this );
   }
 
   handleInputChange( e ) {
@@ -42,9 +45,19 @@ class ConfigureForm extends Component {
     } );
   }
 
+  handleAddSpeaker() {
+    const { speakerNum } = this.state;
+    const newNum = speakerNum + 1;
+
+    this.setState( {
+      speakerNum: newNum
+    } );
+  }
+
   render() {
     const {
-      eventContact, eventContactMethod, eventDesc, eventLang, eventLink, eventOrg, eventTitle, eventTimezone, hasTime, multiDay
+      eventContact, eventContactMethod, eventDesc, eventLang, eventLink,
+      eventMaterialsLink, eventOrg, eventTitle, eventTimezone, hasTime, multiDay
     } = this.state;
 
     return (
@@ -144,7 +157,17 @@ class ConfigureForm extends Component {
           </div>
           <strong className="iip-event-subsection-heading">Add Speakers:</strong>
           <div className="iip-event-add-speakers">
-            <button type="button">+</button>
+            <button onClick={ this.handleAddSpeaker } type="button">+</button>
+          </div>
+          <strong className="iip-event-subsection-heading">Add Promotional Materials:</strong>
+          <div className="iip-event-add-materials">
+            <Input
+              callback={ this.handleInputChange }
+              id="iip_event_materials_link"
+              label="Add link to materials:"
+              name="eventMaterialsLink"
+              value={ eventMaterialsLink }
+            />
           </div>
           <strong className="iip-event-subsection-heading">Add Contact Info:</strong>
           <div className="iip-event-add-contact">

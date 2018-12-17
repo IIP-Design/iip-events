@@ -64,6 +64,10 @@ if( !empty( $_POST['eventLink'] ) ) {
   $event_meta['link'] = ( sanitize_text_field( $_POST['eventLink'] ) );
 }
 
+if( !empty( $_POST['eventMaterialsLink'] ) ) {
+  $event_meta['materialsLink'] = ( sanitize_text_field( $_POST['eventMaterialsLink'] ) );
+}
+
 if( !empty( $_POST['eventContact'] ) ) {
   $event_meta['contact'] = ( sanitize_text_field( $_POST['eventContact'] ) );
 }
