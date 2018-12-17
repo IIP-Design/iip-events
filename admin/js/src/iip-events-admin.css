@@ -1,7 +1,7 @@
 input,
 label,
 textarea {
-  margin: 5px 0;
+  margin: 10px 0;
 }
 
 .large-textarea {
@@ -18,22 +18,47 @@ textarea {
   display: block;
 }
 
-.iip-event-datetime {
+.iip-event-subsection-heading {
+  margin-top: 1em;
+  margin-bottom: .5em;
+}
+
+.iip-event-lower-admin-container {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.iip-event-datetime,
+.iip-event-additional-info,
+.iip-event-add-speakers {
+  background-color: #F1F1F1;
+  display: flex;
   justify-content: space-between;
+  padding: 10px;
 }
 
 .iip-event-start-date,
 .iip-event-end-date,
 .iip-event-time {
-  flex-basis: 30%;
+  flex-basis: 33%;
+}
+
+.iip-events-faux-label {
+  margin: 0;
+}
+
+.iip-event-additional-info > label {
+  flex-basis: 33%;
+}
+
+.iip-event-additional-info > label > input {
+  width: 80%;
+}
+
+.iip-event-radio-toggle {
+  margin-top: 10px;
 }
 
 input.iip-event-radio {
   margin: 0 10px;
-}
-
-.react-datepicker-wrapper {
-  margin-top: 5px;
 }

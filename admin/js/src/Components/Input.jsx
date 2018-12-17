@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { func, string } from 'prop-types';
 
 const Input = ( {
   callback, classes, id, label, name, value
 } ) => (
-  <div>
+  <Fragment>
     { label ? (
       <label htmlFor={ id }>
         { label }
@@ -27,7 +27,7 @@ const Input = ( {
         value={ value }
       />
     ) }
-  </div>
+  </Fragment>
 );
 
 Input.propTypes = {

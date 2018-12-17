@@ -65,66 +65,76 @@ class ConfigureForm extends Component {
             value={ eventDesc }
           />
         </label>
-        <div className="iip-event-datetime">
-          <div className="iip-event-start-date">
-            <p>Select the date of your event:</p>
-            <DateSelector date={ getEventMeta.date } metavalue="date" />
+        <div className="iip-event-lower-admin-container">
+          <strong className="iip-event-subsection-heading">Set the Date and Time:</strong>
+          <div className="iip-event-datetime">
+            <div className="iip-event-start-date">
+              <p className="iip-events-faux-label">Select the date of your event:</p>
+              <DateSelector date={ getEventMeta.date } metavalue="date" />
+            </div>
+            <div className="iip-event-end-date">
+              <p className="iip-events-faux-label">Multi-day event?</p>
+              <RadioToggle callback={ this.handleRadioChange } metavalue="multiDay" option={ multiDay } />
+              { multiDay && (
+                <Fragment>
+                  <DateSelector date={ getEventMeta.endDate } metavalue="endDate" />
+                </Fragment>
+              ) }
+            </div>
+            <div className="iip-event-time">
+              <p className="iip-events-faux-label">Include a time for your event?:</p>
+              <RadioToggle callback={ this.handleRadioChange } metavalue="hasTime" option={ hasTime } />
+              { hasTime && (
+                <Fragment>
+                  { /* eslint-disable-next-line jsx-a11y/label-has-associated-control, jsx-a11y/label-has-for */ }
+                  <label htmlFor="iip_event_time">
+                    <TimeSelector />
+                  </label>
+                  <br />
+                  <Input
+                    callback={ this.handleInputChange }
+                    classes="stacked"
+                    id="iip_event_duration"
+                    label="Duration (in minutes):"
+                    name="eventDur"
+                    value={ eventDur }
+                  />
+                </Fragment>
+              ) }
+            </div>
           </div>
-          <div className="iip-event-end-date">
-            <p>Multi-day event?</p>
-            <RadioToggle callback={ this.handleRadioChange } metavalue="multiDay" option={ multiDay } />
-            { multiDay && (
-              <Fragment>
-                <br />
-                <DateSelector date={ getEventMeta.endDate } metavalue="endDate" />
-              </Fragment>
-            ) }
+          <strong className="iip-event-subsection-heading">Add Event Details:</strong>
+          <div className="iip-event-additional-info">
+            <Input
+              callback={ this.handleInputChange }
+              classes="stacked"
+              id="iip_event_organizer"
+              label="Add an organizer:"
+              name="eventOrg"
+              value={ eventOrg }
+            />
+            <Input
+              callback={ this.handleInputChange }
+              classes="stacked"
+              id="iip_event_language"
+              label="Program language:"
+              name="eventLang"
+              value={ eventLang }
+            />
+            <Input
+              callback={ this.handleInputChange }
+              classes="stacked"
+              id="iip_event_link"
+              label="Add an link:"
+              name="eventLink"
+              value={ eventLink }
+            />
           </div>
-          <div className="iip-event-time">
-            <p>Include a time for your event?:</p>
-            <RadioToggle callback={ this.handleRadioChange } metavalue="hasTime" option={ hasTime } />
-            { hasTime && (
-              <Fragment>
-                { /* eslint-disable-next-line jsx-a11y/label-has-associated-control, jsx-a11y/label-has-for */ }
-                <label htmlFor="iip_event_time">
-                  <TimeSelector />
-                </label>
-                <Input
-                  callback={ this.handleInputChange }
-                  classes="stacked"
-                  id="iip_event_duration"
-                  label="Duration (in minutes):"
-                  name="eventDur"
-                  value={ eventDur }
-                />
-              </Fragment>
-            ) }
+          <strong className="iip-event-subsection-heading">Add Speakers:</strong>
+          <div className="iip-event-add-speakers">
+            <button type="button">+</button>
           </div>
         </div>
-        <Input
-          callback={ this.handleInputChange }
-          classes="stacked"
-          id="iip_event_organizer"
-          label="Add an organizer:"
-          name="eventOrg"
-          value={ eventOrg }
-        />
-        <Input
-          callback={ this.handleInputChange }
-          classes="stacked"
-          id="iip_event_language"
-          label="Program language:"
-          name="eventLang"
-          value={ eventLang }
-        />
-        <Input
-          callback={ this.handleInputChange }
-          classes="stacked"
-          id="iip_event_link"
-          label="Add an link:"
-          name="eventLink"
-          value={ eventLink }
-        />
       </Fragment>
     );
   }

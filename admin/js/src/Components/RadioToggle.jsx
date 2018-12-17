@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { bool, func, string } from 'prop-types';
 
 const RadioToggle = ( { callback, metavalue, option } ) => (
-  <Fragment>
+  <div className="iip-event-radio-toggle">
     <label className="iip-event-radio" htmlFor={ `${metavalue}_yes` }>
       Yes
       <input
@@ -29,7 +29,7 @@ const RadioToggle = ( { callback, metavalue, option } ) => (
         value={ false }
       />
     </label>
-  </Fragment>
+  </div>
 );
 
 RadioToggle.propTypes = {
