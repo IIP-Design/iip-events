@@ -42,7 +42,7 @@ class Custom_Post_Type {
       'menu_position'        => 6,
       'register_meta_box_cb' => array( $this, 'add_metaboxes' ),
       'menu_icon'            => 'dashicons-calendar-alt',
-      'supports'             => array( 'title', 'thumbnail' )
+      'supports'             => array( 'excerpt', 'thumbnail', 'title' )
     );
 
     register_post_type( $this->name, $args );

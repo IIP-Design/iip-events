@@ -2,9 +2,11 @@
 
 // Checks save status
 $is_revision = wp_is_post_revision( $post_id );
+
+// Checks for nonce
 $is_valid_nonce = ( isset( $_POST[ 'event_info_nonce' ] ) && wp_verify_nonce( $_POST[ 'event_info_nonce' ], 'iip_event' ) ) ? 'true' : 'false';
 
-// Exits script depending on save status
+// Exits script depending on save and nonce status
 if ( $is_revision || !$is_valid_nonce ) {
   return;
 }
