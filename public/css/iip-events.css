@@ -3,7 +3,11 @@
   max-width: 1300px;
   padding-top: 1em;
 }
-    
+
+.iip-event-featured-image {
+  text-align: center;
+}
+
 .iip-event-featured-image > img {
   height: auto;
   max-width: 100%;

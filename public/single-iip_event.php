@@ -51,6 +51,9 @@ get_header(); ?>
         echo( $link ); 
         ?>
       </div>
+      <div class="iip-event-add-to-cal">
+        <div id="iip-events-front"></div>
+      </div>
       <div class="iip-event-body">
         <?php echo( $description ); ?>
       </div>

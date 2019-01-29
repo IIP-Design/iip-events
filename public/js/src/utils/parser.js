@@ -1,0 +1,48 @@
+import moment from 'moment';
+
+import { setDateLocale } from './localization';
+import { checkForX } from './helpers';
+
+const getDate = ( lang, date ) => {
+  setDateLocale( lang );
+  const localizedDate = moment( date ).format( 'LL' );
+  return localizedDate;
+};
+
+// Converts inputs from API into useable data object
+export const normalizeItem = ( data ) => {
+  const dateStart = getDate( 'en-us', data.date );
+  const dateEnd = getDate( 'en-us', data.endDate );
+
+  const obj = {
+    dateStart,
+    dateEnd: checkForX( data.multiDay ) ? dateEnd : dateStart,
+    description: data.description,
+    language: data.language,
+    link: data.link,
+    organizer: data.organizer,
+    timeStart: checkForX( data.hasTime ) ? data.time : '',
+    timeEnd: data.duration || '',
+    title: data.title,
+    thumbnail: data.thumbnail
+  };
+
+  console.log(obj);
+
+  return { ...obj };
+};
+
+// Pull out information required by Add to Calendar from data object
+export const normalizeAddToCal = ( data ) => {
+  const obj = {
+    title: data.title,
+    description: data.description,
+    location: data.location || '',
+    startTime: data.dateStart,
+    endTime: data.dateEnd
+  };
+
+  console.log(obj);
+
+  return { ...obj };
+};

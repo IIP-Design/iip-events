@@ -30,7 +30,7 @@ class Admin {
     }
   }
 
-  public function localize_event_variables() {
+  public function localize_admin_event_variables() {
     global $post;
 
     // Pass PHP variable to admin JS
