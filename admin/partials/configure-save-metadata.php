@@ -66,6 +66,10 @@ if( !empty( $_POST['eventLink'] ) ) {
   $event_meta['link'] = ( sanitize_text_field( $_POST['eventLink'] ) );
 }
 
+if( !empty( $_POST['speakersArr'] ) ) {
+  $event_meta['speakers'] = ( json_decode( stripslashes ( sanitize_text_field( $_POST['speakersArr'] ) ) ) );
+}
+
 if( !empty( $_POST['eventMaterialsLink'] ) ) {
   $event_meta['materialsLink'] = ( sanitize_text_field( $_POST['eventMaterialsLink'] ) );
 }

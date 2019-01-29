@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
-import { func, string } from 'prop-types';
+import { func, int, string } from 'prop-types';
 
 const Input = ( {
-  callback, classes, id, label, name, value
+  callback, classes, id, index, label, name, value
 } ) => (
   <Fragment>
     { label ? (
@@ -12,6 +12,7 @@ const Input = ( {
         <input
           autoComplete="off"
           className={ classes }
+          data-index={ index }
           id={ id }
           name={ name }
           onChange={ callback }
@@ -23,6 +24,7 @@ const Input = ( {
       <input
         autoComplete="off"
         className={ classes }
+        data-index={ index }
         id={ id }
         name={ name }
         onChange={ callback }
@@ -37,6 +39,7 @@ Input.propTypes = {
   callback: func,
   classes: string,
   id: string,
+  index: int,
   label: string,
   name: string,
   value: string

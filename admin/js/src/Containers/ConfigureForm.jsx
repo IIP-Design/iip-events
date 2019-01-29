@@ -22,12 +22,13 @@ class ConfigureForm extends Component {
       eventTitle: getEventMeta.title,
       hasTime: getEventMeta.hasTime,
       multiDay: getEventMeta.multiDay,
-      speakerNum: 0
+      speakers: getEventMeta.speakers
     };
 
     this.handleInputChange = this.handleInputChange.bind( this );
     this.handleRadioChange = this.handleRadioChange.bind( this );
     this.handleAddSpeaker = this.handleAddSpeaker.bind( this );
+    this.handleSpeakerInput = this.handleSpeakerInput.bind( this );
   }
 
   handleInputChange( e ) {
@@ -45,19 +46,27 @@ class ConfigureForm extends Component {
     } );
   }
 
-  handleAddSpeaker() {
-    const { speakerNum } = this.state;
-    const newNum = speakerNum + 1;
+  handleAddSpeaker( e ) {
+    this.setState( prevState => ( {
+      speakers: [...prevState.speakers, { name: '', bio: '' }]
+    } ) );
+  }
 
-    this.setState( {
-      speakerNum: newNum
-    } );
+  handleSpeakerInput( e ) {
+    const { speakers } = Object.assign( {}, this.state );
+    const { index } = e.target.dataset;
+    const property = e.target.name;
+
+    speakers[index][property] = e.target.value;
+
+    this.setState( { speakers } );
   }
 
   render() {
     const {
       eventContact, eventContactMethod, eventDesc, eventLang, eventLink,
-      eventMaterialsLink, eventOrg, eventTitle, eventTimezone, hasTime, multiDay
+      eventMaterialsLink, eventOrg, eventTitle, eventTimezone, hasTime,
+      multiDay, speakers
     } = this.state;
 
     return (
@@ -158,6 +167,35 @@ class ConfigureForm extends Component {
           <strong className="iip-event-subsection-heading">Add Speakers:</strong>
           <div className="iip-event-add-speakers">
             <button onClick={ this.handleAddSpeaker } type="button">+</button>
+            {
+              speakers.map( ( value, index ) => {
+                const position = index + 1;
+
+                return (
+                  <div className="iip-event-speaker">
+                    <Input
+                      callback={ this.handleSpeakerInput }
+                      classes="stacked"
+                      index={ index }
+                      id={ `iip_event_speaker_${position}` }
+                      label="Speaker Name:"
+                      name="name"
+                      value={ speakers[index].name }
+                    />
+                    <Input
+                      callback={ this.handleSpeakerInput }
+                      classes="stacked"
+                      index={ index }
+                      id={ `iip_event_speaker_${position}_bio` }
+                      label="Speaker bio:"
+                      name="bio"
+                      value={ speakers[index].bio }
+                    />
+                  </div>
+                );
+              } )
+            }
+            <input hidden name="speakersArr" value={ JSON.stringify( speakers ) } />
           </div>
           <strong className="iip-event-subsection-heading">Add Promotional Materials:</strong>
           <div className="iip-event-add-materials">

@@ -39,8 +39,20 @@ textarea {
 
 .iip-event-datetime,
 .iip-event-additional-info,
-.iip-event-add-speakers {
+.iip-event-add-speakers,
+.iip-event-speaker {
   justify-content: space-between;
+}
+
+.iip-event-speaker {
+  display: flex;
+  flex-basis: 33%;
+  width: 100%
+}
+
+.iip-event-add-speakers {
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 .iip-event-start-date,

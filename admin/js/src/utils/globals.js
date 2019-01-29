@@ -106,6 +106,13 @@ class EventMeta {
     return '';
   }
 
+  get speakers() {
+    if ( this._meta.speakers ) {
+      return this._meta.speakers;
+    }
+    return [];
+  }
+
   get title() {
     if ( this._meta.title ) {
       return this._meta.title;
