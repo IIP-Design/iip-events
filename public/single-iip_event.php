@@ -28,7 +28,6 @@ get_header(); ?>
     $organizer = ( $post_meta['organizer'] ) ? '<p><strong>Organizer:</strong> ' . $post_meta['organizer'] . '</p>' : '';
     $link = ( $post_meta['link'] ) ? '<p><strong>Link:</strong> <a href="' . $post_meta['link'] . '">' . $post_meta['link'] . '</a></p>' : '';
     $description = ( $post_meta['description'] ) ? '<h3>Description:</h3><p>' . $post_meta['description'] . '</p>' : '';
-    // $speakers = ( $post_meta['speakers'] ) ? '<h3>Speakers:</h3><p>' . $post_meta['speakers'] . '</p>' : '';
     $speakers = ( $post_meta['speakers'] ) ? $post_meta['speakers'] : '';
     $materials_link = ( $post_meta['materialsLink'] ) ? '<a class="ui button" href="' . $post_meta['materialsLink'] . '" target="_blank">See all materials on Box ></a>' : '';
     $materials = ( $materials_link ) ? '<h3>Promotional Materials:</h3><p>' . $materials_link . '</p>' : '';
@@ -57,13 +56,17 @@ get_header(); ?>
       </div>
       <div class="iip-event-speakers">
         <?php
+        if ( $speakers ):
+          echo( "<h3>Speakers:</h3>" );
+
           foreach ( $speakers as $speaker ) {
-            // $html = "<strong>" . $speaker['name'] . "</strong><br />";
-            // $html .= "<strong>" . $speaker['title'] . "</strong>";
-            // $html .= "<p>" . $speaker['bio'] . "</p>";
+            $html = "<strong>" . $speaker->name . "</strong><br />";
+            $html .= "<strong>" . $speaker->title . "</strong>";
+            $html .= "<p>" . $speaker->bio . "</p>";
             
-            var_dump( $speaker );
-          };
+            echo( $html );
+          }
+        endif;
         ?>
       </div>
       <div class="iip-event-materials">
