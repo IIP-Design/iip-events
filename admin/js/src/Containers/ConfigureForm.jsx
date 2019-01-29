@@ -48,7 +48,7 @@ class ConfigureForm extends Component {
 
   handleAddSpeaker( e ) {
     this.setState( prevState => ( {
-      speakers: [...prevState.speakers, { name: '', bio: '' }]
+      speakers: [...prevState.speakers, { bio: '', name: '', title: '' }]
     } ) );
   }
 
@@ -173,24 +173,40 @@ class ConfigureForm extends Component {
 
                 return (
                   <div className="iip-event-speaker">
-                    <Input
-                      callback={ this.handleSpeakerInput }
-                      classes="stacked"
-                      index={ index }
-                      id={ `iip_event_speaker_${position}` }
-                      label="Speaker Name:"
-                      name="name"
-                      value={ speakers[index].name }
-                    />
-                    <Input
-                      callback={ this.handleSpeakerInput }
-                      classes="stacked"
-                      index={ index }
-                      id={ `iip_event_speaker_${position}_bio` }
-                      label="Speaker bio:"
-                      name="bio"
-                      value={ speakers[index].bio }
-                    />
+                    <div className="iip-event-speaker-column-1">
+                      <Input
+                        callback={ this.handleSpeakerInput }
+                        classes="stacked"
+                        index={ index }
+                        id={ `iip_event_speaker_${position}` }
+                        label="Speaker Name:"
+                        name="name"
+                        value={ speakers[index].name }
+                      />
+                      <Input
+                        callback={ this.handleSpeakerInput }
+                        classes="stacked"
+                        index={ index }
+                        id={ `iip_event_speaker_${position}_title` }
+                        label="Speaker title:"
+                        name="title"
+                        value={ speakers[index].title }
+                      />
+                    </div>
+                    <div className="iip-event-speaker-column-2">
+                      <label htmlFor={ `iip_event_speaker_${position}_bio` }>
+                        Speaker bio:
+                        <textarea
+                          className="medium-textarea stacked"
+                          data-index={ index }
+                          id={ `iip_event_speaker_${position}_bio` }
+                          name="bio"
+                          onChange={ this.handleSpeakerInput }
+                          value={ speakers[index].bio }
+                        />
+                      </label>
+                    </div>
+                    <hr />
                   </div>
                 );
               } )

@@ -9,6 +9,11 @@ textarea {
   width: 100%;
 }
 
+.medium-textarea {
+  min-height: 9em;
+  width: 100%;
+}
+
 .wide-input {
   width: 100%;
 }
@@ -46,8 +51,16 @@ textarea {
 
 .iip-event-speaker {
   display: flex;
+  padding: .75em;
+  width: 100%;
+}
+
+.iip-event-speaker-column-1 {
   flex-basis: 33%;
-  width: 100%
+}
+
+.iip-event-speaker-column-2 {
+  flex-basis: 66%;
 }
 
 .iip-event-add-speakers {
