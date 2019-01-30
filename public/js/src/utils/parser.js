@@ -1,7 +1,6 @@
 import moment from 'moment';
 
 import { setDateLocale } from './localization';
-import { checkForX } from './helpers';
 import { normalizeDatetime } from './timeTransform';
 
 const getDate = ( lang, date ) => {
@@ -15,18 +14,20 @@ const getDate = ( lang, date ) => {
 export const normalizeItem = ( data ) => {
   const dateStart = getDate( 'en-us', data.date );
   const dateEnd = getDate( 'en-us', data.endDate );
+  const timeStart = data.hasTime ? data.time : '00:00';
 
   const obj = {
+    allDay: !( data.hasTime ),
     dateStart,
-    dateEnd: checkForX( data.multiDay ) ? dateEnd : dateStart,
-    description: data.description,
-    language: data.language,
-    link: data.link,
-    organizer: data.organizer,
-    timeStart: checkForX( data.hasTime ) ? data.time : '',
-    timeEnd: data.endTime ? data.endTime : data.time,
+    dateEnd: data.multiDay ? dateEnd : dateStart,
+    description: data.description || '',
+    language: data.language || '',
+    link: data.link || '',
+    organizer: data.organizer || '',
+    timeStart,
+    timeEnd: data.endTime ? data.endTime : timeStart,
     timezone: data.timezone || 'US/Eastern',
-    title: data.title,
+    title: data.title || '',
     thumbnail: data.thumbnail
   };
 
@@ -36,11 +37,11 @@ export const normalizeItem = ( data ) => {
 // Pull out information required by Add to Calendar from data object
 export const normalizeAddToCal = ( data ) => {
   const {
-    dateStart, dateEnd, timeStart, timeEnd, timezone
+    allDay, dateStart, dateEnd, timeStart, timeEnd, timezone
   } = data;
 
-  const startTime = normalizeDatetime( dateStart, timeStart, timezone );
-  const endTime = normalizeDatetime( dateEnd, timeEnd, timezone );
+  const startTime = allDay ? dateStart : normalizeDatetime( dateStart, timeStart, timezone );
+  const endTime = allDay ? dateEnd : normalizeDatetime( dateEnd, timeEnd, timezone );
 
   const obj = {
     title: data.title,
