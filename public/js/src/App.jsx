@@ -6,8 +6,10 @@ import { normalizeAddToCal, normalizeItem } from './utils/parser';
 const App = () => (
   <AddToCalendar
     buttonTemplate={ { 'calendar-plus-o': 'left' } }
-    event={ normalizeAddToCal( normalizeItem ( window.iipEventParams.eventMeta ) ) }
-    listItems = { [ { apple: 'Apple Calendar' }, { google: 'Google' }, { outlook: 'Outlook' } ] }
+    event={ normalizeAddToCal( normalizeItem( window.iipEventParams.eventMeta ) ) }
+    listItems={ [
+      { apple: 'Apple Calendar' }, { google: 'Google' }, { outlook: 'Outlook' }
+    ] }
   />
 );
 

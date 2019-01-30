@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "moment": "^2.24.0",
+    "moment-timezone": "^0.5.23",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
     "react-add-to-calendar": "^0.1.5",
