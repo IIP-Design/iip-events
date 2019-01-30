@@ -1,0 +1,414 @@
+{
+  "timezones" : [
+    {
+      "value": "Etc/GMT+12",
+      "gmtOffset": "GMT-12:00",
+      "name": "International Date Line West"
+    },
+    {
+      "value": "Pacific/Midway",
+      "gmtOffset": "GMT-11:00",
+      "name": "Midway Island, Samoa"
+    },
+    {
+      "value": "Pacific/Honolulu",
+      "gmtOffset": "GMT-10:00",
+      "name": "Hawaii"
+    },
+    {
+      "value": "US/Alaska",
+      "gmtOffset": "GMT-09:00",
+      "name": "Alaska"
+    },
+    {
+      "value": "America/Los_Angeles",
+      "gmtOffset": "GMT-08:00",
+      "name": "Pacific Time (US & Canada)"
+    },
+    {
+      "value": "America/Tijuana",
+      "gmtOffset": "GMT-08:00",
+      "name": "Tijuana, Baja California"
+    },
+    {
+      "value": "US/Arizona",
+      "gmtOffset": "GMT-07:00",
+      "name": "Arizona"
+    },
+    {
+      "value": "America/Chihuahua",
+      "gmtOffset": "GMT-07:00",
+      "name": "Chihuahua, La Paz, Mazatlan"
+    },
+    {
+      "value": "US/Mountain",
+      "gmtOffset": "GMT-07:00",
+      "name": "Mountain Time (US & Canada)"
+    },
+    {
+      "value": "America/Managua",
+      "gmtOffset": "GMT-06:00",
+      "name": "Central America"
+    },
+    {
+      "value": "US/Central",
+      "gmtOffset": "GMT-06:00",
+      "name": "Central Time (US & Canada)"
+    },
+    {
+      "value": "America/Mexico_City",
+      "gmtOffset": "GMT-06:00",
+      "name": "Guadalajara, Mexico City, Monterrey"
+    },
+    {
+      "value": "Canada/Saskatchewan",
+      "gmtOffset": "GMT-06:00",
+      "name": "Saskatchewan"
+    },
+    {
+      "value": "America/Bogota",
+      "gmtOffset": "GMT-05:00",
+      "name": "Bogota, Lima, Quito, Rio Branco"
+    },
+    {
+      "value": "US/Eastern",
+      "gmtOffset": "GMT-05:00",
+      "name": "Eastern Time (US & Canada)"
+    },
+    {
+      "value": "US/East-Indiana",
+      "gmtOffset": "GMT-05:00",
+      "name": "Indiana (East)"
+    },
+    {
+      "value": "Canada/Atlantic",
+      "gmtOffset": "GMT-04:00",
+      "name": "Atlantic Time (Canada)"
+    },
+    {
+      "value": "America/Caracas",
+      "gmtOffset": "GMT-04:00",
+      "name": "Caracas, La Paz"
+    },
+    {
+      "value": "America/Manaus",
+      "gmtOffset": "GMT-04:00",
+      "name": "Manaus"
+    },
+    {
+      "value": "America/Santiago",
+      "gmtOffset": "GMT-04:00",
+      "name": "Santiago"
+    },
+    {
+      "value": "Canada/Newfoundland",
+      "gmtOffset": "GMT-03:30",
+      "name": "Newfoundland"
+    },
+    {
+      "value": "America/Sao_Paulo",
+      "gmtOffset": "GMT-03:00",
+      "name": "Brasilia"
+    },
+    {
+      "value": "America/Argentina/Buenos_Aires",
+      "gmtOffset": "GMT-03:00",
+      "name": "Buenos Aires, Georgetown"
+    },
+    {
+      "value": "America/Godthab",
+      "gmtOffset": "GMT-03:00",
+      "name": "Greenland"
+    },
+    {
+      "value": "America/Montevideo",
+      "gmtOffset": "GMT-03:00",
+      "name": "Montevideo"
+    },
+    {
+      "value": "America/Noronha",
+      "gmtOffset": "GMT-02:00",
+      "name": "Mid-Atlantic"
+    },
+    {
+      "value": "Atlantic/Cape_Verde",
+      "gmtOffset": "GMT-01:00",
+      "name": "Cape Verde Is."
+    },
+    {
+      "value": "Atlantic/Azores",
+      "gmtOffset": "GMT-01:00",
+      "name": "Azores"
+    },
+    {
+      "value": "Africa/Casablanca",
+      "gmtOffset": "GMT+00:00",
+      "name": "Casablanca, Monrovia, Reykjavik"
+    },
+    {
+      "value": "Etc/Greenwich",
+      "gmtOffset": "GMT+00:00",
+      "name": "Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London"
+    },
+    {
+      "value": "Europe/Amsterdam",
+      "gmtOffset": "GMT+01:00",
+      "name": "Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna"
+    },
+    {
+      "value": "Europe/Belgrade",
+      "gmtOffset": "GMT+01:00",
+      "name": "Belgrade, Bratislava, Budapest, Ljubljana, Prague"
+    },
+    {
+      "value": "Europe/Brussels",
+      "gmtOffset": "GMT+01:00",
+      "name": "Brussels, Copenhagen, Madrid, Paris"
+    },
+    {
+      "value": "Europe/Sarajevo",
+      "gmtOffset": "GMT+01:00",
+      "name": "Sarajevo, Skopje, Warsaw, Zagreb"
+    },
+    {
+      "value": "Africa/Lagos",
+      "gmtOffset": "GMT+01:00",
+      "name": "West Central Africa"
+    },
+    {
+      "value": "Asia/Amman",
+      "gmtOffset": "GMT+02:00",
+      "name": "Amman"
+    },
+    {
+      "value": "Europe/Athens",
+      "gmtOffset": "GMT+02:00",
+      "name": "Athens, Bucharest, Istanbul"
+    },
+    {
+      "value": "Asia/Beirut",
+      "gmtOffset": "GMT+02:00",
+      "name": "Beirut"
+    },
+    {
+      "value": "Africa/Cairo",
+      "gmtOffset": "GMT+02:00",
+      "name": "Cairo"
+    },
+    {
+      "value": "Africa/Harare",
+      "gmtOffset": "GMT+02:00",
+      "name": "Harare, Pretoria"
+    },
+    {
+      "value": "Europe/Helsinki",
+      "gmtOffset": "GMT+02:00",
+      "name": "Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius"
+    },
+    {
+      "value": "Asia/Jerusalem",
+      "gmtOffset": "GMT+02:00",
+      "name": "Jerusalem"
+    },
+    {
+      "value": "Europe/Minsk",
+      "gmtOffset": "GMT+02:00",
+      "name": "Minsk"
+    },
+    {
+      "value": "Africa/Windhoek",
+      "gmtOffset": "GMT+02:00",
+      "name": "Windhoek"
+    },
+    {
+      "value": "Asia/Kuwait",
+      "gmtOffset": "GMT+03:00",
+      "name": "Kuwait, Riyadh, Baghdad"
+    },
+    {
+      "value": "Europe/Moscow",
+      "gmtOffset": "GMT+03:00",
+      "name": "Moscow, St. Petersburg, Volgograd"
+    },
+    {
+      "value": "Africa/Nairobi",
+      "gmtOffset": "GMT+03:00",
+      "name": "Nairobi"
+    },
+    {
+      "value": "Asia/Tbilisi",
+      "gmtOffset": "GMT+03:00",
+      "name": "Tbilisi"
+    },
+    {
+      "value": "Asia/Tehran",
+      "gmtOffset": "GMT+03:30",
+      "name": "Tehran"
+    },
+    {
+      "value": "Asia/Muscat",
+      "gmtOffset": "GMT+04:00",
+      "name": "Abu Dhabi, Muscat"
+    },
+    {
+      "value": "Asia/Baku",
+      "gmtOffset": "GMT+04:00",
+      "name": "Baku"
+    },
+    {
+      "value": "Asia/Yerevan",
+      "gmtOffset": "GMT+04:00",
+      "name": "Yerevan"
+    },
+    {
+      "value": "Asia/Kabul",
+      "gmtOffset": "GMT+04:30",
+      "name": "Kabul"
+    },
+    {
+      "value": "Asia/Yekaterinburg",
+      "gmtOffset": "GMT+05:00",
+      "name": "Yekaterinburg"
+    },
+    {
+      "value": "Asia/Karachi",
+      "gmtOffset": "GMT+05:00",
+      "name": "Islamabad, Karachi, Tashkent"
+    },
+    {
+      "value": "Asia/Calcutta",
+      "gmtOffset": "GMT+05:30",
+      "name": "Chennai, Kolkata, Mumbai, New Delhi"
+    },
+    {
+      "value": "Asia/Calcutta",
+      "gmtOffset": "GMT+05:30",
+      "name": "Sri Jayawardenapura"
+    },
+    {
+      "value": "Asia/Katmandu",
+      "gmtOffset": "GMT+05:45",
+      "name": "Kathmandu"
+    },
+    {
+      "value": "Asia/Almaty",
+      "gmtOffset": "GMT+06:00",
+      "name": "Almaty, Novosibirsk"
+    },
+    {
+      "value": "Asia/Dhaka",
+      "gmtOffset": "GMT+06:00",
+      "name": "Astana, Dhaka"
+    },
+    {
+      "value": "Asia/Rangoon",
+      "gmtOffset": "GMT+06:30",
+      "name": "Yangon (Rangoon)"
+    },
+    {
+      "value": "Asia/Bangkok",
+      "gmtOffset": "GMT+07:00",
+      "name": "Bangkok, Hanoi, Jakarta"
+    },
+    {
+      "value": "Asia/Krasnoyarsk",
+      "gmtOffset": "GMT+07:00",
+      "name": "Krasnoyarsk"
+    },
+    {
+      "value": "Asia/Hong_Kong",
+      "gmtOffset": "GMT+08:00",
+      "name": "Beijing, Chongqing, Hong Kong, Urumqi"
+    },
+    {
+      "value": "Asia/Kuala_Lumpur",
+      "gmtOffset": "GMT+08:00",
+      "name": "Kuala Lumpur, Singapore"
+    },
+    {
+      "value": "Asia/Irkutsk",
+      "gmtOffset": "GMT+08:00",
+      "name": "Irkutsk, Ulaan Bataar"
+    },
+    {
+      "value": "Australia/Perth",
+      "gmtOffset": "GMT+08:00",
+      "name": "Perth"
+    },
+    {
+      "value": "Asia/Taipei",
+      "gmtOffset": "GMT+08:00",
+      "name": "Taipei"
+    },
+    {
+      "value": "Asia/Tokyo",
+      "gmtOffset": "GMT+09:00",
+      "name": "Osaka, Sapporo, Tokyo"
+    },
+    {
+      "value": "Asia/Seoul",
+      "gmtOffset": "GMT+09:00",
+      "name": "Seoul"
+    },
+    {
+      "value": "Asia/Yakutsk",
+      "gmtOffset": "GMT+09:00",
+      "name": "Yakutsk"
+    },
+    {
+      "value": "Australia/Adelaide",
+      "gmtOffset": "GMT+09:30",
+      "name": "Adelaide"
+    },
+    {
+      "value": "Australia/Darwin",
+      "gmtOffset": "GMT+09:30",
+      "name": "Darwin"
+    },
+    {
+      "value": "Australia/Brisbane",
+      "gmtOffset": "GMT+10:00",
+      "name": "Brisbane"
+    },
+    {
+      "value": "Australia/Canberra",
+      "gmtOffset": "GMT+10:00",
+      "name": "Canberra, Melbourne, Sydney"
+    },
+    {
+      "value": "Australia/Hobart",
+      "gmtOffset": "GMT+10:00",
+      "name": "Hobart"
+    },
+    {
+      "value": "Pacific/Guam",
+      "gmtOffset": "GMT+10:00",
+      "name": "Guam, Port Moresby"
+    },
+    {
+      "value": "Asia/Vladivostok",
+      "gmtOffset": "GMT+10:00",
+      "name": "Vladivostok"
+    },
+    {
+      "value": "Asia/Magadan",
+      "gmtOffset": "GMT+11:00",
+      "name": "Magadan, Solomon Is., New Caledonia"
+    },
+    {
+      "value": "Pacific/Auckland",
+      "gmtOffset": "GMT+12:00",
+      "name": "Auckland, Wellington"
+    },
+    {
+      "value": "Pacific/Fiji",
+      "gmtOffset": "GMT+12:00",
+      "name": "Fiji, Kamchatka, Marshall Is."
+    },
+    {
+      "value": "Pacific/Tongatapu",
+      "gmtOffset": "GMT+13:00",
+      "name": "Nuku'alofa"
+    }
+  ]
+}

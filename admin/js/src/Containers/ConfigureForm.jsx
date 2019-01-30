@@ -4,8 +4,11 @@ import DateSelector from './DateSelector';
 import TimeSelector from './TimeSelector';
 import RadioToggle from '../Components/RadioToggle';
 import Input from '../Components/Input';
+import TimezoneDropdown from '../Components/TimezoneDropdown';
 
 import { getEventMeta } from '../utils/globals';
+import { getTimezones } from '../utils/getData';
+import timezones from '../utils/timezones.json';
 
 class ConfigureForm extends Component {
   constructor( props ) {
@@ -126,11 +129,9 @@ class ConfigureForm extends Component {
                     <TimeSelector metavalue="endTime" time={ getEventMeta.endTime } />
                   </label>
                   <br />
-                  <Input
+                  <TimezoneDropdown
                     callback={ this.handleInputChange }
-                    id="iip_event_timezone"
-                    label="Timezone:"
-                    name="eventTimezone"
+                    timezones={ getTimezones( timezones ) }
                     value={ eventTimezone }
                   />
                 </Fragment>
