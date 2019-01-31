@@ -84,6 +84,10 @@ if( !empty( $_POST['eventContactMethod'] ) ) {
 
 if( has_post_thumbnail() ) {
   $event_meta['thumbnail'] = ( get_the_post_thumbnail_url() );
+} else {
+  $placeholder = IIP_EVENTS_URL . 'admin/assets/calendar.png';
+
+  $event_meta['thumbnail'] = $placeholder;
 }
 
 // Send updated array of post meta values
