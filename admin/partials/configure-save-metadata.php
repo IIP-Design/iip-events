@@ -1,6 +1,6 @@
 <?php
 // Get serialized array of post meta values
-$event_meta = unserialize( get_post_meta( $post_id, '_iip_event_meta' ) );
+$event_meta = unserialize( get_post_meta( $post_id, '_iip_event_meta', true ) );
 
 if( !empty( $_POST['eventTitle'] ) ) {
   $event_meta['title'] = ( sanitize_text_field( $_POST['eventTitle'] ) );
@@ -79,4 +79,4 @@ if( has_post_thumbnail() ) {
 }
 
 // Send updated array of post meta values
-update_post_meta ( $post_id, '_iip_event_meta', $event_meta );
+update_post_meta ( $post_id, '_iip_event_meta', serialize( $event_meta ) );

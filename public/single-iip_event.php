@@ -17,8 +17,7 @@ get_header(); ?>
     while( have_posts() ): the_post(); 
     
     $id = get_the_ID();
-    $meta_array = get_post_meta( $id, '_iip_event_meta' );
-    $post_meta = $meta_array[0];
+    $post_meta = unserialize( get_post_meta( $id, '_iip_event_meta', true ) );
     
     $date = date( 'l, M. j, Y', strtotime( $post_meta['date'] ) );
     $end_date = ( $post_meta['multiDay'] == true ) ? ' - ' . date( 'l, M. j, Y', strtotime( $post_meta['endDate'] ) ) : '';
