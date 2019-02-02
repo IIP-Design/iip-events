@@ -68,6 +68,21 @@ class Custom_Post_Type {
   }
 
   public function save_event_meta( $post_id, $post_object ) {
+    // Checks if is event post
+    $is_event = ( 'iip_event' == get_post_type( $post_id ) );
+
+    // Checks if save is a revision
+    $is_revision = wp_is_post_revision( $post_id );
+
+    // Checks for a valid nonce
+    $has_nonce = isset( $_POST[ 'event_info_nonce' ] );
+    $verified_nonce = wp_verify_nonce( $_POST[ 'event_info_nonce' ], 'event_info' );
+    $is_valid_nonce = ( $has_nonce && $verified_nonce ) ? true : false;
+    
+    if ( !$is_event || $is_revision || !$is_valid_nonce ) {
+      return;
+    }
+    
     include_once( 'partials/configure-save-metadata.php' );
   }
 }
