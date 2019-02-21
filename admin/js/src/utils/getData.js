@@ -3,9 +3,3 @@ export const getData = ( input ) => {
 
   return data;
 };
-
-export const getTimezones = ( input ) => {
-  const { timezones } = input;
-
-  return timezones;
-};

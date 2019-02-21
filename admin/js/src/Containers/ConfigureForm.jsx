@@ -7,8 +7,7 @@ import Input from '../Components/Input';
 import TimezoneDropdown from '../Components/TimezoneDropdown';
 
 import { getEventMeta } from '../utils/globals';
-import { getTimezones } from '../utils/getData';
-import timezones from '../utils/timezones.json';
+import { TIMEZONES } from '../utils/timezones';
 
 class ConfigureForm extends Component {
   constructor( props ) {
@@ -32,6 +31,7 @@ class ConfigureForm extends Component {
     this.handleRadioChange = this.handleRadioChange.bind( this );
     this.handleAddSpeaker = this.handleAddSpeaker.bind( this );
     this.handleSpeakerInput = this.handleSpeakerInput.bind( this );
+    this.handleTimezoneChange = this.handleTimezoneChange.bind( this );
   }
 
   handleInputChange( e ) {
@@ -63,6 +63,14 @@ class ConfigureForm extends Component {
     speakers[index][property] = e.target.value;
 
     this.setState( { speakers } );
+  }
+
+  handleTimezoneChange( e ) {
+    const zoneValues = JSON.parse( e.target.value );
+
+    this.setState( {
+      eventTimezone: zoneValues
+    } );
   }
 
   render() {
@@ -115,14 +123,12 @@ class ConfigureForm extends Component {
               <RadioToggle callback={ this.handleRadioChange } metavalue="hasTime" option={ hasTime } />
               { hasTime && (
                 <Fragment>
-                  { /* eslint-disable-next-line jsx-a11y/label-has-associated-control, jsx-a11y/label-has-for */ }
                   <label htmlFor="iip_event_time">
                     Start Time:
                     { '  ' }
                     <TimeSelector metavalue="time" time={ getEventMeta.time } />
                   </label>
                   <br />
-                  { /* eslint-disable-next-line jsx-a11y/label-has-associated-control, jsx-a11y/label-has-for */ }
                   <label htmlFor="iip_event_endTime">
                     End Time:
                     { '  ' }
@@ -130,8 +136,8 @@ class ConfigureForm extends Component {
                   </label>
                   <br />
                   <TimezoneDropdown
-                    callback={ this.handleInputChange }
-                    timezones={ getTimezones( timezones ) }
+                    callback={ this.handleTimezoneChange }
+                    timezones={ TIMEZONES }
                     value={ eventTimezone }
                   />
                 </Fragment>

@@ -39,7 +39,7 @@ if( !empty( $_POST['event_endTime'] ) ) {
 }
 
 if( !empty( $_POST['eventTimezone'] ) ) {
-  $event_meta['timezone'] = ( sanitize_text_field( $_POST['eventTimezone'] ) );
+  $event_meta['timezone'] = ( json_decode( stripslashes ( sanitize_text_field( $_POST['eventTimezone'] ) ) ) );
 }
 
 if( !empty( $_POST['eventOrg'] ) ) {

@@ -78,7 +78,7 @@ class Custom_Post_Type {
     $has_nonce = isset( $_POST[ 'event_info_nonce' ] );
     $verified_nonce = wp_verify_nonce( $_POST[ 'event_info_nonce' ], 'event_info' );
     $is_valid_nonce = ( $has_nonce && $verified_nonce ) ? true : false;
-    
+
     if ( !$is_event || $is_revision || !$is_valid_nonce ) {
       return;
     }

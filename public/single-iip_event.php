@@ -18,10 +18,12 @@ get_header(); ?>
     
     $id = get_the_ID();
     $post_meta = unserialize( get_post_meta( $id, '_iip_event_meta', true ) );
+    $timezone_obj = ( $post_meta['timezone'] );
+    $timezone_abbrev = $timezone_obj->abbreviation;
     
     $date = date( 'l, M. j, Y', strtotime( $post_meta['date'] ) );
     $end_date = ( $post_meta['multiDay'] == true ) ? ' - ' . date( 'l, M. j, Y', strtotime( $post_meta['endDate'] ) ) : '';
-    $timezone = ( $post_meta['timezone'] ) ? ' ' . $post_meta['timezone'] : '';
+    $timezone = ( $timezone_abbrev ) ? ' ' . $timezone_abbrev : '';
     $time = ( $post_meta['hasTime'] == true ) ? ' at ' . $post_meta['time'] . ' - ' . $post_meta['endTime'] . $timezone : '';
     $language = ( $post_meta['language'] ) ? '<p><strong>Language:</strong> ' . $post_meta['language'] . '</p>' : '';
     $organizer = ( $post_meta['organizer'] ) ? '<p><strong>Organizer:</strong> ' . $post_meta['organizer'] . '</p>' : '';
