@@ -15,6 +15,7 @@ export const normalizeItem = ( data ) => {
   const dateStart = getDate( 'en-us', data.date );
   const dateEnd = getDate( 'en-us', data.endDate );
   const timeStart = data.hasTime ? data.time : '00:00';
+  const { timezone } = data;
 
   const obj = {
     allDay: !( data.hasTime ),
@@ -26,7 +27,7 @@ export const normalizeItem = ( data ) => {
     organizer: data.organizer || '',
     timeStart,
     timeEnd: data.endTime ? data.endTime : timeStart,
-    timezone: data.timezone || 'US/Eastern',
+    timezone: timezone.value || 'US/Eastern',
     title: data.title || '',
     thumbnail: data.thumbnail
   };
