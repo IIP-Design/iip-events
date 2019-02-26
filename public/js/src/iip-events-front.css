@@ -67,3 +67,9 @@ i.react-add-to-calendar__icon--left {
 .fa {
   padding: 2px 5px;
 }
+
+@media screen and (max-width: 560px) {
+  .iip-event-meta-container{
+    flex-direction: column;
+  }
+}
