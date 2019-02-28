@@ -11,6 +11,10 @@ import TimezoneDropdown from '../Components/TimezoneDropdown';
 import { getEventMeta } from '../utils/globals';
 import { TIMEZONES } from '../utils/timezones';
 
+const { iipEventParams } = window;
+const { ajaxUrl } = iipEventParams.eventAjax;
+const { iipEventNonce } = iipEventParams.eventAjax;
+
 class ConfigureForm extends Component {
   constructor( props ) {
     super( props );
@@ -299,6 +303,19 @@ class ConfigureForm extends Component {
               <p>Add files:</p>
               <FilePond
                 allowMultiple
+                server={ {
+                  process: {
+                    url: ajaxUrl,
+                    method: 'POST',
+                    onload: response => response.key,
+                    onerror: response => response.data,
+                    ondata: ( formData ) => {
+                      formData.append( 'action', 'iip_event_files' );
+                      formData.append( 'security', iipEventNonce );
+                      return formData;
+                    }
+                  }
+                } }
               />
             </div>
           </div>

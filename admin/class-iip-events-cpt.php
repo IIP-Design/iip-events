@@ -83,6 +83,25 @@ class Custom_Post_Type {
       return;
     }
     
-    include_once( 'partials/configure-save-metadata.php' );
+    include_once( 'partials/save-metadata.php' );
+  }
+
+  public function save_event_file( $post_id ) {
+    // Checks if is event post
+    $is_event = ( 'iip_event' == get_post_type( $post_id ) );
+
+    // Checks if save is a revision
+    $is_revision = wp_is_post_revision( $post_id );
+
+    // Checks for a valid nonce
+    $is_nonce_set = isset( $_POST[ 'security' ] );
+    $is_verified_nonce = wp_verify_nonce( $_POST[ 'security' ], 'iip_event_files' );
+    $is_referer_valid = check_ajax_referer( 'iip_event_files', 'security' );
+
+    if ( !$is_nonce_set || !$is_verified_nonce || !$is_referer_valid ) {
+      return;
+    }
+    
+    include_once( 'partials/save-file.php' );
   }
 }

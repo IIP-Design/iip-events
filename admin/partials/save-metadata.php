@@ -72,3 +72,4 @@ if( has_post_thumbnail() ) {
 
 // Send updated array of post meta values
 update_post_meta ( $post_id, '_iip_event_meta', serialize( $event_meta ) );
+wp_die();

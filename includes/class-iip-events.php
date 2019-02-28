@@ -83,6 +83,7 @@ class IIP_Events {
     // Custom post type hooks
     $this->loader->add_action( 'init', $plugin_cpt, 'create_event_post_type' );
     $this->loader->add_action( 'save_post', $plugin_cpt, 'save_event_meta', 10, 2 );
+    $this->loader->add_action( 'wp_ajax_iip_event_files', $plugin_cpt, 'save_event_file' );
   }
 
   // Register all of the hooks related to the public-facing functionality
