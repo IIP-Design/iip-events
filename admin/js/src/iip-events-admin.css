@@ -42,6 +42,19 @@ textarea {
   padding: 10px;
 }
 
+.iip-event-add-materials {
+  flex-direction: column;
+}
+
+.iip-event-add-files > div {
+  border: 1px solid #e1e1e1;
+}
+
+.iip-event-details-column > p,
+.iip-event-add-details > input {
+  margin: 0 1em 0 0;
+}
+
 .iip-event-datetime,
 .iip-event-additional-info,
 .iip-event-add-speakers,
@@ -49,12 +62,14 @@ textarea {
   justify-content: space-between;
 }
 
+.iip-event-add-details,
 .iip-event-speaker {
   display: flex;
   padding: .75em;
   width: 100%;
 }
 
+.iip-event-details-column,
 .iip-event-speaker-column-1 {
   flex-basis: 33%;
 }
@@ -63,6 +78,7 @@ textarea {
   flex-basis: 66%;
 }
 
+.iip-event-additional-info,
 .iip-event-add-speakers {
   align-items: flex-start;
   flex-direction: column;

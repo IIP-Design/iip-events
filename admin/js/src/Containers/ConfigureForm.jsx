@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from 'react';
+import { FilePond } from 'react-filepond';
+import 'filepond/dist/filepond.min.css';
 
 import DateSelector from './DateSelector';
 import TimeSelector from './TimeSelector';
@@ -16,31 +18,23 @@ class ConfigureForm extends Component {
       eventContact: getEventMeta.contact,
       eventContactMethod: getEventMeta.contactMethod,
       eventDesc: getEventMeta.description,
-      eventOrg: getEventMeta.organizer,
-      eventLang: getEventMeta.language,
-      eventLink: getEventMeta.link,
       eventMaterialsLink: getEventMeta.materialsLink,
       eventTimezone: getEventMeta.timezone,
       eventTitle: getEventMeta.title,
       hasTime: getEventMeta.hasTime,
       multiDay: getEventMeta.multiDay,
+      eventDetails: getEventMeta.details,
       speakers: getEventMeta.speakers
     };
-
-    this.handleInputChange = this.handleInputChange.bind( this );
-    this.handleRadioChange = this.handleRadioChange.bind( this );
-    this.handleAddSpeaker = this.handleAddSpeaker.bind( this );
-    this.handleSpeakerInput = this.handleSpeakerInput.bind( this );
-    this.handleTimezoneChange = this.handleTimezoneChange.bind( this );
   }
 
-  handleInputChange( e ) {
+  handleInputChange = ( e ) => {
     this.setState( {
       [e.target.name]: e.target.value
     } );
   }
 
-  handleRadioChange( e ) {
+  handleRadioChange = ( e ) => {
     const selected = e.target.value;
     const isSelectedTrue = ( selected === 'true' );
 
@@ -49,23 +43,35 @@ class ConfigureForm extends Component {
     } );
   }
 
-  handleAddSpeaker( e ) {
+  handleAddArrayInput = ( group, ...args ) => {
+    const obj = {};
+    args.forEach( ( arg ) => {
+      obj[arg] = '';
+      return obj;
+    } );
+
+    this.setState( prevState => ( {
+      [group]: [...prevState[group], obj]
+    } ) );
+  }
+
+  handleArrayInput = ( e ) => {
+    const { group, index } = e.target.dataset;
+    const obj = Object.assign( [], this.state[group] ); // eslint-disable-line react/destructuring-assignment, react/no-access-state-in-setstate
+    const property = e.target.name;
+
+    obj[index][property] = e.target.value;
+
+    this.setState( { [group]: obj } );
+  }
+
+  handleAddSpeaker = ( e ) => {
     this.setState( prevState => ( {
       speakers: [...prevState.speakers, { bio: '', name: '', title: '' }]
     } ) );
   }
 
-  handleSpeakerInput( e ) {
-    const { speakers } = Object.assign( {}, this.state );
-    const { index } = e.target.dataset;
-    const property = e.target.name;
-
-    speakers[index][property] = e.target.value;
-
-    this.setState( { speakers } );
-  }
-
-  handleTimezoneChange( e ) {
+  handleTimezoneChange = ( e ) => {
     const zoneValues = JSON.parse( e.target.value );
 
     this.setState( {
@@ -75,9 +81,8 @@ class ConfigureForm extends Component {
 
   render() {
     const {
-      eventContact, eventContactMethod, eventDesc, eventLang, eventLink,
-      eventMaterialsLink, eventOrg, eventTitle, eventTimezone, hasTime,
-      multiDay, speakers
+      eventContact, eventContactMethod, eventDesc, eventMaterialsLink,
+      eventTitle, eventTimezone, hasTime, multiDay, eventDetails, speakers
     } = this.state;
 
     return (
@@ -146,34 +151,67 @@ class ConfigureForm extends Component {
           </div>
           <strong className="iip-event-subsection-heading">Add Event Details:</strong>
           <div className="iip-event-additional-info">
-            <Input
-              callback={ this.handleInputChange }
-              classes="stacked"
-              id="iip_event_organizer"
-              label="Add an organizer:"
-              name="eventOrg"
-              value={ eventOrg }
-            />
-            <Input
-              callback={ this.handleInputChange }
-              classes="stacked"
-              id="iip_event_language"
-              label="Program language:"
-              name="eventLang"
-              value={ eventLang }
-            />
-            <Input
-              callback={ this.handleInputChange }
-              classes="stacked"
-              id="iip_event_link"
-              label="Add an link:"
-              name="eventLink"
-              value={ eventLink }
-            />
+            <div className="iip-event-add-details">
+              <div className="iip-event-details-column"><p>Event Detail Title:</p></div>
+              <div className="iip-event-details-column"><p>Event Detail Value:</p></div>
+              <div className="iip-event-details-column"><p>Link:</p></div>
+            </div>
+            {
+              eventDetails.map( ( value, index ) => {
+                const position = index + 1;
+
+                return (
+                  <div className="iip-event-add-details">
+                    <Input
+                      callback={ this.handleArrayInput }
+                      classes="iip-event-details-column"
+                      group="eventDetails"
+                      index={ index }
+                      id={ `iip_event_info_${position}_title` }
+                      name="title"
+                      placeholder="Language"
+                      value={ eventDetails[index].title }
+                    />
+                    <Input
+                      callback={ this.handleArrayInput }
+                      classes="iip-event-details-column"
+                      group="eventDetails"
+                      index={ index }
+                      id={ `iip_event_info_${position}_name` }
+                      name="name"
+                      placeholder="Spanish"
+                      value={ eventDetails[index].name }
+                    />
+                    <Input
+                      callback={ this.handleArrayInput }
+                      classes="iip-event-details-column"
+                      group="eventDetails"
+                      index={ index }
+                      id={ `iip_event_info_${position}_link` }
+                      name="link"
+                      placeholder="https://spanish.com"
+                      value={ eventDetails[index].link }
+                    />
+                  </div>
+                );
+              } )
+            }
+            <button
+              onClick={ () => { this.handleAddArrayInput( 'eventDetails', 'title', 'name', 'link' ); } }
+              type="button"
+            >
+              +
+            </button>
+            <input hidden name="detailsArr" value={ JSON.stringify( eventDetails ) } />
           </div>
           <strong className="iip-event-subsection-heading">Add Speakers:</strong>
           <div className="iip-event-add-speakers">
-            <button onClick={ this.handleAddSpeaker } type="button">+</button>
+            <button
+              onClick={ () => { this.handleAddArrayInput( 'speakers', 'name', 'title', 'bio' ); } }
+              type="button"
+            >
+              +
+            </button>
             {
               speakers.map( ( value, index ) => {
                 const position = index + 1;
@@ -182,8 +220,9 @@ class ConfigureForm extends Component {
                   <div className="iip-event-speaker">
                     <div className="iip-event-speaker-column-1">
                       <Input
-                        callback={ this.handleSpeakerInput }
+                        callback={ this.handleArrayInput }
                         classes="stacked"
+                        group="speakers"
                         index={ index }
                         id={ `iip_event_speaker_${position}` }
                         label="Speaker Name:"
@@ -191,8 +230,9 @@ class ConfigureForm extends Component {
                         value={ speakers[index].name }
                       />
                       <Input
-                        callback={ this.handleSpeakerInput }
+                        callback={ this.handleArrayInput }
                         classes="stacked"
+                        group="speakers"
                         index={ index }
                         id={ `iip_event_speaker_${position}_title` }
                         label="Speaker title:"
@@ -205,10 +245,11 @@ class ConfigureForm extends Component {
                         Speaker bio:
                         <textarea
                           className="medium-textarea stacked"
+                          data-group="speakers"
                           data-index={ index }
                           id={ `iip_event_speaker_${position}_bio` }
                           name="bio"
-                          onChange={ this.handleSpeakerInput }
+                          onChange={ this.handleArrayInput }
                           value={ speakers[index].bio }
                         />
                       </label>
@@ -229,6 +270,12 @@ class ConfigureForm extends Component {
               name="eventMaterialsLink"
               value={ eventMaterialsLink }
             />
+            <div className="iip-event-add-files">
+              <p>Add files:</p>
+              <FilePond
+                allowMultiple
+              />
+            </div>
           </div>
           <strong className="iip-event-subsection-heading">Add Contact Info:</strong>
           <div className="iip-event-add-contact">

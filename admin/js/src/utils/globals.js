@@ -12,7 +12,10 @@ class EventMeta {
   }
 
   get meta() {
-    return this._meta;
+    if ( this._meta ) {
+      return this._meta;
+    }
+    return {};
   }
 
   get contact() {
@@ -41,6 +44,13 @@ class EventMeta {
       return this._meta.description;
     }
     return '';
+  }
+
+  get details() {
+    if ( this._meta.details ) {
+      return this._meta.details;
+    }
+    return [];
   }
 
   get duration() {
@@ -78,30 +88,9 @@ class EventMeta {
     return false;
   }
 
-  get language() {
-    if ( this._meta.language ) {
-      return this._meta.language;
-    }
-    return '';
-  }
-
-  get link() {
-    if ( this._meta.link ) {
-      return this._meta.link;
-    }
-    return '';
-  }
-
   get materialsLink() {
     if ( this._meta.materialsLink ) {
       return this._meta.materialsLink;
-    }
-    return '';
-  }
-
-  get organizer() {
-    if ( this._meta.organizer ) {
-      return this._meta.organizer;
     }
     return '';
   }

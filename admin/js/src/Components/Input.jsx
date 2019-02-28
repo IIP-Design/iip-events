@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { func, int, string } from 'prop-types';
 
 const Input = ( {
-  callback, classes, id, index, label, name, value
+  callback, classes, group, id, index, label, name, placeholder, value
 } ) => (
   <Fragment>
     { label ? (
@@ -12,10 +12,12 @@ const Input = ( {
         <input
           autoComplete="off"
           className={ classes }
+          data-group={ group }
           data-index={ index }
           id={ id }
           name={ name }
           onChange={ callback }
+          placeholder={ placeholder }
           type="text"
           value={ value }
         />
@@ -24,10 +26,12 @@ const Input = ( {
       <input
         autoComplete="off"
         className={ classes }
+        data-group={ group }
         data-index={ index }
         id={ id }
         name={ name }
         onChange={ callback }
+        placeholder={ placeholder }
         type="text"
         value={ value }
       />
@@ -38,10 +42,12 @@ const Input = ( {
 Input.propTypes = {
   callback: func,
   classes: string,
+  group: string,
   id: string,
   index: int,
   label: string,
   name: string,
+  placeholder: string,
   value: string
 };
 
