@@ -42,16 +42,8 @@ if( !empty( $_POST['eventTimezone'] ) ) {
   $event_meta['timezone'] = ( json_decode( stripslashes ( sanitize_text_field( $_POST['eventTimezone'] ) ) ) );
 }
 
-if( !empty( $_POST['eventOrg'] ) ) {
-  $event_meta['organizer'] = ( sanitize_text_field( $_POST['eventOrg'] ) );
-}
-
-if( !empty( $_POST['eventLang'] ) ) {
-  $event_meta['language'] = ( sanitize_text_field( $_POST['eventLang'] ) );
-}
-
-if( !empty( $_POST['eventLink'] ) ) {
-  $event_meta['link'] = ( sanitize_text_field( $_POST['eventLink'] ) );
+if( !empty( $_POST['detailsArr'] ) ) {
+  $event_meta['details'] = ( json_decode( stripslashes ( sanitize_text_field( $_POST['detailsArr'] ) ) ) );
 }
 
 if( !empty( $_POST['speakersArr'] ) ) {
