@@ -25,9 +25,7 @@ get_header(); ?>
     $end_date = ( $post_meta['multiDay'] == true ) ? ' - ' . date( 'l, M. j, Y', strtotime( $post_meta['endDate'] ) ) : '';
     $timezone = ( $timezone_abbrev ) ? ' ' . $timezone_abbrev : '';
     $time = ( $post_meta['hasTime'] == true ) ? ' at ' . $post_meta['time'] . ' - ' . $post_meta['endTime'] . $timezone : '';
-    $language = ( $post_meta['language'] ) ? '<p><strong>Language:</strong> ' . $post_meta['language'] . '</p>' : '';
-    $organizer = ( $post_meta['organizer'] ) ? '<p><strong>Organizer:</strong> ' . $post_meta['organizer'] . '</p>' : '';
-    $link = ( $post_meta['link'] ) ? '<p><strong>Link:</strong> <a href="' . $post_meta['link'] . '">' . $post_meta['link'] . '</a></p>' : '';
+    $details = ( $post_meta['details'] ) ? $post_meta['details'] : '';
     $description = ( $post_meta['description'] ) ? '<h3>Description:</h3><p>' . $post_meta['description'] . '</p>' : '';
     $speakers = ( $post_meta['speakers'] ) ? $post_meta['speakers'] : '';
     $materials_link = ( $post_meta['materialsLink'] ) ? '<a class="ui button" href="' . $post_meta['materialsLink'] . '" target="_blank">See all materials on Box ></a>' : '';
@@ -35,6 +33,7 @@ get_header(); ?>
     $contact_method = ( $post_meta['contactMethod'] ) ? ' at ' . $post_meta['contactMethod'] : '';
     $contact_name = ( $post_meta['contact'] ) ? $post_meta['contact'] : '';
     $contact = ( $contact_name ) ? '<strong>Questions about this event?</strong><strong>Reach out to ' . $contact_name . $contact_method . '</strong>' : '';
+    
     ?>
   
     <article class="iip-event-article" id="post-<?php the_ID(); ?>">
@@ -46,10 +45,38 @@ get_header(); ?>
       </div>
       <div class="iip-event-meta">
         <p><strong>When:</strong> <?php echo( $date . $end_date . $time ) ?></p>
-        <?php 
-        echo( $language );
-        echo( $organizer ); 
-        echo( $link ); 
+        <?php
+        if ( $details ):
+
+          foreach ( $details as $detail ) {
+            
+            $title = $detail->title ? $detail->title : '';
+            $name = $detail->name ? $detail->name : '';
+            $link = $detail->link ? $detail->link : '';
+
+            $html;
+            
+            if ( $title && $name && $link ) {
+              $html = '<p><strong>' . $title . ': </strong><a href="' . $link . '">' . $name . '</a></p>';
+            } elseif ( $title && $name && !$link ) {
+              $html = '<p><strong>' . $title . ':</strong> ' . $name . '</p>';
+            } elseif ( $title && !$name && $link ) {
+              $html = '<p><a href="' . $link . '"><strong>' . $title . '</strong></a></p>';
+            } elseif ( !$title && $name && $link ) {
+              $html = '<p><a href="' . $link . '">' . $name . '</a></p>';
+            } elseif ( $title && !$name && !$link ) {
+              $html = '<p><strong>' . $title . '</strong></p>';
+            } elseif ( !$title && $name && !$link ) {
+              $html = '<p>' . $name . '</p>';
+            } elseif ( !$title && !$name && $link ) {
+              $html = '<p><a href="' . $link . '">' . $link . '</a></p>';
+            } else {
+              $html = '';
+            };
+
+            echo( $html );
+          }
+        endif;
         ?>
       </div>
       <div class="iip-event-add-to-cal">
