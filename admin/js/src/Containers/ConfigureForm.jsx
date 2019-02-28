@@ -65,17 +65,21 @@ class ConfigureForm extends Component {
     this.setState( { [group]: obj } );
   }
 
-  handleAddSpeaker = ( e ) => {
-    this.setState( prevState => ( {
-      speakers: [...prevState.speakers, { bio: '', name: '', title: '' }]
-    } ) );
-  }
-
   handleTimezoneChange = ( e ) => {
     const zoneValues = JSON.parse( e.target.value );
 
     this.setState( {
       eventTimezone: zoneValues
+    } );
+  }
+
+  handleDeleteRow = ( e ) => {
+    const { group, index } = e.target.dataset;
+    const obj = Object.assign( [], this.state[group] ); // eslint-disable-line react/destructuring-assignment, react/no-access-state-in-setstate
+    obj.splice( index, 1 );
+
+    this.setState( {
+      [group]: obj
     } );
   }
 
@@ -151,51 +155,61 @@ class ConfigureForm extends Component {
           </div>
           <strong className="iip-event-subsection-heading">Add Event Details:</strong>
           <div className="iip-event-additional-info">
-            <div className="iip-event-add-details">
-              <div className="iip-event-details-column"><p>Event Detail Title:</p></div>
-              <div className="iip-event-details-column"><p>Event Detail Value:</p></div>
-              <div className="iip-event-details-column"><p>Link:</p></div>
-            </div>
-            {
-              eventDetails.map( ( value, index ) => {
-                const position = index + 1;
+            <div className="iip-event-details-grid">
+              <div className="iip-event-details-item"><p>Event Detail Title:</p></div>
+              <div className="iip-event-details-item"><p>Event Detail Value:</p></div>
+              <div className="iip-event-details-item"><p>Link:</p></div>
+              <div className="iip-event-details-item"><p /></div>
+              {
+                eventDetails.map( ( value, index ) => {
+                  const position = index + 1;
 
-                return (
-                  <div className="iip-event-add-details">
-                    <Input
-                      callback={ this.handleArrayInput }
-                      classes="iip-event-details-column"
-                      group="eventDetails"
-                      index={ index }
-                      id={ `iip_event_info_${position}_title` }
-                      name="title"
-                      placeholder="Language"
-                      value={ eventDetails[index].title }
-                    />
-                    <Input
-                      callback={ this.handleArrayInput }
-                      classes="iip-event-details-column"
-                      group="eventDetails"
-                      index={ index }
-                      id={ `iip_event_info_${position}_name` }
-                      name="name"
-                      placeholder="Spanish"
-                      value={ eventDetails[index].name }
-                    />
-                    <Input
-                      callback={ this.handleArrayInput }
-                      classes="iip-event-details-column"
-                      group="eventDetails"
-                      index={ index }
-                      id={ `iip_event_info_${position}_link` }
-                      name="link"
-                      placeholder="https://spanish.com"
-                      value={ eventDetails[index].link }
-                    />
-                  </div>
-                );
-              } )
-            }
+                  return (
+                    <Fragment>
+                      <Input
+                        callback={ this.handleArrayInput }
+                        classes="iip-event-details-item"
+                        group="eventDetails"
+                        index={ index }
+                        id={ `iip_event_info_${position}_title` }
+                        name="title"
+                        placeholder="Language"
+                        value={ eventDetails[index].title }
+                      />
+                      <Input
+                        callback={ this.handleArrayInput }
+                        classes="iip-event-details-item"
+                        group="eventDetails"
+                        index={ index }
+                        id={ `iip_event_info_${position}_name` }
+                        name="name"
+                        placeholder="Spanish"
+                        value={ eventDetails[index].name }
+                      />
+                      <Input
+                        callback={ this.handleArrayInput }
+                        classes="iip-event-details-item"
+                        group="eventDetails"
+                        index={ index }
+                        id={ `iip_event_info_${position}_link` }
+                        name="link"
+                        placeholder="https://spanish.com"
+                        value={ eventDetails[index].link }
+                      />
+                      <button
+                        className="iip-events-close-btn"
+                        data-group="eventDetails"
+                        data-index={ index }
+                        onClick={ this.handleDeleteRow }
+                        type="button"
+                      >
+                        X
+                      </button>
+                    </Fragment>
+                  );
+                } )
+              }
+            </div>
             <button
               onClick={ () => { this.handleAddArrayInput( 'eventDetails', 'title', 'name', 'link' ); } }
               type="button"
@@ -206,22 +220,27 @@ class ConfigureForm extends Component {
           </div>
           <strong className="iip-event-subsection-heading">Add Speakers:</strong>
           <div className="iip-event-add-speakers">
-            <button
-              onClick={ () => { this.handleAddArrayInput( 'speakers', 'name', 'title', 'bio' ); } }
-              type="button"
-            >
-              +
-            </button>
             {
               speakers.map( ( value, index ) => {
                 const position = index + 1;
 
                 return (
-                  <div className="iip-event-speaker">
-                    <div className="iip-event-speaker-column-1">
+                  <div className="iip-event-speaker-grid">
+                    <strong className="iip-event-speaker-header">{ `Speaker # ${position}` }</strong>
+                    <button
+                      className="iip-events-close-btn"
+                      data-group="speakers"
+                      data-index={ index }
+                      onClick={ this.handleDeleteRow }
+                      style={ { textAlign: 'right', gridArea: 'remove' } }
+                      type="button"
+                    >
+                      X
+                    </button>
+                    <div className="iip-event-speaker-input1">
                       <Input
                         callback={ this.handleArrayInput }
-                        classes="stacked"
+                        classes="stacked wide-input"
                         group="speakers"
                         index={ index }
                         id={ `iip_event_speaker_${position}` }
@@ -229,9 +248,11 @@ class ConfigureForm extends Component {
                         name="name"
                         value={ speakers[index].name }
                       />
+                    </div>
+                    <div className="iip-event-speaker-input2">
                       <Input
                         callback={ this.handleArrayInput }
-                        classes="stacked"
+                        classes="stacked wide-input"
                         group="speakers"
                         index={ index }
                         id={ `iip_event_speaker_${position}_title` }
@@ -240,25 +261,29 @@ class ConfigureForm extends Component {
                         value={ speakers[index].title }
                       />
                     </div>
-                    <div className="iip-event-speaker-column-2">
-                      <label htmlFor={ `iip_event_speaker_${position}_bio` }>
-                        Speaker bio:
-                        <textarea
-                          className="medium-textarea stacked"
-                          data-group="speakers"
-                          data-index={ index }
-                          id={ `iip_event_speaker_${position}_bio` }
-                          name="bio"
-                          onChange={ this.handleArrayInput }
-                          value={ speakers[index].bio }
-                        />
-                      </label>
-                    </div>
+                    <label className="iip-event-speaker-bio" htmlFor={ `iip_event_speaker_${position}_bio` }>
+                      Speaker bio:
+                      <textarea
+                        className="medium-textarea stacked"
+                        data-group="speakers"
+                        data-index={ index }
+                        id={ `iip_event_speaker_${position}_bio` }
+                        name="bio"
+                        onChange={ this.handleArrayInput }
+                        value={ speakers[index].bio }
+                      />
+                    </label>
                     <hr />
                   </div>
                 );
               } )
             }
+            <button
+              onClick={ () => { this.handleAddArrayInput( 'speakers', 'name', 'title', 'bio' ); } }
+              type="button"
+            >
+              +
+            </button>
             <input hidden name="speakersArr" value={ JSON.stringify( speakers ) } />
           </div>
           <strong className="iip-event-subsection-heading">Add Promotional Materials:</strong>
