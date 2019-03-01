@@ -26,6 +26,7 @@ class ConfigureForm extends Component {
       hasTime: getEventMeta.hasTime,
       multiDay: getEventMeta.multiDay,
       eventDetails: getEventMeta.details,
+      eventFiles: getEventMeta.files,
       speakers: getEventMeta.speakers
     };
   }
@@ -85,10 +86,20 @@ class ConfigureForm extends Component {
     } );
   }
 
+  handleNewFile = ( obj ) => {
+    const { eventFiles } = this.state;
+    const newFiles = Object.assign( [], eventFiles );
+    newFiles.push( obj );
+
+    this.setState( {
+      eventFiles: newFiles
+    } );
+  }
+
   render() {
     const {
-      eventContact, eventContactMethod, eventDesc, eventMaterialsLink,
-      eventTitle, eventTimezone, hasTime, multiDay, eventDetails, speakers
+      eventContact, eventContactMethod, eventDesc, eventMaterialsLink, eventTitle,
+      eventTimezone, eventFiles, hasTime, multiDay, eventDetails, speakers
     } = this.state;
 
     return (
@@ -299,8 +310,14 @@ class ConfigureForm extends Component {
             />
             <div className="iip-event-add-files">
               <p>Add files:</p>
-              <FileUploader ajaxUrl={ ajaxUrl } eventId={ eventId } iipEventNonce={ iipEventNonce } />
+              <FileUploader
+                ajaxUrl={ ajaxUrl }
+                callback={ this.handleNewFile }
+                eventId={ eventId }
+                iipEventNonce={ iipEventNonce }
+              />
             </div>
+            <input hidden name="filesArr" value={ JSON.stringify( eventFiles ) } />
           </div>
           <strong className="iip-event-subsection-heading">Add Contact Info:</strong>
           <div className="iip-event-add-contact">

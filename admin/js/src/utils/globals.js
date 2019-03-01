@@ -74,6 +74,13 @@ class EventMeta {
     return new Date();
   }
 
+  get files() {
+    if ( this._meta.files ) {
+      return this._meta.files;
+    }
+    return [];
+  }
+
   get hasTime() {
     if ( this._meta.hasTime ) {
       return this._meta.hasTime;

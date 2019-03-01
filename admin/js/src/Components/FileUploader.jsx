@@ -1,11 +1,13 @@
 import React from 'react';
-import { string } from 'prop-types';
+import { func, string } from 'prop-types';
 
 import { FilePond } from 'react-filepond';
 
 import 'filepond/dist/filepond.min.css';
 
-const FileUploader = ( { ajaxUrl, eventId, iipEventNonce } ) => (
+const FileUploader = ( {
+  ajaxUrl, callback, eventId, iipEventNonce
+} ) => (
   <FilePond
     allowMultiple
     server={ {
@@ -30,6 +32,13 @@ const FileUploader = ( { ajaxUrl, eventId, iipEventNonce } ) => (
             const errorMessage = requestJson.error || 'Error: Unable to upload provided file.';
 
             if ( status === 1 ) {
+              const fileObj = {
+                filename: requestJson.filename,
+                url: requestJson.url,
+                type: requestJson.type
+              };
+
+              callback( fileObj );
               load( request.responseText );
             } else {
               error( errorMessage );
@@ -46,8 +55,13 @@ const FileUploader = ( { ajaxUrl, eventId, iipEventNonce } ) => (
 
 FileUploader.propTypes = {
   ajaxUrl: string,
+  callback: func,
   eventId: string,
   iipEventNonce: string
+};
+
+FileUploader.defaultProps = {
+  callback: obj => console.log( obj )
 };
 
 export default FileUploader;

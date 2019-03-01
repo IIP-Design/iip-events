@@ -13,6 +13,25 @@
   max-width: 100%;
 }
 
+.iip-event-files {
+  display: grid;
+  grid-column-gap: 1rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  padding: 1rem;
+}
+
+.iip-event-file-img {
+  max-width: 100%;
+  padding-top: 75%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.iip-event-file-label {
+  font-size: 1rem;
+}
+
 .iip-event-meta > p {
   font-size: 1em;
   line-height: 1.2;

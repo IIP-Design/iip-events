@@ -50,6 +50,10 @@ if( !empty( $_POST['speakersArr'] ) ) {
   $event_meta['speakers'] = ( json_decode( stripslashes ( sanitize_text_field( $_POST['speakersArr'] ) ) ) );
 }
 
+if( !empty( $_POST['filesArr'] ) ) {
+  $event_meta['files'] = ( json_decode( stripslashes ( sanitize_text_field( $_POST['filesArr'] ) ) ) );
+}
+
 if( !empty( $_POST['eventMaterialsLink'] ) ) {
   $event_meta['materialsLink'] = ( sanitize_text_field( $_POST['eventMaterialsLink'] ) );
 }
@@ -72,4 +76,4 @@ if( has_post_thumbnail() ) {
 
 // Send updated array of post meta values
 update_post_meta ( $post_id, '_iip_event_meta', serialize( $event_meta ) );
-wp_die();
+// wp_die();
