@@ -1,17 +1,16 @@
 import React, { Component, Fragment } from 'react';
-import { FilePond } from 'react-filepond';
-import 'filepond/dist/filepond.min.css';
 
 import DateSelector from './DateSelector';
 import TimeSelector from './TimeSelector';
-import RadioToggle from '../Components/RadioToggle';
+import FileUploader from '../Components/FileUploader';
 import Input from '../Components/Input';
+import RadioToggle from '../Components/RadioToggle';
 import TimezoneDropdown from '../Components/TimezoneDropdown';
 
 import { getEventMeta } from '../utils/globals';
 import { TIMEZONES } from '../utils/timezones';
 
-const { eventAjax } = window.iipEventParams || {};
+const eventAjax = window.iipEventParams.eventAjax || {};
 const { ajaxUrl, eventId, iipEventNonce } = eventAjax;
 
 class ConfigureForm extends Component {
@@ -300,23 +299,7 @@ class ConfigureForm extends Component {
             />
             <div className="iip-event-add-files">
               <p>Add files:</p>
-              <FilePond
-                allowMultiple
-                server={ {
-                  process: {
-                    url: ajaxUrl,
-                    method: 'POST',
-                    onload: response => response.key,
-                    onerror: response => response.data,
-                    ondata: ( formData ) => {
-                      formData.append( 'action', 'iip_event_files' );
-                      formData.append( 'eventId', eventId );
-                      formData.append( 'security', iipEventNonce );
-                      return formData;
-                    }
-                  }
-                } }
-              />
+              <FileUploader ajaxUrl={ ajaxUrl } eventId={ eventId } iipEventNonce={ iipEventNonce } />
             </div>
           </div>
           <strong className="iip-event-subsection-heading">Add Contact Info:</strong>

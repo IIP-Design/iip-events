@@ -12,7 +12,8 @@ if ( $files ):
     $response = array();
 
 		if ( is_wp_error( $attachment_id ) ) { 
-			$response['response'] = "ERROR";
+      $response['response'] = "ERROR";
+      $response['status'] = 0;
 			$response['error'] = "Unable to upload provided file.";
 		} else {
       $path = get_attached_file( $attachment_id );
@@ -23,7 +24,8 @@ if ( $files ):
 				$type = 'image/' . $type;
 			}
 
-			$response['response'] = "SUCCESS";
+      $response['response'] = "SUCCESS";
+      $response['status'] = 1;
 			$response['filename'] = $pathinfo['filename'];
 			$response['url'] = $url;
       $response['type'] = $type;
