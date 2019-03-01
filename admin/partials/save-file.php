@@ -1,40 +1,35 @@
 <?php
 
-$fileErrors = array(
-  0 => 'File successfully uploaded',
-  1 => 'File exceeds the upload_max_files in server settings',
-  2 => 'File exceeds the MAX_FILE_SIZE from html form',
-  3 => 'File uploaded only partially',
-  4 => 'No file was uploaded',
-  6 => 'Missing a temporary folder',
-  7 => 'Failed to write file to disk',
-  8 => 'A PHP extension prevent file upload'
-);
-  
-$posted_data =  isset( $_POST ) ? $_POST : array();
 $files = isset( $_FILES ) ? $_FILES : '';
+$posted_data = isset( $_POST ) ? $_POST : '';
+$post_id = $posted_data['eventId'] ? $posted_data['eventId'] : 0;
 
 if ( $files ):
 
   foreach ( $files as $file ) {
 
-    $upload_overrides = array( 'test_form' => false );
-
-    $uploaded = wp_handle_upload( $file, $upload_overrides );
-    
+    $attachment_id = media_handle_upload( 'filepond', $post_id );
     $response = array();
 
-    if( $uploaded && ! isset( $uploaded['error'] ) ) {
-      $response['response'] = "SUCCESS";
-      $response['filename'] = basename( $uploaded['url'] );
-      $response['url'] = $uploaded['url'];
-      $response['type'] = $uploaded['type'];
-    } else {
-      $response['response'] = "ERROR";
-      $response['error'] = $uploaded['error'];
+		if ( is_wp_error( $attachment_id ) ) { 
+			$response['response'] = "ERROR";
+			$response['error'] = "Unable to upload provided file.";
+		} else {
+      $path = get_attached_file( $attachment_id );
+      $pathinfo = pathinfo( $path );
+      $url = wp_get_attachment_url( $attachment_id );
+      $type = $pathinfo['extension'];
+			if ( $type == 'jpeg' || $type == 'jpg' || $type == 'png' || $type == 'gif' ) {
+				$type = 'image/' . $type;
+			}
+
+			$response['response'] = "SUCCESS";
+			$response['filename'] = $pathinfo['filename'];
+			$response['url'] = $url;
+      $response['type'] = $type;
     }
-    
-    error_log(print_r( $uploaded, TRUE ));
+
+    echo json_encode( $response );
   }
 
 endif;

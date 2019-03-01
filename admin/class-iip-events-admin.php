@@ -39,13 +39,14 @@ class Admin {
 
     $ajax = array(
       'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+      'eventId' => $post->ID,
       'iipEventNonce' => wp_create_nonce( 'iip_event_files' )
     );
 
     // Pass PHP variable to admin JS
     wp_localize_script( 'iip-events-admin-js', 'iipEventParams', array(
       'eventMeta' => unserialize( get_post_meta( $post->ID, '_iip_event_meta', true ) ),
-      'eventAjax' => $ajax
+      'eventAjax' => $ajax,
     ) );
   }
 }
