@@ -314,6 +314,7 @@ class ConfigureForm extends Component {
                 ajaxUrl={ ajaxUrl }
                 callback={ this.handleNewFile }
                 eventId={ eventId }
+                files={ eventFiles }
                 iipEventNonce={ iipEventNonce }
               />
             </div>

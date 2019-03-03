@@ -1,15 +1,28 @@
 import React from 'react';
-import { func, string } from 'prop-types';
+import { array, func, string } from 'prop-types';
 
 import { FilePond } from 'react-filepond';
 
 import 'filepond/dist/filepond.min.css';
 
+const getFiles = ( files ) => {
+  const fileList = [];
+
+  files.map( ( file ) => {
+    const fileObj = { source: file.url, options: { type: 'local' } };
+    fileList.push( fileObj );
+    return fileList;
+  } );
+
+  return fileList;
+};
+
 const FileUploader = ( {
-  ajaxUrl, callback, eventId, iipEventNonce
+  ajaxUrl, callback, eventId, files, iipEventNonce
 } ) => (
   <FilePond
     allowMultiple
+    files={ getFiles( files ) }
     server={ {
       process: ( fieldName, file, metadata, load, error, progress, abort ) => {
         const formData = new FormData();
@@ -32,10 +45,44 @@ const FileUploader = ( {
             const errorMessage = requestJson.error || 'Error: Unable to upload provided file.';
 
             if ( status === 1 ) {
+              let extention;
+              switch ( requestJson.type ) {
+                case 'image/png':
+                  extention = 'png';
+                  break;
+                case 'image/jpg':
+                  extention = 'jpg';
+                  break;
+                case 'image/jpeg':
+                  extention = 'jpeg';
+                  break;
+                case 'image/gif':
+                  extention = 'gif';
+                  break;
+                default:
+                  extention = requestJson.type;
+              }
+
+              let imgUrl;
+              switch ( requestJson.type ) {
+                case 'pdf':
+                  imgUrl = 'pdfurl';
+                  break;
+                case 'doc':
+                  imgUrl = 'wordurl';
+                  break;
+                case 'ppt':
+                  imgUrl = 'ppturl';
+                  break;
+                default:
+                  imgUrl = requestJson.url;
+              }
+
               const fileObj = {
                 filename: requestJson.filename,
-                url: requestJson.url,
-                type: requestJson.type
+                image: imgUrl,
+                type: extention,
+                url: requestJson.url
               };
 
               callback( fileObj );
@@ -57,6 +104,7 @@ FileUploader.propTypes = {
   ajaxUrl: string,
   callback: func,
   eventId: string,
+  files: array,
   iipEventNonce: string
 };
 
