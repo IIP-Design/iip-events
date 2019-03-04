@@ -10,7 +10,8 @@ import TimezoneDropdown from '../Components/TimezoneDropdown';
 import { getEventMeta } from '../utils/globals';
 import { TIMEZONES } from '../utils/timezones';
 
-const eventAjax = window.iipEventParams.eventAjax || {};
+// eslint-disable-next-line no-undef
+const eventAjax = iipEventParams.eventAjax || {};
 const { ajaxUrl, eventId, iipEventNonce } = eventAjax;
 
 class ConfigureForm extends Component {
@@ -90,6 +91,21 @@ class ConfigureForm extends Component {
     const { eventFiles } = this.state;
     const newFiles = Object.assign( [], eventFiles );
     newFiles.push( obj );
+
+    this.setState( {
+      eventFiles: newFiles
+    } );
+  }
+
+  handleRemoveFile = ( toRemove ) => {
+    const { eventFiles } = this.state;
+    const newFiles = Object.assign( [], eventFiles );
+
+    newFiles.forEach( ( file, index ) => {
+      if ( file.url === toRemove ) {
+        newFiles.splice( index, 1 );
+      }
+    } );
 
     this.setState( {
       eventFiles: newFiles
@@ -312,7 +328,8 @@ class ConfigureForm extends Component {
               <p>Add files:</p>
               <FileUploader
                 ajaxUrl={ ajaxUrl }
-                callback={ this.handleNewFile }
+                callbackAdd={ this.handleNewFile }
+                callbackRemove={ this.handleRemoveFile }
                 eventId={ eventId }
                 files={ eventFiles }
                 iipEventNonce={ iipEventNonce }
