@@ -92,7 +92,7 @@ textarea {
   border: 1px solid #e1e1e1;
   display: grid;
   grid-column-gap: 1rem;
-  grid-template-areas: "head . . remove" "input1 bio bio bio" "input2 bio bio bio";
+  grid-template-areas: "head . . remove" "input1 bio bio bio" "input2 bio bio bio" "image bio bio bio";
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
   margin: .5rem 0;
@@ -103,6 +103,10 @@ textarea {
 .iip-event-speaker-header {
   grid-area: head;
   margin-bottom: .5rem;
+}
+
+.iip-event-speaker-image {
+  grid-area: image;
 }
 
 .iip-event-speaker-input1 {

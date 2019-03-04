@@ -61,7 +61,8 @@ class ConfigureForm extends Component {
 
   handleArrayInput = ( e ) => {
     const { group, index } = e.target.dataset;
-    const obj = Object.assign( [], this.state[group] ); // eslint-disable-line react/destructuring-assignment, react/no-access-state-in-setstate
+    const stateGroup = this.state[group]; // eslint-disable-line react/destructuring-assignment
+    const obj = Object.assign( [], stateGroup );
     const property = e.target.name;
 
     obj[index][property] = e.target.value;
@@ -79,7 +80,8 @@ class ConfigureForm extends Component {
 
   handleDeleteRow = ( e ) => {
     const { group, index } = e.target.dataset;
-    const obj = Object.assign( [], this.state[group] ); // eslint-disable-line react/destructuring-assignment, react/no-access-state-in-setstate
+    const stateGroup = this.state[group]; // eslint-disable-line react/destructuring-assignment
+    const obj = Object.assign( [], stateGroup );
     obj.splice( index, 1 );
 
     this.setState( {
@@ -109,6 +111,29 @@ class ConfigureForm extends Component {
 
     this.setState( {
       eventFiles: newFiles
+    } );
+  }
+
+  handleNewSpeakerImage = ( obj, index ) => {
+    const { speakers } = this.state;
+    const newSpeakers = Object.assign( [], speakers );
+    const imgArr = [];
+    imgArr.push( obj );
+    newSpeakers[index].image = imgArr;
+
+    this.setState( {
+      speakers: newSpeakers
+    } );
+  }
+
+  handleRemoveSpeakerFile = ( toRemove, index ) => {
+    const { speakers } = this.state;
+    const newSpeakers = Object.assign( [], speakers );
+
+    newSpeakers[index].image = [];
+
+    this.setState( {
+      speakers: newSpeakers
     } );
   }
 
@@ -290,6 +315,19 @@ class ConfigureForm extends Component {
                         value={ speakers[index].title }
                       />
                     </div>
+                    <div className="iip-event-add-files iip-event-speaker-image">
+                      <p>Speaker Image:</p>
+                      <FileUploader
+                        ajaxUrl={ ajaxUrl }
+                        allowMultiple={ false }
+                        callbackAdd={ this.handleNewSpeakerImage }
+                        callbackRemove={ this.handleRemoveSpeakerFile }
+                        index={ index }
+                        eventId={ eventId }
+                        files={ speakers[index].image }
+                        iipEventNonce={ iipEventNonce }
+                      />
+                    </div>
                     <label className="iip-event-speaker-bio" htmlFor={ `iip_event_speaker_${position}_bio` }>
                       Speaker bio:
                       <textarea
@@ -308,7 +346,7 @@ class ConfigureForm extends Component {
               } )
             }
             <button
-              onClick={ () => { this.handleAddArrayInput( 'speakers', 'name', 'title', 'bio' ); } }
+              onClick={ () => { this.handleAddArrayInput( 'speakers', 'name', 'title', 'bio', 'image' ); } }
               type="button"
             >
               +
@@ -328,6 +366,7 @@ class ConfigureForm extends Component {
               <p>Add files:</p>
               <FileUploader
                 ajaxUrl={ ajaxUrl }
+                allowMultiple
                 callbackAdd={ this.handleNewFile }
                 callbackRemove={ this.handleRemoveFile }
                 eventId={ eventId }

@@ -1,28 +1,20 @@
 import React from 'react';
-import { array, func, string } from 'prop-types';
+import {
+  array, bool, func, string, number
+} from 'prop-types';
 
 import { FilePond } from 'react-filepond';
 import 'filepond/dist/filepond.min.css';
 
-import { getExtention, getImageUrl, removeDashes } from '../utils/uploadHelpers';
-
-const getFiles = ( files ) => {
-  const fileList = [];
-
-  files.map( ( file ) => {
-    const fileObj = { source: file.url, options: { type: 'local' } };
-    fileList.push( fileObj );
-    return fileList;
-  } );
-
-  return fileList;
-};
+import {
+  getExtention, getFiles, getImageUrl, removeDashes
+} from '../utils/uploadHelpers';
 
 const FileUploader = ( {
-  ajaxUrl, callbackAdd, callbackRemove, eventId, files, iipEventNonce
+  ajaxUrl, allowMultiple, callbackAdd, callbackRemove, eventId, files, iipEventNonce, index
 } ) => (
   <FilePond
-    allowMultiple
+    allowMultiple={ allowMultiple }
     files={ getFiles( files ) }
     server={ {
       process: ( fieldName, file, metadata, load, error, progress, abort ) => {
@@ -53,7 +45,7 @@ const FileUploader = ( {
                 url: requestJson.url
               };
 
-              callbackAdd( fileObj );
+              callbackAdd( fileObj, index );
               load( request.responseText );
             } else {
               error( errorMessage );
@@ -65,7 +57,7 @@ const FileUploader = ( {
         request.send( formData );
       },
       remove: ( source, load, error ) => {
-        callbackRemove( source );
+        callbackRemove( source, index );
         load();
       }
     } }
@@ -74,15 +66,18 @@ const FileUploader = ( {
 
 FileUploader.propTypes = {
   ajaxUrl: string,
+  allowMultiple: bool,
   callbackAdd: func,
   callbackRemove: func,
   eventId: string,
   files: array,
-  iipEventNonce: string
+  iipEventNonce: string,
+  index: number
 };
 
 FileUploader.defaultProps = {
-  callbackAdd: obj => console.log( obj )
+  callbackAdd: obj => console.log( obj ),
+  index: 0
 };
 
 export default FileUploader;
