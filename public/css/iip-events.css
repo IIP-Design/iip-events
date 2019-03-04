@@ -21,25 +21,78 @@
   padding: 1rem;
 }
 
+@media screen and ( max-width: 780px ) { 
+  .iip-event-files {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and ( max-width: 450px ) { 
+  .iip-event-files {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and ( max-width: 350px ) { 
+  .iip-event-files {
+    grid-template-columns: 1fr;
+  }
+}
+
 .iip-event-file {
   border: 1px solid #D6D7D9;
   box-shadow: 0px 1px 2px 0 rgba(34,36,38,0.15);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: hidden;
 }
 
 .iip-event-file-img {
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
   max-width: 100%;
   padding-top: 75%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
 }
 
 .iip-event-file-label {
   font-size: 1rem;
   padding: 5px;
+}
+
+.iip-event-file-link:hover {
+  text-decoration: none;
+  border-bottom: none;
+}
+
+.iip-event-speaker {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+@media screen and ( min-width: 500px ) {
+  .iip-event-speaker {
+    flex-direction: row
+  }
+
+  .iip-event-speaker-img {
+    max-width: 200px;
+  }
+}
+
+.iip-event-speaker-img {
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid #D6D7D9;
+  box-shadow: 0px 1px 2px 0 rgba(34,36,38,0.15);
+  flex-shrink: 0;
+  height: 200px;
+  margin-right: 2rem;
+  margin-top: .75rem;
+  width: 100%;
 }
 
 .iip-event-meta > p {
@@ -51,6 +104,7 @@
 .iip-event-body,
 .iip-event-speakers,
 .iip-event-materials,
+.iip-event-files,
 .iip-event-contact {
   margin-top: 1em;
 }
@@ -66,4 +120,16 @@
   font-size: 1.3em;
   justify-content: center;
   margin: 1em 0;
+}
+
+.iip-events-material-button {
+  background-color: #DCE4EF;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
+  color: #112E51;
+  margin: 1rem;
+  padding: .5rem;
+}
+
+.iip-events-material-button:hover {
+  border-bottom: none;
 }
