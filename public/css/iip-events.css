@@ -1,3 +1,8 @@
+/* Hides default featured image if it exisits */
+.content-wrap.post-wrap > .wp-post-image {
+  display: none;
+}
+
 .iip-event-article {
   margin: 0 auto;
   max-width: 1300px;
@@ -21,13 +26,19 @@
   padding: 1rem;
 }
 
+@media screen and ( max-width: 950px ) { 
+  .iip-event-files {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
 @media screen and ( max-width: 780px ) { 
   .iip-event-files {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
-@media screen and ( max-width: 450px ) { 
+@media screen and ( max-width: 550px ) { 
   .iip-event-files {
     grid-template-columns: 1fr 1fr;
   }
@@ -68,17 +79,12 @@
 
 .iip-event-speaker {
   display: flex;
-  flex-direction: column;
   margin-bottom: 2rem;
 }
 
-@media screen and ( min-width: 500px ) {
-  .iip-event-speaker {
-    flex-direction: row
-  }
-
+@media screen and ( max-width: 600px ) {
   .iip-event-speaker-img {
-    max-width: 200px;
+    display: none;
   }
 }
 
@@ -92,6 +98,7 @@
   height: 200px;
   margin-right: 2rem;
   margin-top: .75rem;
+  max-width: 200px;
   width: 100%;
 }
 

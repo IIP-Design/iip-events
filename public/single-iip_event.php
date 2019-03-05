@@ -21,6 +21,7 @@ get_header(); ?>
     $timezone_obj = ( $post_meta['timezone'] );
     $timezone_abbrev = $timezone_obj->abbreviation;
     
+    $thumbnail = the_post_thumbnail();
     $date = date( 'l, M. j, Y', strtotime( $post_meta['date'] ) );
     $end_date = ( $post_meta['multiDay'] == true ) ? ' - ' . date( 'l, M. j, Y', strtotime( $post_meta['endDate'] ) ) : '';
     $timezone = ( $timezone_abbrev ) ? ' ' . $timezone_abbrev : '';
@@ -28,8 +29,8 @@ get_header(); ?>
     $details = ( $post_meta['details'] ) ? $post_meta['details'] : '';
     $description = ( $post_meta['description'] ) ? '<h3>Description:</h3><p>' . $post_meta['description'] . '</p>' : '';
     $speakers = ( $post_meta['speakers'] ) ? $post_meta['speakers'] : '';
-    $materials_link = ( $post_meta['materialsLink'] ) ? '<a class="ui button" href="' . $post_meta['materialsLink'] . '" target="_blank">See all materials on Box ></a>' : '';
-    $materials = ( $materials_link ) ? '<h3>Promotional Materials:</h3><p>' . $materials_link . '</p>' : '';
+    $materials = ( $post_meta['materials'] ) ? $post_meta['materials'] : '';
+    $files = ( $post_meta['files'] ) ? ( $post_meta['files'] ) : '';
     $contact_method = ( $post_meta['contactMethod'] ) ? ' at ' . $post_meta['contactMethod'] : '';
     $contact_name = ( $post_meta['contact'] ) ? $post_meta['contact'] : '';
     $contact = ( $contact_name ) ? '<strong>Questions about this event?</strong><strong>Reach out to ' . $contact_name . $contact_method . '</strong>' : '';
@@ -37,75 +38,135 @@ get_header(); ?>
     ?>
   
     <article class="iip-event-article" id="post-<?php the_ID(); ?>">
-      <h2>
-        <?php echo( $post_meta['title'] ); ?>
-      </h2>
       <div class="iip-event-hero">
         <figure class="iip-event-featured-image"><?php the_post_thumbnail(); ?></figure>
       </div>
-      <div class="iip-event-meta">
-        <p><strong>When:</strong> <?php echo( $date . $end_date . $time ) ?></p>
-        <?php
-        if ( $details ):
 
-          foreach ( $details as $detail ) {
-            
-            $title = $detail->title ? $detail->title : '';
-            $name = $detail->name ? $detail->name : '';
-            $link = $detail->link ? $detail->link : '';
+      <h2><?php echo( $post_meta['title'] ); ?></h2>
 
-            $html;
-            
-            if ( $title && $name && $link ) {
-              $html = '<p><strong>' . $title . ': </strong><a href="' . $link . '">' . $name . '</a></p>';
-            } elseif ( $title && $name && !$link ) {
-              $html = '<p><strong>' . $title . ':</strong> ' . $name . '</p>';
-            } elseif ( $title && !$name && $link ) {
-              $html = '<p><a href="' . $link . '"><strong>' . $title . '</strong></a></p>';
-            } elseif ( !$title && $name && $link ) {
-              $html = '<p><a href="' . $link . '">' . $name . '</a></p>';
-            } elseif ( $title && !$name && !$link ) {
-              $html = '<p><strong>' . $title . '</strong></p>';
-            } elseif ( !$title && $name && !$link ) {
-              $html = '<p>' . $name . '</p>';
-            } elseif ( !$title && !$name && $link ) {
-              $html = '<p><a href="' . $link . '">' . $link . '</a></p>';
-            } else {
-              $html = '';
-            };
+      <section class="iip-event-meta-container">
+        <div class="iip-event-meta">
+          <p><strong>When:</strong> <?php echo( $date . $end_date . $time ) ?></p>
+          <?php
+          if ( $details ):
 
-            echo( $html );
-          }
-        endif;
-        ?>
-      </div>
-      <div class="iip-event-add-to-cal">
-        <div id="iip-events-front"></div>
-      </div>
+            foreach ( $details as $detail ) {
+              
+              $title = $detail->title ? $detail->title : '';
+              $name = $detail->name ? $detail->name : '';
+              $link = $detail->link ? $detail->link : '';
+
+              $html;
+              
+              if ( $title && $name && $link ) {
+                $html = '<p><strong>' . $title . ': </strong><a href="' . $link . '">' . $name . '</a></p>';
+              } elseif ( $title && $name && !$link ) {
+                $html = '<p><strong>' . $title . ':</strong> ' . $name . '</p>';
+              } elseif ( $title && !$name && $link ) {
+                $html = '<p><a href="' . $link . '"><strong>' . $title . '</strong></a></p>';
+              } elseif ( !$title && $name && $link ) {
+                $html = '<p><a href="' . $link . '">' . $name . '</a></p>';
+              } elseif ( $title && !$name && !$link ) {
+                $html = '<p><strong>' . $title . '</strong></p>';
+              } elseif ( !$title && $name && !$link ) {
+                $html = '<p>' . $name . '</p>';
+              } elseif ( !$title && !$name && $link ) {
+                $html = '<p><a href="' . $link . '">' . $link . '</a></p>';
+              } else {
+                $html = '';
+              };
+
+              echo( $html );
+            }
+          endif;
+          ?>
+        </div>
+        <div class="iip-event-add-to-cal">
+          <div id="iip-events-front"></div>
+        </div>
+      </section>
+
       <div class="iip-event-body">
         <?php echo( $description ); ?>
       </div>
-      <div class="iip-event-speakers">
-        <?php
-        if ( $speakers ):
-          echo( "<h3>Speakers:</h3>" );
 
-          foreach ( $speakers as $speaker ) {
-            $html = "<strong>" . $speaker->name . "</strong><br />";
-            $html .= "<strong>" . $speaker->title . "</strong>";
-            $html .= "<p>" . $speaker->bio . "</p>";
-            
+      <?php
+      if ( $speakers ):
+        echo( '<section class="iip-event-speakers">' );
+        echo( '<h3>Speakers:</h3>' );
+
+        foreach ( $speakers as $speaker ) {
+          $image = '';
+          if ( $speaker->image ):
+            $image = '<div class="iip-event-speaker-img" style="background-image: url(';
+            $image .= $speaker->image['0']->image;
+            $image .= ')"></div>';
+          endif;
+
+          $html = '<div class="iip-event-speaker">';
+          $html .= $image;
+          $html .= '<div><strong>' . $speaker->name . '</strong><br />';
+          $html .= '<strong>' . $speaker->title . '</strong>';
+          $html .= '<p>' . $speaker->bio . '</p>';
+          $html .= '</div></div>';
+          
+          echo( $html );
+        }
+
+        echo( '</section>' );
+      endif;
+      ?>
+
+      <?php
+      if ( $materials || $files ):
+        echo( '<div class="iip-event-materials">' );
+        echo( '<h3>Promotional Materials:</h3>' );
+        
+        if ( $materials ):
+          echo( '<section class="iip-event-materials">' );
+            foreach ( $materials as $material ) {
+              $html = '<a class="iip-events-material-button" href="' . $material->link . 'target="_blank">';
+              $html .= $material->label;
+              $html .= '</a>';
+
+              echo( $html );
+            }
+          echo( "</section>" );
+        endif;
+        
+        if ( $files ):
+          echo( "<section class='iip-event-files'>" );
+          foreach ( $files as $file ) {
+            $type = $file->type;
+            $background = ( $type == 'jpg' || $type == 'jpeg' || $type == 'png' ) ? 'background-size: cover' : 'background-size: contain';
+            $margin = ( $type == 'jpg' || $type == 'jpeg' || $type == 'png' ) ? 'margin-top: 0' : 'margin-top: 5px';
+
+            $html = '<div class="iip-event-file">';
+            $html .= '<a class="iip-event-file-link" href="' . $file->url . 'download="' . $file->filename . 'target="_blank">';
+            $html .= '<div class="iip-event-file-img" style="background-image: url(' . $file->image . '); ';
+            $html .= $background . '; ' . $margin . ';"></div>';
+            $html .= '<p class="iip-event-file-label">';
+            $html .= '<strong>' . $file->filename . '</strong> (' . $type . ')';
+            $html .= '</p></a></div>';
+
             echo( $html );
           }
+          echo( '</section>' );
         endif;
-        ?>
-      </div>
-      <div class="iip-event-materials">
-        <?php echo( $materials ); ?>
-      </div>
-      <div class="iip-event-contact">
-        <?php echo( $contact ); ?>
-      </div>
+
+        echo( '</div>' );
+      endif;
+      ?>
+
+      
+      <?php
+      if ( $contact ):
+        echo( '<div class="iip-event-contact">' );
+        echo( $contact );
+        echo( '</div>' );
+      endif;
+      ?>
+      
     </article>
     
     <?php
