@@ -10,6 +10,7 @@ import TimezoneDropdown from '../Components/TimezoneDropdown';
 import { getEventMeta } from '../utils/globals';
 import { TIMEZONES } from '../utils/timezones';
 
+// Get event parameters passed in from server via script localization
 // eslint-disable-next-line no-undef
 const eventAjax = iipEventParams.eventAjax || {};
 const { ajaxUrl, eventId, iipEventNonce } = eventAjax;
@@ -21,13 +22,13 @@ class ConfigureForm extends Component {
       eventContact: getEventMeta.contact,
       eventContactMethod: getEventMeta.contactMethod,
       eventDesc: getEventMeta.description,
-      eventMaterialsLink: getEventMeta.materialsLink,
+      eventDetails: getEventMeta.details,
+      eventFiles: getEventMeta.files,
+      eventMaterials: getEventMeta.materials,
       eventTimezone: getEventMeta.timezone,
       eventTitle: getEventMeta.title,
       hasTime: getEventMeta.hasTime,
       multiDay: getEventMeta.multiDay,
-      eventDetails: getEventMeta.details,
-      eventFiles: getEventMeta.files,
       speakers: getEventMeta.speakers
     };
   }
@@ -139,7 +140,7 @@ class ConfigureForm extends Component {
 
   render() {
     const {
-      eventContact, eventContactMethod, eventDesc, eventMaterialsLink, eventTitle,
+      eventContact, eventContactMethod, eventDesc, eventMaterials, eventTitle,
       eventTimezone, eventFiles, hasTime, multiDay, eventDetails, speakers
     } = this.state;
 
@@ -164,6 +165,7 @@ class ConfigureForm extends Component {
           />
         </label>
         <div className="iip-event-lower-admin-container">
+          { /* EVENT DATETIME */ }
           <strong className="iip-event-subsection-heading">Set the Date and Time:</strong>
           <div className="iip-event-datetime">
             <div className="iip-event-start-date">
@@ -207,6 +209,7 @@ class ConfigureForm extends Component {
               ) }
             </div>
           </div>
+          { /* EVENT DETAILS */ }
           <strong className="iip-event-subsection-heading">Add Event Details:</strong>
           <div className="iip-event-additional-info">
             <div className="iip-event-details-grid">
@@ -227,7 +230,7 @@ class ConfigureForm extends Component {
                         index={ index }
                         id={ `iip_event_info_${position}_title` }
                         name="title"
-                        placeholder="Language"
+                        placeholder="Event Detail"
                         value={ eventDetails[index].title }
                       />
                       <Input
@@ -237,7 +240,7 @@ class ConfigureForm extends Component {
                         index={ index }
                         id={ `iip_event_info_${position}_name` }
                         name="name"
-                        placeholder="Spanish"
+                        placeholder="Detail value"
                         value={ eventDetails[index].name }
                       />
                       <Input
@@ -247,7 +250,7 @@ class ConfigureForm extends Component {
                         index={ index }
                         id={ `iip_event_info_${position}_link` }
                         name="link"
-                        placeholder="https://spanish.com"
+                        placeholder="https://detail-link.com"
                         value={ eventDetails[index].link }
                       />
                       <button
@@ -272,6 +275,7 @@ class ConfigureForm extends Component {
             </button>
             <input hidden name="detailsArr" value={ JSON.stringify( eventDetails ) } />
           </div>
+          { /* SPEAKERS */ }
           <strong className="iip-event-subsection-heading">Add Speakers:</strong>
           <div className="iip-event-add-speakers">
             {
@@ -353,15 +357,65 @@ class ConfigureForm extends Component {
             </button>
             <input hidden name="speakersArr" value={ JSON.stringify( speakers ) } />
           </div>
+          { /* PROMOTIONAL MATERIALS */ }
           <strong className="iip-event-subsection-heading">Add Promotional Materials:</strong>
           <div className="iip-event-add-materials">
-            <Input
-              callback={ this.handleInputChange }
-              id="iip_event_materials_link"
-              label="Add link to materials:"
-              name="eventMaterialsLink"
-              value={ eventMaterialsLink }
-            />
+            { /* MATERIALS LINKS */ }
+            <p>Add link button:</p>
+            <div className="iip-event-add-links">
+              <div className="iip-event-materials-grid">
+                <div className="iip-event-materials-item"><p>Button text:</p></div>
+                <div className="iip-event-materials-item"><p>Link:</p></div>
+                <div className="iip-event-materials-item"><p /></div>
+                {
+                  eventMaterials.map( ( value, index ) => {
+                    const position = index + 1;
+
+                    return (
+                      <Fragment>
+                        <Input
+                          callback={ this.handleArrayInput }
+                          classes="iip-event-materials-item"
+                          group="eventMaterials"
+                          id={ `iip_event_materials_link_${position}_label` }
+                          index={ index }
+                          name="label"
+                          placeholder="Button text"
+                          value={ eventMaterials[index].label }
+                        />
+                        <Input
+                          callback={ this.handleArrayInput }
+                          classes="iip-event-materials-item"
+                          group="eventMaterials"
+                          id={ `iip_event_materials_link_${position}` }
+                          index={ index }
+                          name="link"
+                          placeholder="https://link-to-resource.com"
+                          value={ eventMaterials[index].link }
+                        />
+                        <button
+                          className="iip-events-close-btn"
+                          data-group="eventMaterials"
+                          data-index={ index }
+                          onClick={ this.handleDeleteRow }
+                          type="button"
+                        >
+                          X
+                        </button>
+                      </Fragment>
+                    );
+                  } )
+                }
+              </div>
+              <button
+                onClick={ () => { this.handleAddArrayInput( 'eventMaterials', 'label', 'link' ); } }
+                type="button"
+              >
+                +
+              </button>
+              <input hidden name="materialsArr" value={ JSON.stringify( eventMaterials ) } />
+            </div>
+            { /* MATERIALS FILES */ }
             <div className="iip-event-add-files">
               <p>Add files:</p>
               <FileUploader
@@ -373,9 +427,10 @@ class ConfigureForm extends Component {
                 files={ eventFiles }
                 iipEventNonce={ iipEventNonce }
               />
+              <input hidden name="filesArr" value={ JSON.stringify( eventFiles ) } />
             </div>
-            <input hidden name="filesArr" value={ JSON.stringify( eventFiles ) } />
           </div>
+          { /* CONTACT INFO */ }
           <strong className="iip-event-subsection-heading">Add Contact Info:</strong>
           <div className="iip-event-add-contact">
             <Input
@@ -384,6 +439,7 @@ class ConfigureForm extends Component {
               id="iip_event_contact_name"
               label="Add contact name:"
               name="eventContact"
+              placeholder="Jane Doe"
               value={ eventContact }
             />
             <Input
@@ -392,6 +448,7 @@ class ConfigureForm extends Component {
               id="iip_event_contact_method"
               label="Add contact method (Ex. email, phone number):"
               name="eventContactMethod"
+              placeholder="555-555-5555 / jane@doe.com"
               value={ eventContactMethod }
             />
           </div>

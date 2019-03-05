@@ -53,16 +53,24 @@ textarea {
   padding: 10px;
 }
 
-.iip-event-add-materials {
-  flex-direction: column;
+.iip-event-add-files {
+  align-self: stretch;
 }
 
 .iip-event-add-files > div {
   border: 1px solid #e1e1e1;
 }
 
+.iip-event-add-links {
+  border: 1px solid #e1e1e1;
+  padding: 1rem;
+  width: 100%;
+}
+
 .iip-event-details-item > p,
-.iip-event-add-details > input {
+.iip-event-materials-item > p,
+.iip-event-add-details > input,
+.iip-event-materials-item > input {
   margin: 0 1em 0 0;
 }
 
@@ -87,6 +95,13 @@ textarea {
   width: 100%;
 }
 
+.iip-event-materials-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2%;
+  grid-gap: .75rem;
+  padding: .75rem;
+  width: 100%;
+}
 
 .iip-event-speaker-grid {
   border: 1px solid #e1e1e1;
@@ -122,11 +137,13 @@ textarea {
   margin: 0;
 }
 
-.iip-event-details-item {
+.iip-event-details-item,
+.iip-event-materials-item {
   margin: 0;
 }
 
 .iip-event-additional-info,
+.iip-event-add-materials,
 .iip-event-add-speakers {
   align-items: flex-start;
   flex-direction: column;

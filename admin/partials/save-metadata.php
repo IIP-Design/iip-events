@@ -54,8 +54,8 @@ if( !empty( $_POST['filesArr'] ) ) {
   $event_meta['files'] = ( json_decode( stripslashes ( sanitize_text_field( $_POST['filesArr'] ) ) ) );
 }
 
-if( !empty( $_POST['eventMaterialsLink'] ) ) {
-  $event_meta['materialsLink'] = ( sanitize_text_field( $_POST['eventMaterialsLink'] ) );
+if( !empty( $_POST['materialsArr'] ) ) {
+  $event_meta['materials'] = ( json_decode( stripslashes ( sanitize_text_field( $_POST['materialsArr'] ) ) ) );
 }
 
 if( !empty( $_POST['eventContact'] ) ) {

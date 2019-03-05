@@ -1,6 +1,7 @@
 // Gets the global variable passed over from PHP
 export const eventParams = ( function getParams() {
-  const params = window.iipEventParams || {};
+  // eslint-disable-next-line no-undef
+  const params = iipEventParams || {};
   const eventMeta = params.eventMeta || {};
   return eventMeta;
 }() );
@@ -88,18 +89,18 @@ class EventMeta {
     return false;
   }
 
+  get materials() {
+    if ( this._meta.materials ) {
+      return this._meta.materials;
+    }
+    return [];
+  }
+
   get multiDay() {
     if ( this._meta.multiDay ) {
       return this._meta.multiDay;
     }
     return false;
-  }
-
-  get materialsLink() {
-    if ( this._meta.materialsLink ) {
-      return this._meta.materialsLink;
-    }
-    return '';
   }
 
   get speakers() {
