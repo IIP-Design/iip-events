@@ -20,6 +20,7 @@ get_header(); ?>
     $post_meta = unserialize( get_post_meta( $id, '_iip_event_meta', true ) );
     $timezone_obj = ( $post_meta['timezone'] );
     $timezone_abbrev = $timezone_obj->abbreviation;
+    $no_date = $post_meta['noDate'];
     
     $thumbnail = the_post_thumbnail();
     $date = date( 'l, M. j, Y', strtotime( $post_meta['date'] ) );
@@ -35,6 +36,14 @@ get_header(); ?>
     $contact_name = ( $post_meta['contact'] ) ? $post_meta['contact'] : '';
     $contact = ( $contact_name ) ? '<strong>Questions about this event?</strong><strong>Reach out to ' . $contact_name . $contact_method . '</strong>' : '';
     
+    $dateline;
+    if ( $no_date == 'tba') {
+      $dateline = '<p><strong>When:</strong> To Be Announced</p>';
+    } elseif ( $no_date == 'none' ) {
+      $dateline = '';
+    } else {
+      $dateline = '<p><strong>When:</strong>' . $date . $end_date . $time . '</p>';
+    }
     ?>
   
     <article class="iip-event-article" id="post-<?php the_ID(); ?>">
@@ -46,8 +55,8 @@ get_header(); ?>
 
       <section class="iip-event-meta-container">
         <div class="iip-event-meta">
-          <p><strong>When:</strong> <?php echo( $date . $end_date . $time ) ?></p>
           <?php
+          echo( $dateline );
           if ( $details ):
 
             foreach ( $details as $detail ) {
@@ -81,9 +90,18 @@ get_header(); ?>
           endif;
           ?>
         </div>
-        <div class="iip-event-add-to-cal">
-          <div id="iip-events-front"></div>
-        </div>
+
+        <?php
+        if ( ! $no_date ):
+
+          $html = '<div class="iip-event-add-to-cal">';
+          $html .= '<div id="iip-events-front"></div>';
+          $html .= '</div>';
+
+          echo( $html );
+
+        endif;
+        ?>
       </section>
 
       <div class="iip-event-body">

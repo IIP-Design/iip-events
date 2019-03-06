@@ -44,13 +44,18 @@ textarea {
 }
 
 .iip-event-datetime,
-.iip-event-additional-info,
+.iip-event-details,
 .iip-event-add-speakers,
 .iip-event-add-materials,
 .iip-event-add-contact {
   background-color: #F1F1F1;
   display: flex;
   padding: 10px;
+}
+
+.iip-event-details > button,
+.iip-event-add-links > button {
+  margin-left: .75rem;
 }
 
 .iip-event-add-files {
@@ -75,7 +80,7 @@ textarea {
 }
 
 .iip-event-datetime,
-.iip-event-additional-info,
+.iip-event-details,
 .iip-event-add-speakers,
 .iip-event-speaker {
   justify-content: space-between;
@@ -142,7 +147,7 @@ textarea {
   margin: 0;
 }
 
-.iip-event-additional-info,
+.iip-event-details,
 .iip-event-add-materials,
 .iip-event-add-speakers {
   align-items: flex-start;
@@ -155,11 +160,16 @@ textarea {
   flex-basis: 33%;
 }
 
+.iip-event-start-date {
+  display: flex;
+  flex-direction: column;
+}
+
 .iip-events-faux-label {
   margin: 0;
 }
 
-.iip-event-additional-info > label,
+.iip-event-details > label,
 .iip-event-add-contact > label {
   flex-basis: 33%;
 }
@@ -168,7 +178,7 @@ textarea {
   flex-basis: 100%;
 }
 
-.iip-event-additional-info > label > input,
+.iip-event-details > label > input,
 .iip-event-add-materials > label > input,
 .iip-event-add-contact > label > input {
   width: 80%;
@@ -178,6 +188,7 @@ textarea {
   margin-top: 10px;
 }
 
+input.iip-event-checkbox,
 input.iip-event-radio {
   margin: 0 10px;
 }

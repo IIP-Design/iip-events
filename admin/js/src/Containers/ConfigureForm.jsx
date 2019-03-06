@@ -29,6 +29,7 @@ class ConfigureForm extends Component {
       eventTitle: getEventMeta.title,
       hasTime: getEventMeta.hasTime,
       multiDay: getEventMeta.multiDay,
+      noDate: getEventMeta.noDate,
       speakers: getEventMeta.speakers
     };
   }
@@ -46,6 +47,23 @@ class ConfigureForm extends Component {
     this.setState( {
       [e.target.dataset.alias]: isSelectedTrue
     } );
+  }
+
+  handleCheckboxChange = ( e ) => {
+    const { checked } = e.target;
+    const { name } = e.target;
+
+    if ( checked === true ) {
+      this.setState( {
+        noDate: name
+      } );
+    }
+
+    if ( checked === false ) {
+      this.setState( {
+        noDate: ''
+      } );
+    }
   }
 
   handleAddArrayInput = ( group, ...args ) => {
@@ -140,8 +158,8 @@ class ConfigureForm extends Component {
 
   render() {
     const {
-      eventContact, eventContactMethod, eventDesc, eventMaterials, eventTitle,
-      eventTimezone, eventFiles, hasTime, multiDay, eventDetails, speakers
+      eventContact, eventContactMethod, eventDesc, eventDetails, eventFiles,
+      eventMaterials, eventTimezone, eventTitle, hasTime, multiDay, noDate, speakers
     } = this.state;
 
     return (
@@ -170,7 +188,35 @@ class ConfigureForm extends Component {
           <div className="iip-event-datetime">
             <div className="iip-event-start-date">
               <p className="iip-events-faux-label">Select the date of your event:</p>
-              <DateSelector date={ getEventMeta.date } metavalue="date" />
+              <div style={ { display: ( ( noDate === 'tba' || noDate === 'none' ) ? 'none' : 'inline-block' ) } }>
+                <DateSelector
+                  date={ getEventMeta.date }
+                  metavalue="date"
+                />
+              </div>
+              <label htmlFor="iip_event_tba">
+                To be announced:
+                <input
+                  checked={ noDate === 'tba' }
+                  className="iip-event-checkbox"
+                  id="iip_event_tba"
+                  name="tba"
+                  onChange={ this.handleCheckboxChange }
+                  type="checkbox"
+                />
+              </label>
+              <label htmlFor="iip_event_no_date">
+                No date:
+                <input
+                  checked={ noDate === 'none' }
+                  className="iip-event-checkbox"
+                  id="iip_event_no_date"
+                  name="none"
+                  onChange={ this.handleCheckboxChange }
+                  type="checkbox"
+                />
+              </label>
+              <input hidden name="noDate" value={ noDate } />
             </div>
             <div className="iip-event-end-date">
               <p className="iip-events-faux-label">Multi-day event?</p>
@@ -211,7 +257,7 @@ class ConfigureForm extends Component {
           </div>
           { /* EVENT DETAILS */ }
           <strong className="iip-event-subsection-heading">Add Event Details:</strong>
-          <div className="iip-event-additional-info">
+          <div className="iip-event-details">
             <div className="iip-event-details-grid">
               <div className="iip-event-details-item"><p>Event Detail Title:</p></div>
               <div className="iip-event-details-item"><p>Event Detail Value:</p></div>

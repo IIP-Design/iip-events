@@ -103,6 +103,13 @@ class EventMeta {
     return false;
   }
 
+  get noDate() {
+    if ( this._meta.noDate ) {
+      return this._meta.noDate;
+    }
+    return '';
+  }
+
   get speakers() {
     if ( this._meta.speakers ) {
       return this._meta.speakers;

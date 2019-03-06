@@ -62,6 +62,12 @@ if( !empty( $_POST['eventContact'] ) ) {
   $event_meta['contact'] = ( sanitize_text_field( $_POST['eventContact'] ) );
 }
 
+if( !empty( $_POST['noDate'] ) ) {
+  $event_meta['noDate'] = ( sanitize_text_field( $_POST['noDate'] ) );
+} else {
+  $event_meta['noDate'] = '';
+}
+
 if( !empty( $_POST['eventContactMethod'] ) ) {
   $event_meta['contactMethod'] = ( sanitize_text_field( $_POST['eventContactMethod'] ) );
 }
@@ -76,4 +82,3 @@ if( has_post_thumbnail() ) {
 
 // Send updated array of post meta values
 update_post_meta ( $post_id, '_iip_event_meta', serialize( $event_meta ) );
-// wp_die();
