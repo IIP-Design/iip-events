@@ -68,11 +68,11 @@ get_header(); ?>
               $html;
               
               if ( $title && $name && $link ) {
-                $html = '<p><strong>' . $title . ': </strong><a href="' . $link . '">' . $name . '</a></p>';
+                $html = '<p><strong>' . $title . ': </strong><a href="' . $link . '" target="_blank">' . $name . '</a></p>';
               } elseif ( $title && $name && !$link ) {
                 $html = '<p><strong>' . $title . ':</strong> ' . $name . '</p>';
               } elseif ( $title && !$name && $link ) {
-                $html = '<p><a href="' . $link . '"><strong>' . $title . '</strong></a></p>';
+                $html = '<p><a href="' . $link . '" target="_blank"><strong>' . $title . '</strong></a></p>';
               } elseif ( !$title && $name && $link ) {
                 $html = '<p><a href="' . $link . '">' . $name . '</a></p>';
               } elseif ( $title && !$name && !$link ) {
@@ -80,7 +80,7 @@ get_header(); ?>
               } elseif ( !$title && $name && !$link ) {
                 $html = '<p>' . $name . '</p>';
               } elseif ( !$title && !$name && $link ) {
-                $html = '<p><a href="' . $link . '">' . $link . '</a></p>';
+                $html = '<p><a href="' . $link . '" target="_blank">' . $link . '</a></p>';
               } else {
                 $html = '';
               };
@@ -94,9 +94,7 @@ get_header(); ?>
         <?php
         if ( ! $no_date ):
 
-          $html = '<div class="iip-event-add-to-cal">';
-          $html .= '<div id="iip-events-front"></div>';
-          $html .= '</div>';
+          $html = '<div class="iip-event-add-to-cal" id="iip-events-front"></div>';
 
           echo( $html );
 

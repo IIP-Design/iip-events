@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 **Changed:**
 - Removed language, organizer, and link fields in favor of generic customizable 'details' fields
 - Updated event post type frontend to include promo materials grid
+- Adjust event meta section so add to calendar widget drops below details on mobile
 
 **Fixed:**
 - Hide default featured image in event post type if present
