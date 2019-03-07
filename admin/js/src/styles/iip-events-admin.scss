@@ -1,0 +1,12 @@
+@import './normalize.scss'; 
+
+// Components
+@import './components/inputs.scss';
+
+// Configuration Form Sections
+@import './config-form-sections/base.scss';
+@import './config-form-sections/contact.scss';
+@import './config-form-sections/datetime.scss';
+@import './config-form-sections/details.scss';
+@import './config-form-sections/materials.scss';
+@import './config-form-sections/speakers.scss';

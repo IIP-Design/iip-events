@@ -255,9 +255,7 @@
 .fa-road:before {
   content: "\f018";
 }
-.fa-download:before {
-  content: "\f019";
-}
+
 .fa-arrow-circle-o-down:before {
   content: "\f01a";
 }
@@ -1248,12 +1246,8 @@
 .fa-long-arrow-right:before {
   content: "\f178";
 }
-.fa-apple:before {
-  content: "\f179";
-}
-.fa-windows:before {
-  content: "\f17a";
-}
+
+
 .fa-android:before {
   content: "\f17b";
 }
@@ -1359,12 +1353,7 @@
 .fa-graduation-cap:before {
   content: "\f19d";
 }
-.fa-yahoo:before {
-  content: "\f19e";
-}
-.fa-google:before {
-  content: "\f1a0";
-}
+
 .fa-reddit:before {
   content: "\f1a1";
 }
@@ -1981,9 +1970,7 @@
 .fa-amazon:before {
   content: "\f270";
 }
-.fa-calendar-plus-o:before {
-  content: "\f271";
-}
+
 .fa-calendar-minus-o:before {
   content: "\f272";
 }

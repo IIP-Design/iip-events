@@ -3,11 +3,13 @@ import { render } from 'react-dom';
 
 import App from './App';
 
-import './iip-events-front.css';
+import './styles/iip-events-front.scss';
 
-render(
-  <App />,
-  document.getElementById( 'iip-events-front' )
-);
+const attachTo = document.getElementById( 'iip-event-add-to-cal' );
+
+if ( attachTo ) {
+  render( <App />, attachTo );
+}
+
 
 if ( module.hot ) { module.hot.accept(); }

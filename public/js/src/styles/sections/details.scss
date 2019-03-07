@@ -1,0 +1,32 @@
+.iip-event {
+
+  &-description {
+
+    margin-top: 1rem;
+
+    > p {
+      white-space: pre-wrap;
+    }
+  }
+
+  &-meta {
+
+    &-container {
+
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+
+      @media screen and ( max-width: 850px ) {
+        grid-row-gap: 1rem;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 40px;
+      }
+    }
+    
+    > p {
+      font-size: 1em;
+      line-height: 1.5;
+      margin: 0;
+    }
+  }
+}

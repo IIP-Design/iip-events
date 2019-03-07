@@ -1,0 +1,20 @@
+.iip-event {
+
+  &-datetime {
+    background-color: #F1F1F1;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  &-end-date,
+  &-start-date,
+  &-time {
+    flex-basis: 33%;
+  }
+
+  &-start-date {
+    display: flex;
+    flex-direction: column;
+  }
+}

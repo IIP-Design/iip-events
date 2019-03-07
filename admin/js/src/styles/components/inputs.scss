@@ -1,0 +1,40 @@
+.iip-event {
+
+  &-close-btn {
+    background: none;
+    border: none;
+    color: #cd2026;
+    font-weight: bold;
+  }
+  
+  &-faux-label {
+    margin: 0;
+  }
+
+  &-radio-toggle {
+    margin-top: 10px;
+  }
+}
+
+input.iip-event-checkbox,
+input.iip-event-radio {
+  margin: 0 10px;
+}
+
+.large-textarea {
+  min-height: 12em;
+  width: 100%;
+}
+
+.medium-textarea {
+  min-height: 9em;
+  width: 100%;
+}
+
+.wide-input {
+  width: 100%;
+}
+
+.stacked {
+  display: block;
+}

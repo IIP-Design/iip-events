@@ -1,0 +1,68 @@
+#iip-event-add-to-cal {
+  position: relative;
+}
+
+.react-add-to-calendar {
+
+  position: absolute;
+  width: max-content;
+  z-index: 1;
+
+  @media screen and ( min-width: 850px ) {
+    right: 0;
+  }
+
+  &__button {
+
+    border: 2px solid #046B99;
+    color: #046B99;
+    padding: .5em;
+    background-color: #f9f9f9;
+    border-radius: 3px;
+
+    &:hover {
+      border-bottom: 2px solid;
+      text-decoration: none;
+    }
+  }
+
+  &__dropdown {
+
+    border: 2px solid #046B99;
+    color: #046B99;
+    background-color: #f9f9f9;
+    border-radius: 3px;
+
+    > ul {
+
+      list-style: none;
+      padding-left: .5em;
+
+      > li > a {
+        color: #046B99;
+        font-size: 1rem;
+        line-height: 1.3;
+        text-decoration: none;
+
+        &:hover {
+          border-bottom: none;
+        }
+      }
+
+      > li:hover {
+
+        background-color: #046B99;
+        margin-left: -.5em;
+
+        > a {
+          color: #f9f9f9;
+          line-height: 2;
+        }
+      }
+    }
+  }
+}
+
+i.react-add-to-calendar__icon--left {
+  color: #046B99;
+}

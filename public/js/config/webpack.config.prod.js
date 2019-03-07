@@ -21,13 +21,27 @@ module.exports = {
         use: ['babel-loader', 'eslint-loader']
       },
       {
-        test: /\.css$/,
+        test: /\.(css|scss)$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader
           },
           'css-loader',
-          'postcss-loader'
+          'postcss-loader',
+          'sass-loader'
+        ]
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              publicPath: paths.fontPath,
+              outputPath: 'fonts'
+            }
+          }
         ]
       }
     ]

@@ -94,7 +94,7 @@ get_header(); ?>
         <?php
         if ( ! $no_date ):
 
-          $html = '<div class="iip-event-add-to-cal" id="iip-events-front"></div>';
+          $html = '<div class="iip-event-add-to-cal" id="iip-event-add-to-cal"></div>';
 
           echo( $html );
 
@@ -102,7 +102,7 @@ get_header(); ?>
         ?>
       </section>
 
-      <div class="iip-event-body">
+      <div class="iip-event-description">
         <?php echo( $description ); ?>
       </div>
 
@@ -141,7 +141,7 @@ get_header(); ?>
         if ( $materials ):
           echo( '<section class="iip-event-materials">' );
             foreach ( $materials as $material ) {
-              $html = '<a class="iip-events-material-button" href="' . $material->link . 'target="_blank">';
+              $html = '<a class="iip-event-material-button" href="' . $material->link . 'target="_blank">';
               $html .= $material->label;
               $html .= '</a>';
 

@@ -1,0 +1,13 @@
+.iip-event-add-contact {
+  background-color: #F1F1F1;
+  display: flex;
+  padding: 10px;
+
+  > label {
+    flex-basis: 33%;
+    
+    > input {
+      width: 80%;
+    }
+  }
+}

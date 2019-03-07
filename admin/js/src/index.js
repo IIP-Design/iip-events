@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 
 import App from './App';
 
-import './iip-events-admin.css';
+import './styles/iip-events-admin.scss';
 
 render(
   <App />,

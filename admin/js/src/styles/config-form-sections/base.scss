@@ -1,0 +1,12 @@
+.iip-event {
+
+  &-lower-admin-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-subsection-heading {
+    margin-top: 1em;
+    margin-bottom: .5em;
+  }
+}

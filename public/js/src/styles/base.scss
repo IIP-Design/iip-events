@@ -1,0 +1,37 @@
+// Hides default WordPress post featured image if present
+.content-wrap.post-wrap > .wp-post-image {
+  display: none;
+}
+
+.iip-event {
+
+  &-article {
+
+    margin: 0 auto;
+    max-width: 1300px;
+    padding: 1rem 2rem;
+
+    @media screen and (max-width: 768px) {
+      padding: 1rem;
+    }
+  }
+
+  &-featured-image {
+
+    text-align: center;
+
+    @media screen and (max-width: 768px) {
+      margin: 16px 20px;
+    }
+
+    > img {
+
+      height: auto;
+      max-width: 75%;
+
+      @media screen and (max-width: 768px) {
+        max-width: 100%;
+      }
+    }
+  }
+}

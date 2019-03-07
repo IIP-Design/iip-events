@@ -187,7 +187,7 @@ class ConfigureForm extends Component {
           <strong className="iip-event-subsection-heading">Set the Date and Time:</strong>
           <div className="iip-event-datetime">
             <div className="iip-event-start-date">
-              <p className="iip-events-faux-label">Select the date of your event:</p>
+              <p className="iip-event-faux-label">Select the date of your event:</p>
               <div style={ { display: ( ( noDate === 'tba' || noDate === 'none' ) ? 'none' : 'inline-block' ) } }>
                 <DateSelector
                   date={ getEventMeta.date }
@@ -219,18 +219,18 @@ class ConfigureForm extends Component {
               <input hidden name="noDate" value={ noDate } />
             </div>
             <div className="iip-event-end-date">
-              <p className="iip-events-faux-label">Multi-day event?</p>
+              <p className="iip-event-faux-label">Multi-day event?</p>
               <RadioToggle callback={ this.handleRadioChange } metavalue="multiDay" option={ multiDay } />
               { multiDay && (
                 <Fragment>
                   <br />
-                  <p className="iip-events-faux-label">Set the end date:</p>
+                  <p className="iip-event-faux-label">Set the end date:</p>
                   <DateSelector date={ getEventMeta.endDate } metavalue="endDate" />
                 </Fragment>
               ) }
             </div>
             <div className="iip-event-time">
-              <p className="iip-events-faux-label">Include a time for your event?:</p>
+              <p className="iip-event-faux-label">Include a time for your event?:</p>
               <RadioToggle callback={ this.handleRadioChange } metavalue="hasTime" option={ hasTime } />
               { hasTime && (
                 <Fragment>
@@ -300,7 +300,7 @@ class ConfigureForm extends Component {
                         value={ eventDetails[index].link }
                       />
                       <button
-                        className="iip-events-close-btn"
+                        className="iip-event-close-btn"
                         data-group="eventDetails"
                         data-index={ index }
                         onClick={ this.handleDeleteRow }
@@ -332,7 +332,7 @@ class ConfigureForm extends Component {
                   <div className="iip-event-speaker-grid">
                     <strong className="iip-event-speaker-header">{ `Speaker # ${position}` }</strong>
                     <button
-                      className="iip-events-close-btn"
+                      className="iip-event-close-btn"
                       data-group="speakers"
                       data-index={ index }
                       onClick={ this.handleDeleteRow }
@@ -440,7 +440,7 @@ class ConfigureForm extends Component {
                           value={ eventMaterials[index].link }
                         />
                         <button
-                          className="iip-events-close-btn"
+                          className="iip-event-close-btn"
                           data-group="eventMaterials"
                           data-index={ index }
                           onClick={ this.handleDeleteRow }
