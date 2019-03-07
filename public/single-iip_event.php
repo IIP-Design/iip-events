@@ -38,11 +38,11 @@ get_header(); ?>
     
     $dateline;
     if ( $no_date == 'tba') {
-      $dateline = '<p><strong>When:</strong> To Be Announced</p>';
+      $dateline = '<p><strong>When: </strong>To Be Announced</p>';
     } elseif ( $no_date == 'none' ) {
       $dateline = '';
     } else {
-      $dateline = '<p><strong>When:</strong>' . $date . $end_date . $time . '</p>';
+      $dateline = '<p><strong>When: </strong>' . $date . $end_date . $time . '</p>';
     }
     ?>
   
@@ -157,13 +157,14 @@ get_header(); ?>
             $background = ( $type == 'jpg' || $type == 'jpeg' || $type == 'png' ) ? 'background-size: cover' : 'background-size: contain';
             $margin = ( $type == 'jpg' || $type == 'jpeg' || $type == 'png' ) ? 'margin-top: 0' : 'margin-top: 5px';
 
-            $html = '<div class="iip-event-file">';
-            $html .= '<a class="iip-event-file-link" href="' . $file->url . 'download="' . $file->filename . 'target="_blank">';
+            $html = '<a class="iip-event-file iip-event-overlay" href="' . $file->url . '" download="' . $file->filename . '" target="_blank">';
+            $html .= '<div class="iip-event-overlay-base">';
             $html .= '<div class="iip-event-file-img" style="background-image: url(' . $file->image . '); ';
             $html .= $background . '; ' . $margin . ';"></div>';
             $html .= '<p class="iip-event-file-label">';
             $html .= '<strong>' . $file->filename . '</strong> (' . $type . ')';
-            $html .= '</p></a></div>';
+            $html .= '</p></div><div class="iip-event-overlay-hover">';
+            $html .= '<i class="fa fa-3x fa-download iip-event-overlay-text"></i></div></a>';
 
             echo( $html );
           }
