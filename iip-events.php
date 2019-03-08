@@ -26,12 +26,12 @@ define( 'IIP_EVENTS_PUBLIC', plugin_dir_url( dirname( __FILE__ ) ) . 'iip-events
 require plugin_dir_path( __FILE__ ) . 'includes/class-iip-events.php';
 
 /* Begin execution of the plugin.
-*
-* Since everything within the plugin is registered via hooks,
-* then kicking off the plugin from this point in the file does
-* not affect the page life cycle.
-*
-*/
+ *
+ * Since everything within the plugin is registered via hooks,
+ * then kicking off the plugin from this point in the file does
+ * not affect the page life cycle.
+ *
+ */
 
 function run_iip_events() {
   $plugin = new IIP_Events();

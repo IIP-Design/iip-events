@@ -1,0 +1,18 @@
+# Editor
+.vscode
+.DS_Store
+
+# Environment
+.env
+admin/js/dist/stats.json
+public/js/dist/stats.json
+
+# Dependencies
+node_modules/
+npm-debug.log*
+
+#Development Builds
+admin/js/dist/css/iip-events-admin.css
+admin/js/dist/js/iip-events-admin.js
+public/js/dist/css/iip-events-front.css
+public/js/dist/js/iip-events-front.js

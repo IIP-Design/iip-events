@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - File uploader that saves uploaded files to the media library and makes avialable as promo files
 - To be announced and no date options for events
 - Ability to add images profile images for speakers
-- PostCSS loader (for autoprefixing)
+- PostCSS loader (for autoprefixing) and switched stylesheets to Sass
 
 **Changed:**
 - Removed language, organizer, and link fields in favor of generic customizable 'details' fields

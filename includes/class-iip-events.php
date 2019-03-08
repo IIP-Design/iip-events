@@ -34,7 +34,7 @@ class IIP_Events {
 
   public function __construct() {
     $this->plugin_name = 'iip-events';
-    $this->version = '0.0.1';
+    $this->version = 'v1.0.1';
     $this->load_dependencies();
     $this->define_admin_hooks();
     $this->define_public_hooks();
@@ -47,6 +47,8 @@ class IIP_Events {
    *
    * - IIP_Events\Loader. Orchestrates the hooks of the plugin.
    * - IIP_Events\Admin. Defines all hooks for the admin area.
+   * - IIP_Events\API. Defines all hooks for the custom API endpoint.
+   * - IIP_Events\Custom_Post_Type. Defines all hooks for the event custom post type.
    * - IIP_Events\Frontend. Defines all hooks for the public side of the site.
    *
    * Create an instance of the loader which will be used to register the hooks with WordPress.
@@ -72,7 +74,7 @@ class IIP_Events {
   // Register all of the hooks related to the admin area functionality of the plugin.
   private function define_admin_hooks() {
     $plugin_admin = new IIP_Event\Admin( $this->get_plugin_name(), $this->get_version() );
-    $plugin_api = new IIP_Event\API();
+    $plugin_api = new IIP_Event\API( $this->get_plugin_name(), $this->get_version() );
     $plugin_cpt = new IIP_Event\Custom_Post_Type( $this->get_plugin_name(), $this->get_version() );
 
     // Admin hooks

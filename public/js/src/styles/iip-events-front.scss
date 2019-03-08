@@ -1,9 +1,12 @@
+// General
 @import './base.scss';
 @import './fontawesome.scss';
 @import './overlay.scss';
 
+// Components
 @import './components/add-to-calendar.scss';
 
+// Page sections
 @import './sections/contact.scss';
 @import './sections/details.scss';
 @import './sections/files.scss';
