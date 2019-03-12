@@ -123,7 +123,7 @@ get_header(); ?>
           $html .= $image;
           $html .= '<div><strong>' . $speaker->name . '</strong><br />';
           $html .= '<strong>' . $speaker->title . '</strong>';
-          $html .= '<p>' . $speaker->bio . '</p>';
+          $html .= '<p class="iip-event-speaker-bio">' . $speaker->bio . '</p>';
           $html .= '</div></div>';
           
           echo( $html );
