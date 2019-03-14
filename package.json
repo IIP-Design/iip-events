@@ -1,6 +1,6 @@
 {
   "name": "iip-events",
-  "version": "v1.1.0",
+  "version": "v1.1.1",
   "private": true,
   "license": "GPL-2.0",
   "scripts": {
