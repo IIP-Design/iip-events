@@ -3,11 +3,11 @@
 $event_meta = unserialize( get_post_meta( $post_id, '_iip_event_meta', true ) );
 
 if( !empty( $_POST['eventTitle'] ) ) {
-  $event_meta['title'] = ( sanitize_text_field( $_POST['eventTitle'] ) );
+  $event_meta['title'] = stripslashes( sanitize_text_field( $_POST['eventTitle'] ) );
 }
 
 if( !empty( $_POST['eventDesc'] ) ) {
-  $event_meta['description'] = ( sanitize_textarea_field( $_POST['eventDesc'] ) );
+  $event_meta['description'] = stripslashes( sanitize_textarea_field( $_POST['eventDesc'] ) );
 }
 
 if( !empty( $_POST['event_date'] ) ) {
@@ -59,7 +59,7 @@ if( !empty( $_POST['materialsArr'] ) ) {
 }
 
 if( !empty( $_POST['eventContact'] ) ) {
-  $event_meta['contact'] = ( sanitize_text_field( $_POST['eventContact'] ) );
+  $event_meta['contact'] = stripslashes( sanitize_text_field( $_POST['eventContact'] ) );
 }
 
 if( !empty( $_POST['noDate'] ) ) {
@@ -69,7 +69,7 @@ if( !empty( $_POST['noDate'] ) ) {
 }
 
 if( !empty( $_POST['eventContactMethod'] ) ) {
-  $event_meta['contactMethod'] = ( sanitize_text_field( $_POST['eventContactMethod'] ) );
+  $event_meta['contactMethod'] = stripslashes( sanitize_text_field( $_POST['eventContactMethod'] ) );
 }
 
 if( has_post_thumbnail() ) {
