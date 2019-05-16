@@ -72,6 +72,15 @@ export const TIMEZONES = [
     }
   },
   {
+    name: 'Eastern Daylight Time',
+    properties: {
+      abbreviation: 'EDT',
+      commonName: 'Eastern Daylight Time',
+      gmtOffset: '-04:00',
+      value: 'America/New_York'
+    }
+  },
+  {
     name: 'Atlantic Time',
     properties: {
       abbreviation: 'AST (America)',
