@@ -4,7 +4,7 @@
 * Plugin Name: IIP Events
 * Plugin URI: https://github.com/IIP-Design/iip-events
 * Description: Event custom post type for IIP
-* Version: v1.1.1
+* Version: v1.1.2
 * Author: Marek Rewers, U.S. Department of State, IIP Office of Design <designdevops@america.gov>
 * Text Domain: iip-event
 * License: GNU General Public License v2.0

@@ -1,6 +1,6 @@
 {
   "name": "iip-events-front",
-  "version": "v1.1.1",
+  "version": "v1.1.2",
   "private": true,
   "scripts": {
     "build": "webpack --config ./config/webpack.config.prod.js --mode production",

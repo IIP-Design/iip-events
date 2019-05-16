@@ -34,7 +34,7 @@ class IIP_Events {
 
   public function __construct() {
     $this->plugin_name = 'iip-events';
-    $this->version = 'v1.1.1';
+    $this->version = 'v1.1.2';
     $this->load_dependencies();
     $this->define_admin_hooks();
     $this->define_public_hooks();
