@@ -4,7 +4,22 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.1.1](https://github.com/IIP-Design/iip-events/tree/v1.1.0) - (2019-03-13)
+## [1.1.2](https://github.com/IIP-Design/iip-events/tree/v1.1.2) - (2019-05-16)
+
+**Added:**
+- Eastern Daylight Time option to timezone dropdown
+
+**Changed:**
+- Set hover state on add to calendar button to pointer
+- Tweak some styling on event post type front end
+
+**Fixed:**
+- Correct input sanitation for event data which was failing when certain characters were used
+
+**Security**
+- Updated vulnerable NPM dependencies
+
+## [1.1.1](https://github.com/IIP-Design/iip-events/tree/v1.1.1) - (2019-03-13)
 
 **Added:**
 - Documentation on build scripts, the frontend template, and the plugin structure

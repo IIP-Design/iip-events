@@ -8,7 +8,7 @@
   &-article {
 
     margin: 0 auto;
-    max-width: 1300px;
+    max-width: 1068px;
     padding: 1rem 2rem;
 
     @media screen and (max-width: 768px) {
@@ -27,7 +27,7 @@
     > img {
 
       height: auto;
-      max-width: 75%;
+      max-width: 85%;
 
       @media screen and (max-width: 768px) {
         max-width: 100%;

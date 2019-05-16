@@ -155,16 +155,16 @@ get_header(); ?>
           foreach ( $files as $file ) {
             $type = $file->type;
             $background = ( $type == 'jpg' || $type == 'jpeg' || $type == 'png' ) ? 'background-size: cover' : 'background-size: contain';
-            $margin = ( $type == 'jpg' || $type == 'jpeg' || $type == 'png' ) ? 'margin-top: 0' : 'margin-top: 5px';
 
-            $html = '<a class="iip-event-file iip-event-overlay" href="' . $file->url . '" download="' . $file->filename . '" target="_blank">';
+            $html = '<a class="iip-event-file" href="' . $file->url . '" download="' . $file->filename . '" target="_blank">';
+            $html .= '<div class="iip-event-overlay">';
             $html .= '<div class="iip-event-overlay-base">';
             $html .= '<div class="iip-event-file-img" style="background-image: url(' . $file->image . '); ';
-            $html .= $background . '; ' . $margin . ';"></div>';
+            $html .= $background . ';"></div></div><div class="iip-event-overlay-hover">';
+            $html .= '<i class="fa fa-3x fa-download iip-event-overlay-text"></i></div></div>';
             $html .= '<p class="iip-event-file-label">';
             $html .= '<strong>' . $file->filename . '</strong> (' . $type . ')';
-            $html .= '</p></div><div class="iip-event-overlay-hover">';
-            $html .= '<i class="fa fa-3x fa-download iip-event-overlay-text"></i></div></a>';
+            $html .= '</p></a>';
 
             echo( $html );
           }
