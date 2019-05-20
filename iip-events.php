@@ -21,6 +21,8 @@ define( 'IIP_EVENTS_DIR', plugin_dir_path( dirname( __FILE__ ) ) . 'iip-events/'
 define( 'IIP_EVENTS_URL', plugin_dir_url( dirname( __FILE__ ) ) . 'iip-events/' );
 define( 'IIP_EVENTS_ADMIN', plugin_dir_url( dirname( __FILE__ ) ) . 'iip-events/admin/js/dist/' );
 define( 'IIP_EVENTS_PUBLIC', plugin_dir_url( dirname( __FILE__ ) ) . 'iip-events/public/js/dist/' );
+// Hardcoded path to plugin directory
+define( 'IIP_EVENTS_FROM_ROOT', '/wp-content/plugins/iip-events/' );
 
 // Imports IIP_Events class
 require plugin_dir_path( __FILE__ ) . 'includes/class-iip-events.php';

@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-undef
-const eventDir = iipEventParams.eventDir || '/';
+const eventDir = iipEventParams.eventDir || '';
 
 // For images gets the file extention from 'image/type' notation
 export const getExtention = ( source ) => {
@@ -37,22 +37,22 @@ export const getImageUrl = ( source ) => {
       imgUrl = source.url;
       break;
     case 'pdf':
-      imgUrl = `${eventDir}/admin/assets/file-pdf.svg`;
+      imgUrl = `${eventDir}admin/assets/file-pdf.svg`;
       break;
     case 'doc':
     case 'docx':
-      imgUrl = `${eventDir}/admin/assets/file-word.svg`;
+      imgUrl = `${eventDir}admin/assets/file-word.svg`;
       break;
     case 'ppt':
     case 'pptx':
-      imgUrl = `${eventDir}/admin/assets/file-powerpoint.svg`;
+      imgUrl = `${eventDir}admin/assets/file-powerpoint.svg`;
       break;
     case 'xls':
     case 'xlsm':
-      imgUrl = `${eventDir}/admin/assets/file-excel.svg`;
+      imgUrl = `${eventDir}admin/assets/file-excel.svg`;
       break;
     default:
-      imgUrl = `${eventDir}/admin/assets/file-regular.svg`;
+      imgUrl = `${eventDir}admin/assets/file-regular.svg`;
   }
 
   return imgUrl;
